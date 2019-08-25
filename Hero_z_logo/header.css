@@ -13,7 +13,7 @@ header
     width: auto;
     background-size: cover;
     background-repeat:round;
-    background-image: url("rozowe.jpg");
+    background-image: url("./foto/rozowe.jpg");
     margin:0;
     display: flex;
     flex-direction: column;  
