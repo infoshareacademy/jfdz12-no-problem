@@ -1,0 +1,30 @@
+/*css function*/
+
+.functions{
+    background-color: white;
+    min-height: 700px;
+    display: flex;
+    justify-content: center;
+}
+
+.functions-content{
+    display: flex;
+    flex-direction: column;
+
+    max-width: 900px;
+    width: 100%;
+    background-color: #F48FB1;
+}
+
+
+
+
+.function-item{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+

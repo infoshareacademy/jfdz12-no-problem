@@ -2,14 +2,12 @@
 
 ##zasady tworzenia
 *wszystkie sekcje w jednym pliku
-*szerokość max
-*style do każdej sekcji w innym pliku
-*gdzie są dostepne kolory
-*gdzie zdjęcia
-*gdzie umieszcamy zdjęcia
-*jakie nazewnictwo class w stylach przyjmujemy nazwa seckji-blok blok- modifier
+*szerokość max 1200px
+*style do każdej sekcji w innym pliku, czyli każdy tworzy oddzialny plik
+*kolory - Ania
+*zdjęcia katalog /img 
+*jakie nazewnictwo class w stylach przyjmujemy nazwa sekcji
 *stworzyć main.css z gównymi ustawieniami
-*jak robimy tytuły - jakich uzywamy h1, h2, h3
 *BEM czy używamy  
 
 ##kolory i tła
@@ -25,3 +23,14 @@
 
 
 ##inne ustalenia
+
+##spis funkcji
+*rejstracja osoób/firm produkująych wypieki domowe
+*molżiwość zamiawiania wypieków na indywidualne zamówienie w włściwym czasi 
+*molżiwość zamawiania wypieków oferowanych przez cukiernicy
+*wystawianie wypieków przez zarejestrowanych - porfolio
+*przeglądanie portfolio wypieków
+*możliwość dodawania ocen cukierników
+*możliwość kontaktów między zaintersowanymi 
+
+
