@@ -1,4 +1,5 @@
 # jfdz12-no-problem
+<<<<<<< HEAD
 
 ## zasady tworzenia
 * wszystkie sekcje w jednym pliku
@@ -34,3 +35,6 @@
 * możliwość kontaktów między zaintersowanymi 
 
 
+=======
+1.09.19 poprawiono responsywność w pliku Hero bez loga, drugi plik bez poprawek.
+>>>>>>> master
