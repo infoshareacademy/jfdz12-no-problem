@@ -1,31 +1,87 @@
 .team {
-    width: 100%;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-items: space-around;
-    background-color:  #FAFAFA;
-    justify-content: space-around;
-   }
+  max-width: 1200px;
+  font-family: 'Livvic', sans-serif;
+  margin: auto;
+  margin-top:0px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: rgba(255, 227, 242, 0.5)
+}
 
-.person {
-    height: 100%;
-    width: 22%;
-    min-width: 15em;
-    background-color: #F48FB1; 
-    border-radius: 15px;
-    color: white;
-    font-weight: bold;
-    justify-items: center;
-    text-align: center;
-    margin-bottom: 2em;
-   }
+.team__h1 {
+  text-align: center;
+  margin: 5%;
+  font-size: 50px;
+}
 
-.round {
-    border-radius: 50%;
-    height: 10em;
-    width: 10em;}
+.team__container {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  justify-items: auto;
+  flex-wrap: wrap;
+}
 
-    .color1 {background-color: #FAFAFA;}
-    .color2 {background-color: #F48FB1;}
-    .color3 {background-color: #795548;}
+.team__person__flip-card-front img {
+  border-radius: 5%;
+  width: 100%;
+  height: 100%;
+}
+
+.team__person__icons {
+  display: inline-block;
+  margin-bottom: 2%;
+  font-size: 1.3em;
+ }
+
+.team__person__icons a, .team__person__icons a:visited, .team__person__icons a:hover {
+  color: #564147;
+}
+
+.team__person__flip-card {
+  background-color: transparent;
+  width: 15em;
+  height: 15em;
+  perspective: 1000px;
+  margin: auto;
+  margin-bottom: 5%;
+  border-radius: 5%;
+}
+
+.team__person__flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 5%;
+}
+
+.team__person__flip-card:hover .team__person__flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.team__person__flip-card-front, .team__person__flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 5%;
+}
+
+.team__person__flip-card-front {
+  background-color: #bbb;
+  color: black;
+ 
+}
+
+.team__person__flip-card-back {
+  background-color: #FFE3F2;
+  color: #564147;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
