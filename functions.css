@@ -32,14 +32,16 @@
 .function-item{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 30%;
-    margin: 0.5em 1em 2em;
+    width: 28%;
+    min-width: 15em;
+    margin: 1em 0.75em;
+    padding: 1em 0.5em 0.5em;
     background: #FFE3F2;
     border-radius: 20px;
-    
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    text-align: center;
 }   
 
 .function-item:hover {
@@ -55,30 +57,73 @@
 .function-item__title{
     margin: 1em;
     text-transform: capitalize;
+    
 }
 
 .function-item__text{
     max-width: 90%;
+    text-align: justify;
 }
 
-.function-item2{
-    font-family: 'Chilanka', cursive;
- }
-
-.function-item3{
-    font-family: 'Playball', cursive;
+.function-item__img4{
+    width: 6em;
+    height: 6em;
+    margin: 0.5em;
+    background-image: url('img/cake2.png');
+    background-size: cover;
 }
 
-.function-item4{
-    font-family: 'Arsenal', sans-serif;
- }
+.function-item__img5{
+    width: 6em;
+    height: 6em;
+    margin: 0.5em;
+    background-image: url('img/cake3.png');
+    background-size: cover;
+}
 
- .function-item5{
-    font-family: 'Rosario', sans-serif
+.function-item__img6{
+    width: 6em;
+    height: 6em;
+    margin: 0.5em;
+    background-image: url('img/cake1.png');
+    background-size: cover;
 }
 
 
-.card-1 {
+.function-more{
+    text-align: center;
+    margin: 1em;
+}
+
+.function-more__button{
+    text-align: center;
+    font-family: 'Livvic', sans-serif;
+    color: #564147;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 1em 2.4em;
+    border: none;
+    border-radius: 1em;
+    background-color: #FFE3F2;
+    outline: none;
+    box-shadow: 0 6px 9px rgba(86,65,71,0.16), 0 6px 9px rgba(86,65,71,0.23);
+}
+
+.function-more__button--alink{
+    text-decoration: none;
+    color: #564147;
+}
+
+.function-more__button:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.function-more__button:active {
+    transform: translateY(1px);
+    box-shadow: 0 6px 6px rgba(86,65,71,0.16), 0 6px 6px rgba(86,65,71,0.23);;
+}
+/* .card-1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   }
@@ -111,4 +156,4 @@
   
   .card-5 {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-  }
+  } */
