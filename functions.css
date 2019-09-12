@@ -1,5 +1,6 @@
 /*css function*/
 
+
 .functions{
     background-color: rgba(255, 227, 242, 0.5); /* #F48FB1;*/
     min-height: 700px;
@@ -128,32 +129,46 @@
 /*more-functions style*/
 
 .more-functions{
-    background-color: rgba(255, 227, 242, 0.5); /* #F48FB1;*/
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: white;/* rgba(255, 227, 242, 0.5); */
     font-family: 'Livvic', sans-serif;
     color: #564147;
+    display:flex;
+    flex-direction: column; 
+    align-items: center;   
 }
 
 .more-functions-content1{
-    background-color: rgba(255, 227, 242, 0.7);
+    background-color: rgba(255, 227, 242, 0.6);
+    width: 100%;
+    color: #665465; /*#47817E #6B6B86; #;   ; */
+}
+
+.more-functions-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
 }
 
 .more-functions-content2{
     background-color: rgba(107, 184, 181, 0.2);
+    align-items: flex-end;
+    width:50%;
     display: flex;
     flex-direction: column;
-   /*  max-width: 1200px;
-    width: 100%; */
+    padding-bottom:2em;
+    max-width: 1200px;
+    width: 50%;
 }
 
 .more-functions-content3{
-    background-color: rgba(96, 159, 178, 0.3);
+    background-color: rgba(107, 107, 134, 0.3);
+    align-items: flex-start;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    /* max-width: 1200px;
-    width: 100%; */
 }
 
 .more-functions-maintitle{
@@ -163,13 +178,14 @@
 }
 
 .more-functions-subtitle{
+    align-self: center;
     font-size: 30px;
     text-align: center;
     margin: 1em 0;
 }
 
 .more-functions-items{
-    max-width: 1200px;
+    max-width: 600px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -178,13 +194,109 @@
 }
 
 .more-functions-item{
-    width: 45%;
+    background-color: white;  /*rgba(96,159,178,1);*/
+    width: 90%;
     margin: 1em;
-    border: 1px solid #564147;
-    padding: 0.5em;
-    border-radius: 1em;
+    border-radius: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.more-functions-item--right{
+    flex-direction: row; 
+    padding-right: 1em;
+}
+
+.more-functions-item--left{
+    flex-direction: row-reverse;
+    padding-left: 1em;
+}
+
+
+.more-functions-blok{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.more-finctions-item__img--right{
+    background-size: cover;
+    width: 25%;
+    min-height: 200px;
+    height: 100%;
+    margin-right: 1em;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
 
 }
+
+.more-finctions-item__img--left{
+    background-size: cover;
+    width: 25%;
+    min-height: 200px;
+    height: 100%;
+    margin-left: 1em;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+
+}
+
+.more-finctions-item__txt{
+    padding-bottom: 1em
+}
+
+
+.more-finctions-item__ul{
+    list-style: square outside;
+    padding: 0 1em;
+    margin: 0; 
+    font-size: 18px;
+}
+
+.more-finctions-item__li{
+    font-size: 16px;
+    text-align: left;
+}
+
+.more-finctions-item__img1{
+    background-image: url('img/cake-babel.jpg');
+ }
+
+.more-finctions-item__img2{
+    background-image: url('img/cake-blueberries.jpg');
+}
+
+.more-finctions-item__img3{
+    background-image: url('img/cheese-cake.jpg');
+}
+
+.more-finctions-item__img4{
+    background-image: url('img/choco-dessert.jpg');
+}
+
+.more-finctions-item__img5{
+    background-image: url('img/choco-cake.jpg');
+}
+
+.more-finctions-item__img6{
+    background-image: url('img/choco-cake2.jpg');
+}
+
+.more-finctions-item__img7{
+    background-image: url('img/choco-cake3.jpg');
+}
+
+.more-finctions-item__img8{
+    background-image: url('img/choco-cake4.jpg');
+}
+
+.more-finctions-item__title{
+    text-align: center;
+    font-size: 20px;
+}
+
+
+
 
 /* .function-item{
     display: flex;
