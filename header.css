@@ -1,5 +1,5 @@
 body { margin:0;margin-bottom: 0;
-
+    font-family: 'Livvic', sans-serif;
 }
 header
 {
@@ -27,7 +27,8 @@ margin-top: 30vh;
 margin-right: 2vw;
 letter-spacing: 3px;
 color:#795548;
-text-transform: uppercase;
+font-family: 'Livvic', sans-serif;
+
 }
 .header-form
 {
@@ -35,12 +36,17 @@ text-transform: uppercase;
     width: 450px;
     height: 100px;
     font-size: 1.4rem;
-    text-transform: uppercase;
+    
     text-decoration: none;
     margin-left: 200px;
     letter-spacing: 2px;
     color:#795548;
     animation: moja_animacja 5s infinite;
+}
+.header-form:hover
+{
+    text-decoration: none;
+    color: yellow;
 }
 @keyframes moja_animacja 
 {
