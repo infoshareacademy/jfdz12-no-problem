@@ -9,13 +9,18 @@
  height: auto;
  margin-left: auto;
  margin-right: auto;
- margin-top:30px;
+ margin-top:100px;
+ text-align: center;
+ margin-bottom: 100px;
 }
 .form-h2
 {
-    width: 600px;
+    width: 550px;
     height: auto;
-    text-transform:uppercase;
+    font-family: 'Livvic', sans-serif;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 50px;
 }
 @media (max-width:610px){
     .form-h2{
