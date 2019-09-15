@@ -17,7 +17,7 @@ nav {
     box-shadow: 0 0 10px #795548;
 }
 
-li {
+nav li {
     display: inline;
     padding: 0.5em;
     font-size: 22px;
