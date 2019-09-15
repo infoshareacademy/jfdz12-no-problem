@@ -12,16 +12,20 @@
  margin-top:100px;
  text-align: center;
  margin-bottom: 100px;
+ 
 }
 .form-h2
 {
-    width: 550px;
+    width: 600px;
     height: auto;
     font-family: 'Livvic', sans-serif;
     text-align: center;
     font-size: 50px;
     margin-top: 50px;
+    color: #564147;
+    font-weight: bold;
 }
+
 @media (max-width:610px){
     .form-h2{
         width: auto;

@@ -5,16 +5,16 @@
 .team {
   max-width: 1200px;
   font-family: 'Livvic', sans-serif;
-  margin: auto;
-  margin-top:0px;
   padding-top: 2%;
   padding-bottom: 4%;
 }
 
 .team__h1 {
   text-align: center;
-  margin: 5% 0 7% 0;
+  padding: 5% 0 7% 0;
   font-size: 50px;
+  color: #564147;
+  font-weight: bold;
 }
 
 .team__container {
