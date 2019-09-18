@@ -30,6 +30,10 @@ header{
     font-family: 'Livvic', sans-serif;
 }
 
+.containerheader h3 {
+    font-family: 'Livvic', sans-serif;
+}
+
 .header-form, .header-form h3{
     display: flex;
     width: 800px;
@@ -71,6 +75,7 @@ h3 .header-form{
 	.containerheader h2{
         font-size:1.1rem;
         
+}
 }
 
 @media (max-width:970px){
@@ -132,8 +137,7 @@ h3 .header-form{
         margin-left:30px;
         margin-right: 1px;
         font-size: 0.9rem;
-        
-        
+          
     }
 }
 

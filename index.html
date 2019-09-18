@@ -21,17 +21,17 @@
 
 <body>
 
-    <div class="navigation">
-        <nav>
-            <ul>
-                <li>Informacje o produkcie</li>
-                <li>Nasz zespół</li>
-                <li>Zaproszenie na premierę</li>
-                <li>Informacje dodatkowe</li>
-                <li>Kontakt</li>
-            </ul>
-        </nav>
-    </div>
+
+    <nav class="nav" id="top">
+        <img src="/public/image/transparent1.png" alt="logo" class="nav__logo"/>
+        <ul class="nav__all">
+            <a href="#functions"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Funkcje aplikacji</li></a>
+            <a href="#team"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Nasz zespół</li></a>
+            <a href="#form"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Zaproszenie na premierę</li></a>
+            <a href="#more-functions"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Informacje o aplikacji</li></a>
+        </ul>
+    </nav>
+
 
     <header>
 
@@ -65,7 +65,7 @@
                         </div>
                         <h3 class="function-item__title">Prezentacja wypieków</h3>
                         <p class="function-item__text">
-                            Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając dane takie jak: staż pracy, wyroby, na jakich się pracuję, typy ciast itp., jak również możliwość podania specjalizacji oraz podania gotowych wyrobów, z jakich jest się słynnym wśród znajomych i w okolicy. W skład portfolio wchodzą dane o specjalizacji w wypiekach np. serników, jak również prezentacja konkretnych wyrobów, ciast, wypieków, ze zdjęciami i krótkimi opisami zachęcającymi potencjalnego  klienta.
+                            Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając dane takie jak: staż pracy, wyroby, na jakich się pracuje, typy ciast itp., jak również możliwość podania specjalizacji oraz podania gotowych wyrobów, z jakich jest się słynnym wśród znajomych i w okolicy. W skład portfolio wchodzą dane o specjalizacji w wypiekach np. serników, jak również prezentacja konkretnych wyrobów, ciast, wypieków, ze zdjęciami i krótkimi opisami zachęcającymi potencjalnego  klienta.
                         </p>
                     </div>
                     <div class="function-item function-item3">
@@ -95,7 +95,7 @@
                         <div class="function-item__img6"></div>
                         <h3 class="function-item__title">System ocen</h3>
                         <p class="function-item__text">
-                            Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz terminowości dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było porównać jakość pracy cukierników. System ten będzie moderowany, aby nie doszło do nadużyć.
+                            Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz terminowość dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było porównać jakość pracy cukierników. System ten będzie moderowany, aby nie doszło do nadużyć.
                         </p>
                     </div>
                 </div>
@@ -106,26 +106,6 @@
             <div class="team">
                 <h1 class="team__h1">Poznaj nasz zespół</h1>
                 <div class="team__container">
-                    <div class="team__person" id="ania">
-                        <div class="team__person__flip-card">
-                            <div class="team__person__flip-card-inner">
-                                <div class="team__person__flip-card-front">
-                                    <img src="img/ania1.jpeg" alt="Ania">
-                                </div>
-                                <div class="team__person__flip-card-back">
-                                    <h1 class="team__person__h1">Anna Dębowska</h1>
-                                    <p>Front-End Developer</p>
-                                    <div class="team__person__icons">
-                                        <a href="mailto: hanka.sopot@gmail.com"><i class="fas fa-envelope-square"></i></a>
-                                        <a href="https://www.linkedin.com/in/anna-d%C4%99bowska-939ab78b/"
-                                            target="_blank"><i class="fab fa-linkedin"></i></a>
-                                        <a href="https://www.facebook.com/anna.debowska.779" target="_blank"><i
-                                                class="fab fa-facebook-square"></i></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="team__person" id="michal">
                         <div class="team__person__flip-card">
                             <div class="team__person__flip-card-inner">
@@ -195,7 +175,7 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                        <h2 class="form-h2">
-                         Zaproszenie na premiere
+                         Zaproszenie na premierę
                        </h2>
                        
                       <label for="inputEmail3" class="col-sm-2 control-label"></label>
@@ -205,8 +185,8 @@
                     </div>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-12">
-                       <p> Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze</p>
-                       <p>Zapewniamy bezpieczeństwo twoich danych</p>
+                       <p> Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze.</p>
+                       <p>Zapewniamy bezpieczeństwo Twoich danych.</p>
                             
                     </div>
                     </div>
@@ -219,7 +199,7 @@
             </div>
         </section>
 
-        <section class="more-functions">
+        <section class="more-functions" id="more-functions">
             <div class="more-functions-content1">
                 <h2 class="more-functions-maintitle">Informacje o aplikacji</h2>
             </div>
