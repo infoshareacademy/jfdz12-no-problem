@@ -2,22 +2,20 @@ body { margin:0;margin-bottom: 0;
     font-family: 'Livvic' sans-serif;
 }
 .header {
-width: 100%; 
-    
+
 }
 .header__header-foto {
-    width: auto;
+
     font-family: 'Livvic';
 }
 .header__header-foto--image {
-background-repeat: no-repeat;
-max-width: 100%;
-min-width: 1200px;
-background-size: cover;
+width: 100%;
+height: auto;
+
 }
 .header__header--form {
     width: auto;
-    margin-top:-400px;
+    
     font-family: 'Livvic';
 }
 .header__header--form-btn {
@@ -27,8 +25,6 @@ background-size: cover;
     padding: 5px;
     background-color:	#E1B6CA;
     animation:moja_animacja 5s infinite;
-    margin-top: 50px;
-    width: 400px;
 }
 @keyframes moja_animacja 
 {
@@ -36,13 +32,13 @@ background-size: cover;
 
 }
 .header__header-foto-txt {
-   width: 1200px;
+   
    
     
 }
 .header__header-foto-txt--h1 {
     font-family: 'Livvic';
-    margin-top: -300px;
+    
     margin-left: 30px;
     color: #564147;
 }
