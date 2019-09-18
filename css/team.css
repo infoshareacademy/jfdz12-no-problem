@@ -23,7 +23,6 @@
   margin: auto;
   display: flex;
   justify-content: space-around;
-  justify-items: auto;
   flex-wrap: wrap;
 }
 
