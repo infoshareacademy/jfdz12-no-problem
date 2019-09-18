@@ -4,32 +4,36 @@
 
     .nav {       
         font-family: 'Livvic', sans-serif;
-        background-color: hsl(180, 63%, 85%);
+        background-color: #e6fff3;
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
         position: sticky;
         top: 0;
+        z-index: 99;
     }
     
     .nav__logo {
-        max-height: 50px;
+        max-height: 4em;
         width: auto;
-        display: inline-block;
+        display: block;
         margin-left: 2%;
         margin-top: 1%;
         margin-bottom: 1%;
         align-self: center;
        
+       
     }
     
-    .nav a, .nav a:hover, .nav a:visited, .nav a:active {
+    .nav__all a, .nav__all a:hover, .nav__all a:visited, .nav__all a:active {
         color: #65003d;
         text-decoration: none;
     }
 
-    .nav a:hover {
-       text-decoration: underline;
+    .nav__all a:hover {
+      
+           color: rgb(226, 65, 140);
+    
     }
     
     .nav__all {
@@ -37,28 +41,49 @@
         display: flex;
         flex-wrap: nowrap;
         margin: auto 0;
+        text-align: center;
+        
        
     }   
     
     .nav__item {
-        display: inline;
+        display: block;
         padding: 0 1em;
         flex-wrap: nowrap;
-        min-width: auto;
+       
     }
 
+    @media screen and (max-width: 895px) {
+        
+       .nav {
+           justify-content: center;
+       }
+       .nav__all {
+       padding-bottom: 1%;
+       padding-top: 0.5%;
+       }
+     
+    }
 
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 790px) {
         .nav__all {
             flex-direction: column;
             align-content: flex-end;
             text-align: center;
             padding: 0;
+            
+            
        }
        .nav {
            justify-content: space-around;
        }
        .nav__item {
            padding: 0;
+           text-align: left;
        }
+
+       span {
+           font-size: 0.7em;
+       }
+
     }

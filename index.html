@@ -7,31 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arsenal|Chilanka|Playball|Rosario&display=swap"
-        rel="stylesheet">
     <script src="https://kit.fontawesome.com/a1b4fe7711.js"></script>
     <title>aleCiacha</title>
-    <link href="nav.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="functions.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" type="text/css" href="team.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="css/functions.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/team.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
     <link href="https://fonts.googleapis.com/css?family=Livvic:400,400i,700,700i&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
 <body>
 
-    <nav class="nav">
-        <img src="/public/image/transparent1.png" alt="logo" class="nav__logo">
+
+    <nav class="nav" id="top">
+        <img src="/public/image/transparent1.png" alt="logo" class="nav__logo"/>
         <ul class="nav__all">
-            <a href="#functions"><li class="nav__item">Funkcje aplikacji</li></a>
-            <a href="#team"><li class="nav__item">Nasz zespół</li></a>
-            <a href="#form"><li class="nav__item">Zaproszenie na premierę</li></a>
-            <a href="#more-functions"><li class="nav__item">Informacje o aplikacji</li></a>
+            <a href="#functions"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Funkcje aplikacji</li></a>
+            <a href="#team"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Nasz zespół</li></a>
+            <a href="#form"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Zaproszenie na premierę</li></a>
+            <a href="#more-functions"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Informacje o aplikacji</li></a>
         </ul>
     </nav>
+
 
     <header>
 
@@ -65,7 +65,7 @@
                         </div>
                         <h3 class="function-item__title">Prezentacja wypieków</h3>
                         <p class="function-item__text">
-                            Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając dane takie jak: staż pracy, wyroby, na jakich się pracuję, typy ciast itp., jak również możliwość podania specjalizacji oraz podania gotowych wyrobów, z jakich jest się słynnym wśród znajomych i w okolicy. W skład portfolio wchodzą dane o specjalizacji w wypiekach np. serników, jak również prezentacja konkretnych wyrobów, ciast, wypieków, ze zdjęciami i krótkimi opisami zachęcającymi potencjalnego  klienta.
+                            Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając dane takie jak: staż pracy, wyroby, na jakich się pracuje, typy ciast itp., jak również możliwość podania specjalizacji oraz podania gotowych wyrobów, z jakich jest się słynnym wśród znajomych i w okolicy. W skład portfolio wchodzą dane o specjalizacji w wypiekach np. serników, jak również prezentacja konkretnych wyrobów, ciast, wypieków, ze zdjęciami i krótkimi opisami zachęcającymi potencjalnego  klienta.
                         </p>
                     </div>
                     <div class="function-item function-item3">
@@ -95,7 +95,7 @@
                         <div class="function-item__img6"></div>
                         <h3 class="function-item__title">System ocen</h3>
                         <p class="function-item__text">
-                            Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz terminowości dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było porównać jakość pracy cukierników. System ten będzie moderowany, aby nie doszło do nadużyć.
+                            Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz terminowość dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było porównać jakość pracy cukierników. System ten będzie moderowany, aby nie doszło do nadużyć.
                         </p>
                     </div>
                 </div>
@@ -106,31 +106,11 @@
             <div class="team">
                 <h1 class="team__h1">Poznaj nasz zespół</h1>
                 <div class="team__container">
-                    <div class="team__person" id="ania">
-                        <div class="team__person__flip-card">
-                            <div class="team__person__flip-card-inner">
-                                <div class="team__person__flip-card-front">
-                                    <img src="foto/ania1.jpeg" alt="Ania">
-                                </div>
-                                <div class="team__person__flip-card-back">
-                                    <h1 class="team__person__h1">Anna Dębowska</h1>
-                                    <p>Front-End Developer</p>
-                                    <div class="team__person__icons">
-                                        <a href="mailto: hanka.sopot@gmail.com"><i class="fas fa-envelope-square"></i></a>
-                                        <a href="https://www.linkedin.com/in/anna-d%C4%99bowska-939ab78b/"
-                                            target="_blank"><i class="fab fa-linkedin"></i></a>
-                                        <a href="https://www.facebook.com/anna.debowska.779" target="_blank"><i
-                                                class="fab fa-facebook-square"></i></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="team__person" id="michal">
                         <div class="team__person__flip-card">
                             <div class="team__person__flip-card-inner">
                                 <div class="team__person__flip-card-front">
-                                    <img src="foto/michal1.jpeg" alt="Michał">
+                                    <img src="img/michal1.jpeg" alt="Michał">
                                 </div>
                                 <div class="team__person__flip-card-back">
                                     <h1 class="team__person__h1">Michał Koprowski</h1>
@@ -150,7 +130,7 @@
                         <div class="team__person__flip-card">
                             <div class="team__person__flip-card-inner">
                                 <div class="team__person__flip-card-front">
-                                    <img src="foto/damian1.jpg" alt="Damian">
+                                    <img src="img/damian1.jpg" alt="Damian">
                                 </div>
                                 <div class="team__person__flip-card-back">
                                     <h1 class="team__person__h1">Damian Milecki</h1>
@@ -170,7 +150,7 @@
                         <div class="team__person__flip-card">
                             <div class="team__person__flip-card-inner">
                                 <div class="team__person__flip-card-front">
-                                    <img src="foto/gosia1.jpg" alt="Gosia">
+                                    <img src="img/gosia1.jpg" alt="Gosia">
                                 </div>
                                 <div class="team__person__flip-card-back">
                                     <h1 class="team__person__h1">Gosia Wiśniewska</h1>
@@ -195,23 +175,23 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                        <h2 class="form-h2">
-                         Zaproszenie na premiere
+                         Zaproszenie na premierę
                        </h2>
                        
                       <label for="inputEmail3" class="col-sm-2 control-label"></label>
-                      <div class="col-sm-10">
+                      <div class="col-sm-12">
                         <input type="email" class="form-control" id="inputEmail3" placeholder="Podaj adres email">
                       </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                       <p> Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze</p>
-                       <p>Zapewniamy bezpieczeństwo twoich danych</p>
+                      <div class="col-sm-offset-2 col-sm-12">
+                       <p> Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze.</p>
+                       <p>Zapewniamy bezpieczeństwo Twoich danych.</p>
                             
                     </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
+                      <div class="col-sm-offset-2 col-sm-12">
                         <button type="button" class="btn btn-danger">Wyślij</button>
                       </div>
                     </div>
@@ -226,7 +206,7 @@
             <div class="more-functions-content">
                 <div class="more-functions-content2">
                     <div class="more-functions-items">
-                        <div class="more-functions-itemtext-transform: uppercase; more-functions-item--right">
+                        <div class="more-functions-item more-functions-item--right">
                             <div class="more-functions-item__img1 more-functions-item__img--right"></div>
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Informacje o nas możesz znaleźć</h3>
@@ -333,6 +313,9 @@
     <footer>
 
     </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
