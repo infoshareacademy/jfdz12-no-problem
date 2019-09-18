@@ -5,16 +5,21 @@
     .nav {       
         font-family: 'Livvic', sans-serif;
         background-color: #e6fff3;
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
         position: sticky;
         top: 0;
         z-index: 99;
     }
+
+    .nav__container {
+        width: 1200px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
     
     .nav__logo {
-        max-height: 4em;
+        max-height: 3.5em;
         width: auto;
         display: block;
         margin-left: 2%;
@@ -42,20 +47,19 @@
         flex-wrap: nowrap;
         margin: auto 0;
         text-align: center;
-        
-       
+              
     }   
     
     .nav__item {
         display: block;
         padding: 0 1em;
-        flex-wrap: nowrap;
+       
        
     }
 
     @media screen and (max-width: 895px) {
         
-       .nav {
+       .nav__container {
            justify-content: center;
        }
        .nav__all {
@@ -74,7 +78,7 @@
             
             
        }
-       .nav {
+       .nav__container {
            justify-content: space-around;
        }
        .nav__item {
