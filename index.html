@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="icon" href="favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a1b4fe7711.js"></script>
-    <title>aleCiacha</title>
+    <title>ale Ciacha</title>
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/functions.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -21,20 +21,7 @@
 
 <body>
 
-    <div class="navigation">
-        <nav>
-            <ul>
-                <li>Informacje o produkcie</li>
-                <li>Nasz zespół</li>
-                <li>Zaproszenie na premierę</li>
-                <li>Informacje dodatkowe</li>
-                <li>Kontakt</li>
-            </ul>
-        </nav>
-    </div>
     <section class="header">
-        
-
         <header>
             <div class="header__container">
             <img class="header__container--img" src="/img/rozowe22.jpg" alt="ciasta" width="1800" height="300">
@@ -49,10 +36,19 @@
             </div>
         </div>
         </header>
-    
-     
     </section>    
-    
+
+    <nav class="nav" id="top">
+        <div class="nav__container">
+            <img src="/public/image/transparent1.png" alt="logo" class="nav__logo"/>
+            <ul class="nav__all">
+                <a href="#functions"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Funkcje aplikacji</li></a>
+                <a href="#team"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Nasz zespół</li></a>
+                <a href="#form"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Zaproszenie na premierę</li></a>
+                <a href="#more-functions"><li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Informacje o aplikacji</li></a>
+            </ul>
+        </div>
+    </nav>
 
 
 
@@ -77,7 +73,7 @@
                         </div>
                         <h3 class="function-item__title">Prezentacja wypieków</h3>
                         <p class="function-item__text">
-                            Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając dane takie jak: staż pracy, wyroby, na jakich się pracuję, typy ciast itp., jak również możliwość podania specjalizacji oraz podania gotowych wyrobów, z jakich jest się słynnym wśród znajomych i w okolicy. W skład portfolio wchodzą dane o specjalizacji w wypiekach np. serników, jak również prezentacja konkretnych wyrobów, ciast, wypieków, ze zdjęciami i krótkimi opisami zachęcającymi potencjalnego  klienta.
+                            Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając dane takie jak: staż pracy, wyroby, na jakich się pracuje, typy ciast itp., jak również możliwość podania specjalizacji oraz podania gotowych wyrobów, z jakich jest się słynnym wśród znajomych i w okolicy. W skład portfolio wchodzą dane o specjalizacji w wypiekach np. serników, jak również prezentacja konkretnych wyrobów, ciast, wypieków, ze zdjęciami i krótkimi opisami zachęcającymi potencjalnego  klienta.
                         </p>
                     </div>
                     <div class="function-item function-item3">
@@ -107,7 +103,7 @@
                         <div class="function-item__img6"></div>
                         <h3 class="function-item__title">System ocen</h3>
                         <p class="function-item__text">
-                            Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz terminowości dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było porównać jakość pracy cukierników. System ten będzie moderowany, aby nie doszło do nadużyć.
+                            Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz terminowość dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było porównać jakość pracy cukierników. System ten będzie moderowany, aby nie doszło do nadużyć.
                         </p>
                     </div>
                 </div>
@@ -118,26 +114,6 @@
             <div class="team">
                 <h1 class="team__h1">Poznaj nasz zespół</h1>
                 <div class="team__container">
-                    <div class="team__person" id="ania">
-                        <div class="team__person__flip-card">
-                            <div class="team__person__flip-card-inner">
-                                <div class="team__person__flip-card-front">
-                                    <img src="img/ania1.jpeg" alt="Ania">
-                                </div>
-                                <div class="team__person__flip-card-back">
-                                    <h1 class="team__person__h1">Anna Dębowska</h1>
-                                    <p>Front-End Developer</p>
-                                    <div class="team__person__icons">
-                                        <a href="mailto: hanka.sopot@gmail.com"><i class="fas fa-envelope-square"></i></a>
-                                        <a href="https://www.linkedin.com/in/anna-d%C4%99bowska-939ab78b/"
-                                            target="_blank"><i class="fab fa-linkedin"></i></a>
-                                        <a href="https://www.facebook.com/anna.debowska.779" target="_blank"><i
-                                                class="fab fa-facebook-square"></i></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="team__person" id="michal">
                         <div class="team__person__flip-card">
                             <div class="team__person__flip-card-inner">
@@ -207,7 +183,7 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                        <h2 class="form-h2">
-                         Zaproszenie na premiere
+                         Zaproszenie na premierę
                        </h2>
                        
                       <label for="inputEmail3" class="col-sm-2 control-label"></label>
@@ -217,8 +193,8 @@
                     </div>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-12">
-                       <p> Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze</p>
-                       <p>Zapewniamy bezpieczeństwo twoich danych</p>
+                       <p> Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze.</p>
+                       <p>Zapewniamy bezpieczeństwo Twoich danych.</p>
                             
                     </div>
                     </div>
@@ -231,7 +207,7 @@
             </div>
         </section>
 
-        <section class="more-functions">
+        <section class="more-functions" id="more-functions">
             <div class="more-functions-content1">
                 <h2 class="more-functions-maintitle">Informacje o aplikacji</h2>
             </div>
@@ -271,7 +247,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Warunki korzystania z programu</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quasi, ratione asperiores voluptatibus quam eveniet ex magni aperiam minus in, iste necessitatibus facere quas voluptatem animi autem? Sunt, inventore sed!
+                                    Możesz korzystać z programu kiedy chcesz jak chcesz i do kiedy chcesz. Pamiętaj, że inni też chcą używać tego programu więc nie staraj się zrobić mu krzywdy, Korzystanie jest dostępne dla każdego kto wyświetli stronę i kto chce zostawić tu swoje dane po to aby inni mogli się do niego odezwać. Powodzenia.
                                 </div>
                             </div>
                         </div>
@@ -280,7 +256,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Prawa autorskie</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, eius suscipit ullam sint natus consequuntur aperiam, quam quae provident maiores quibusdam adipisci earum magni minima, qui quis iure reprehenderit deleniti?
+                                    Prawa autorskie należą do autorów jak i do infoshareacademy i chyba nie może być inaczej. Więc jak możesz to przestrzegaj tych praw a my będziemy za to wdzięczni. Cho ć wdzięczność nasz będzie pewnie większa jakbyś nam jakiegoś gifta nam dał za to, że możesz tego używać. 
                                 </div>
                             </div>
                         </div>
@@ -289,7 +265,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Rejestracja cukierników</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium reiciendis voluptates, recusandae ullam sit quae pariatur numquam tempora, quia maxime vel minima praesentium enim dolor sed. Debitis labore nulla illum.
+                                    Jako ten kto chce swoje wyroby zaprezentować i ewentualnie czerpać korzyści z ich sprzedawania musi niestety się zarejestrować bo inaczej nie będzie miał dostępu do swoich treści, hej. A po co nam to a w zasadzie po nic ale wszyscy tak robią więc i my też tak robimy.
                                 </div>
                             </div>
                         </div>
@@ -302,7 +278,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Ostatnia aktualizacja</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eligendi, ab ipsum vitae, sit impedit voluptatem architecto amet iusto corporis, cum modi odit temporibus harum culpa recusandae quia deserunt quas!
+                                    Ostania aktualizacja mogła być przed sekundą jaki przed kilkoma miesiącami, sami nie wiemy  w sumie kiedy była, kiedy będzie i kiedy może być ale coś sprawdzajcie to się dowiecie. Wersja i data aktualizacji będzie dostępna w stopce – jak ktoś ją zrobi.
                                 </div>
                             </div>
                         </div>
@@ -311,7 +287,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Planowana data otwarcia</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore quas maxime molestias quos nam eum. Dignissimos nostrum nihil alias doloribus quod eveniet nesciunt animi, illum corporis ab, est illo?
+                                    Planujemy zrobić wielkie otwarcie aplikacji tak jak akademia przykazała ale chyba nie wiemy dokładnie kiedy to będzie bo nie pamiętamy więc może być to gdzieś na początku przyszłego roku. W każdym bądź razie będzie jak będzie o czym chętnych, chętnie poinformujemy.
                                 </div>
                             </div>
                         </div>
@@ -320,7 +296,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Rejestracja użytkowników</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi praesentium maxime corrupti odit, quaerat, dicta sequi sapiente quibusdam amet ex non reiciendis aliquam nam? Sequi reiciendis eos dignissimos quam. Saepe.
+                                    No użytkownicy, tych też chcemy rejestrować aby zaoferować im dodatkowe atrakcje takie jaki możliwość oceny wyrobów i cukierników ale, żeby oceny były odpowiedzialne to chcemy wiedzieć kto to robi, żeby w razie czego móc na niego odpowiedni wpłynąć.
                                 </div>
                             </div>
                         </div>
@@ -329,7 +305,7 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Nasze wartości</h3>
                                 <div class="more-functions-item__txt">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro eaque in cupiditate quaerat at odit eum obcaecati. Velit culpa aperiam quis officiis facere? Animi quas dicta saepe cum, dolore minus!
+                                    Nasze wartości to chwile radości. Kodujemy bo kodować nie umiemy ale bardzo kodować chcemy. Jak odpowiednio mocno chcieć będziemy to w końcu super to zakodujemy. Standardy trzymać będziemy ale dopiero wtedy jak się o nich dowiemy.  Tak wo ogóle niech żyje kodowanie, fajnych aplikacji wytwarzanie.
                                 </div>
                             </div>
                         </div>

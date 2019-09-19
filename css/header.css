@@ -25,8 +25,8 @@
     left: 6%;
     top:2%;
     padding: 3px;
-
 }
+
 .header__container--form-txt{
     background-color: #E8C3D5;
     padding: 4px;
@@ -41,23 +41,24 @@
     font-family: 'Livvic', sans-serif;
     font-size: 1.4rem;
 }
+
 .header__container--form-txt a:hover {
     text-decoration: none;
 }
-@keyframes moja_animacjaa
-{
+@keyframes moja_animacjaa{
  25% { color:white; }
-
 }
+
 @media (max-width: 650px) {
     .header__container--text-h1{
         font-size:2.2rem;
-        
     }
-    .header__container--text{
+
+  .header__container--text{
         top:40%;
-    }
+  }
 }
+
 @media (max-width: 480px) {
     .header__container--text-h1{
         font-size:1.9rem;
@@ -66,9 +67,9 @@
         top:30%;
     }
 }
+
 @media (max-width: 390px) {
     .header__container--text-h1{
-        font-size:1.5rem;
-        
+        font-size:1.5rem;     
     }
-}
+} 

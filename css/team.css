@@ -1,5 +1,6 @@
 .allTeamItems {
-  background-color: rgba(255, 227, 242, 0.5)
+  background-color: rgba(255, 227, 242, 0.5) ;
+  margin: auto;
 }
 
 .team {
@@ -7,6 +8,7 @@
   font-family: 'Livvic', sans-serif;
   padding-top: 2%;
   padding-bottom: 4%;
+  margin: auto;
 }
 
 .team__h1 {
@@ -21,7 +23,6 @@
   margin: auto;
   display: flex;
   justify-content: space-around;
-  justify-items: auto;
   flex-wrap: wrap;
 }
 
@@ -43,8 +44,8 @@
 
 .team__person__flip-card {
   background-color: transparent;
-  width: 15em;
-  height: 15em;
+  width: 18em;
+  height: 18em;
   perspective: 1000px;
   margin: auto;
   margin-bottom: 5%;
@@ -90,4 +91,7 @@
 
 .team__person__h1 {
   color: #47817E;
+  font-weight: bold;
+  font-size: 1.7em;
+  padding-bottom: 1em;
 }
