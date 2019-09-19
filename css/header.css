@@ -1,44 +1,74 @@
-body { margin:0;margin-bottom: 0;
-    font-family: 'Livvic' sans-serif;
+.header__container {
+    position: relative;
 }
-.header {
-
-}
-.header__header-foto {
-
-    font-family: 'Livvic';
-}
-.header__header-foto--image {
-width: 100%;
-height: auto;
-
-}
-.header__header--form {
-    width: auto;
-    
-    font-family: 'Livvic';
-}
-.header__header--form-btn {
-    color:#564147;
-
-    margin-left:30px;
-    padding: 5px;
-    background-color:	#E1B6CA;
-    animation:moja_animacja 5s infinite;
-}
-@keyframes moja_animacja 
-{
-    30% {color:white;}
-
-}
-.header__header-foto-txt {
-   
+.header__container--img {
+    max-width: 100%;
+    height: auto;
+  }
+  .header__container--text{
+    position: absolute;
+    top:40%;
+    left: 2%;
+    width: 60%;
    
     
 }
-.header__header-foto-txt--h1 {
-    font-family: 'Livvic';
-    
-    margin-left: 30px;
+.header__container--text-h1{
+    font-family: 'Livvic', sans-serif;
+    font-size:2.5rem;
+    font-weight: 600;
+    text-align: center;
     color: #564147;
+}
+.header__container--form {
+    position: absolute;
+    left: 6%;
+    top:2%;
+    padding: 3px;
+
+}
+.header__container--form-txt{
+    background-color: #E8C3D5;
+    padding: 4px;
+    
+}
+.header__container--form-p {
+    animation: moja_animacjaa 5s infinite;
+    text-align: center;
+    color: #564147;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'Livvic', sans-serif;
+    font-size: 1.4rem;
+}
+.header__container--form-txt a:hover {
+    text-decoration: none;
+}
+@keyframes moja_animacjaa
+{
+ 25% { color:white; }
+
+}
+@media (max-width: 650px) {
+    .header__container--text-h1{
+        font-size:2.2rem;
+        
+    }
+    .header__container--text{
+        top:40%;
+    }
+}
+@media (max-width: 480px) {
+    .header__container--text-h1{
+        font-size:1.9rem;
+    }
+    .header__container--text {
+        top:30%;
+    }
+}
+@media (max-width: 390px) {
+    .header__container--text-h1{
+        font-size:1.5rem;
+        
+    }
 }
