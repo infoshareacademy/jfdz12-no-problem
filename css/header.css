@@ -4,6 +4,7 @@
 .header__container--img {
     max-width: 100%;
     height: auto;
+    min-width: 100%;
   }
   .header__container--text{
     position: absolute;
