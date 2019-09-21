@@ -14,13 +14,16 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/team.css">
     <link rel="stylesheet" type="text/css" href="css/form.css">
+    <link rel="stylesheet" type="text/css" href="css/back.css">
     <link href="https://fonts.googleapis.com/css?family=Livvic:400,400i,700,700i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
+    <audio src="music2.mp3" autoplay="auto"></audio>
+ 
+ 
 </head>
 
 <body>
-
    
 
     <nav class="nav" id="top">
@@ -37,6 +40,11 @@
     
         <header>
             <div class="header__container">
+                    <audio class="header__container--audio" controls preload="auto">
+                            <source src="music2.mp3" />
+                            
+                            
+                          </audio>
             <img class="header__container--img" src="/img/rozowe22.jpg" alt="ciasta" width="1800" height="300">
             <div class="header__container--text">
                 <h1 class="header__container--text-h1">Dobre ciasto rozwiewa wszelkie smutki</h1>
@@ -44,7 +52,7 @@
             </div>
             <div class="header__container--form">
                 <button class="header__container--form-txt">
-                        <a href="#form">     <p class="header__container--form-p">Zaproszenie na Premiere</p></a>
+                        <a href="#form">     <p class="header__container--form-p">Zaproszenie na Premierę</p></a>
                 </button>
             </div>
         </div>
@@ -305,15 +313,25 @@
                             <div class="more-functions-blok">
                                 <h3 class="more-functions-item__title">Nasze wartości</h3>
                                 <div class="more-functions-item__txt">
-                                    Nasze wartości to chwile radości. Kodujemy bo kodować nie umiemy ale bardzo kodować chcemy. Jak odpowiednio mocno chcieć będziemy to w końcu super to zakodujemy. Standardy trzymać będziemy ale dopiero wtedy jak się o nich dowiemy.  Tak wo ogóle niech żyje kodowanie, fajnych aplikacji wytwarzanie.
+                              Nasze wartości to chwile radości. Kodujemy bo kodować nie umiemy ale bardzo kodować chcemy. Jak odpowiednio mocno chcieć będziemy to w końcu super to zakodujemy. Standardy trzymać będziemy ale dopiero wtedy jak się o nich dowiemy.  Tak wo ogóle niech żyje kodowanie, fajnych aplikacji wytwarzanie.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
-        </section>
+                <div class="container__icon">
+                    <figure class="container__icon--font">
+                     <a href="#top"> <i  class="fas fa-long-arrow-alt-up  fa-5x"></i></a>
+                        
+                     </figure>
+                    <figcaption class="container__icon--content">
+                        <p class="container__icon--content-text">Powrót do góry</p>
+                    </figcaption>
+                </div>
+             
+                
+       </section>
 
 
 
