@@ -2,6 +2,7 @@
 {
     background-color: rgb(255, 204, 153, 0.5);
     display: flex;
+    padding-top: 2%;
 }
 .container-form
 {
