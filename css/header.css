@@ -4,7 +4,7 @@
 .header__container--img {
     max-width: 100%;
     height: auto;
-    min-width: 100%;
+    width: 100%;
   }
   .header__container--text{
     position: absolute;
@@ -49,6 +49,12 @@
 @keyframes moja_animacjaa{
  25% { color:white; }
 }
+.header__container--audio {
+    width: 87px;
+    position: absolute;
+    top: 8%;
+    left: 80%;
+}
 
 @media (max-width: 650px) {
     .header__container--text-h1{
@@ -67,6 +73,10 @@
     .header__container--text {
         top:30%;
     }
+    .header__container--audio {
+        left:84%;
+        width: 51px;
+    }
 }
 
 @media (max-width: 390px) {
@@ -74,3 +84,10 @@
         font-size:1.5rem;     
     }
 } 
+
+@media (max-width: 330px) {
+    .header__container--audio {
+        left:83%;
+        top:32%;
+    }
+}
