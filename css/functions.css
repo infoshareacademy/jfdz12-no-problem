@@ -1,13 +1,17 @@
 /*css function*/
+.functions h2, .functions h3, .function-more h2, .function-more h3{
+    font-weight: bold;
+}
 
 .functions{
-    background-color:rgba(174, 109, 171, 0.2);/* rgba(107, 107, 134, 0.3); rgba(107, 184, 181, 0.2);  rgba(255, 227, 242, 0.5);  #F48FB1;*/
+    background-color:rgba(174, 109, 171, 0.1);/* rgba(107, 107, 134, 0.3); rgba(107, 184, 181, 0.2);  rgba(255, 227, 242, 0.5);  #F48FB1;*/
     min-height: 700px;
     display: flex;
     justify-content: center;
     font-family: 'Livvic', sans-serif;
     color: #564147;
     padding-bottom: 3em;
+    padding-top: 3%; 
 }
 
 .functions-content{
@@ -15,7 +19,6 @@
     flex-direction: column;
     max-width: 1200px;
     width: 100%;
-    
 }
 
 .functions-title{
@@ -40,7 +43,7 @@
     min-width: 20em;
     margin: 1em 0.75em;
     padding: 1em 0.5em 0.5em;
-    background: #FFE3F2;
+    background: #FFF3FF;
     border-radius: 20px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     text-align: center;
@@ -59,6 +62,7 @@
 
 .function-item__title{
     margin: 1em;
+    font-size: 20px;
     color: #47817E;
 }
 
@@ -71,7 +75,7 @@
     width: 6em;
     height: 6em;
     margin: 0.5em;
-    background-image: url('img/cake2.png');
+    background-image: url('/img/cake2.png');
     background-size: cover;
 }
 
@@ -79,7 +83,7 @@
     width: 6em;
     height: 6em;
     margin: 0.5em;
-    background-image: url('img/cake3.png');
+    background-image: url('/img/cake3.png');
     background-size: cover;
 }
 
@@ -87,58 +91,30 @@
     width: 6em;
     height: 6em;
     margin: 0.5em;
-    background-image: url('img/cake1.png');
+    background-image: url('/img/cake1.png');
     background-size: cover;
 }
 
 
-.function-more{
-    text-align: center;
-    margin: 1em;
-}
-
-.function-more__button{
-    text-align: center;
-    font-family: 'Livvic', sans-serif;
-    color: #564147;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 1em 2.4em;
-    border: none;
-    border-radius: 1em;
-    background-color: #FFE3F2;
-    outline: none;
-    box-shadow: 0 6px 9px rgba(86,65,71,0.16), 0 6px 9px rgba(86,65,71,0.23);
-}
-
-.function-more__button--alink{
-    text-decoration: none;
-    color: #564147;
-}
-
-.function-more__button:hover {
-    box-shadow: 0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-
-.function-more__button:active {
-    transform: translateY(1px);
-    box-shadow: 0 6px 6px rgba(86,65,71,0.16), 0 6px 6px rgba(86,65,71,0.23);;
-}
-
 /*more-functions style*/
 
 .more-functions{
-    background-color: white;/* rgba(255, 227, 242, 0.5); */
+    background-color:rgba(107, 184, 181, 0.1); /*white;/* rgba(255, 227, 242, 0.5); */
     font-family: 'Livvic', sans-serif;
     color: #564147;
     display:flex;
     flex-direction: column; 
-    align-items: center;   
+    align-items: center;
+    padding-top: 3%;
+    
+}
+
+.more-functions h2, .more-functions h3{
+    font-weight: bold;
 }
 
 .more-functions-content1{
-    background-color: rgba(107, 184, 181, 0.2); /* rgba(255, 227, 242, 0.6); */
+    /*background-color: rgba(107, 184, 181, 0.1); /* rgba(255, 227, 242, 0.6); */
     width: 100%;
     color: #665465; /*#47817E #6B6B86; #;   ; */
 }
@@ -153,20 +129,21 @@
 }
 
 .more-functions-content2{
-    background-color: rgba(107, 184, 181, 0.2);
+    /*background-color: rgba(107, 184, 181, 0.1);*/
     align-items: flex-end;
     width:50%;
     display: flex;
     flex-direction: column;
-   
+    padding-bottom: 2em;
 }
 
 .more-functions-content3{
-    background-color: rgba(107, 184, 181, 0.2); /* rgba(107, 107, 134, 0.3); */
+    /*background-color: rgba(107, 184, 181, 0.1); /* rgba(107, 107, 134, 0.3); */
     align-items: flex-start;
     width: 50%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 2em;
 }
 
 .more-functions-maintitle{
@@ -174,13 +151,6 @@
     text-align: center;
     margin: 1em 0;
 }
-
-/* .more-functions-subtitle{
-    align-self: center;
-    font-size: 30px;
-    text-align: center;
-    margin: 1em 0;
-} */
 
 .more-functions-items{
     max-width: 600px;
@@ -211,7 +181,6 @@
     display: flex;
     flex-direction: column;
     max-width: 68%;
-    
 }
 
 .more-functions-item__img--right{
@@ -224,7 +193,6 @@
     margin-right: 0.7em;
     border-top-left-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
-
 }
 
 .more-functions-item__img--left{
@@ -237,15 +205,20 @@
     margin-left: 0.7em;
     border-top-right-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
-
 }
 
 .more-functions-item__txt{
-    padding-bottom: 1em
+    padding-bottom: 0.5em
+}
+
+.more-functions-item__title{
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
 }
 
 .more-functions-media{
-    margin: 0.5em 0;
+    margin: 0.1em 0 0.5em;
     font-size: 18px;
     display: flex;
     flex-wrap: wrap;
@@ -258,6 +231,13 @@
     margin: 0.2em;
     display: inline-block;
     width: 7em;
+}
+
+.more-functions-media__items:hover{
+    color:#ffffff; 
+    opacity: 0.7;
+    text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .more-functions-media__txt{
@@ -307,41 +287,38 @@
 }
 
 .more-functions-item__img1{
-    background-image: url('img/cake-babel.jpg');
+    background-image: url('/img/cake-babel.jpg');
  }
 
 .more-functions-item__img2{
-    background-image: url('img/cake-blueberries.jpg');
+    background-image: url('/img/cake-blueberries.jpg');
 }
 
 .more-functions-item__img3{
-    background-image: url('img/cheese-cake.jpg');
+    background-image: url('/img/cheese-cake.jpg');
 }
 
 .more-functions-item__img4{
-    background-image: url('img/choco-dessert.jpg');
+    background-image: url('/img/choco-dessert.jpg');
 }
 
 .more-functions-item__img5{
-    background-image: url('img/choco-cake.jpg');
+    background-image: url('/img/choco-cake.jpg');
 }
 
 .more-functions-item__img6{
-    background-image: url('img/choco-cake2.jpg');
+    background-image: url('/img/choco-cake2.jpg');
 }
 
 .more-functions-item__img7{
-    background-image: url('img/choco-cake3.jpg');
+    background-image: url('/img/choco-cake3.jpg');
 }
 
 .more-functions-item__img8{
-    background-image: url('img/choco-cake4.jpg');
+    background-image: url('/img/choco-cake4.jpg');
 }
 
-.more-functions-item__title{
-    text-align: center;
-    font-size: 20px;
-}
+
 
 @media screen and (max-width: 600px){
     .more-functions-content{
@@ -358,4 +335,22 @@
     .more-functions-content3{
         width:100%;
     }
+}
+
+/*footer*/
+.footer-content{
+    background-color: rgba(255, 227, 242, 0.5);/* #e6fff3;*/
+}
+
+.footer-body{
+    margin: 0 auto;
+    font-family: 'Livvic', sans-serif;
+    font-weight: 600;
+    color: #564147;
+    font-size: 16px;
+    min-height: 100px;
+    max-width: 1200px;
+    padding: 2em;
+    text-align: center;
+    
 }
