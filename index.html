@@ -196,7 +196,7 @@
                         <label for="inputEmail3" class="col-sm-2 control-label"></label>
                         <div class="col-sm-12">
                             <input type="email" class="form-control" id="inputEmail3" aria-describedby="emailHelp" placeholder="Podaj adres email">
-                            <span id="inputEmail3Text"></span>
+                            <p id="inputEmail3Text"></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -207,12 +207,22 @@
                     </div>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-12">
-                        <button type="submit" class="btn btn-danger">Wyślij</button>
+                        <button type="submit" id="btn-email-submit"  class="btn btn-danger">Wyślij</button>
                       </div>
                     </div>
                 </form>
             </div>
-            
+            <div class="emailModal" id="emailModalId">
+                <h3 class="emailModalHeader mt-3 text-center ">Gra za maila</h3>
+                <p class="text-center mt-3 mx-auto emailModalText">
+                    w podziękowaniu za podanie maila <br> możesz zagrać w naszą grę 
+                </p>
+                <div class="d-flex justify-content-around mt-5">
+                    <button type="button" class="email-btn-play btn btn-success px-4" id="email-btnplay">Gram</button>
+
+                    <button type="button" class="email-btn-exit btn btn-secondary px-3" id="email-btnexit">Dziękuję</button>
+                </div>
+            </div>     
         </section>
 
         <section class="more-functions" id="more-functions">
@@ -332,7 +342,7 @@
              
                 
        </section>
-
+       
 
 
     </main>
