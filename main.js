@@ -1,74 +1,95 @@
-const emailIsValid = function(email) {
-    return /\S+@\S+\.\S{2,}/.test(email)
-  }
+class EmailValid {
+    constructor(emailInput, emailInputSubtext){
+        this.emailInput = document.getElementById(emailInput);
+        this.emailInputSubtext = document.getElementById(emailInputSubtext);
+    }
 
-const emailCheck = function(){
-    const emailInput = document.getElementById('inputEmail3');
-    const emailInputSubtext = document.getElementById('inputEmail3Text');
-    emailInput.addEventListener('input',()=>{
-        const emailInputText = emailInput.value;
-        let emailValid = emailIsValid(emailInputText);
-        if (emailValid) {
-            emailInputSubtext.classList.add('inputEmail3SubtextTrue');
-            emailInputSubtext.innerText = "poprawny email" ;
-        }else{
-            if (emailInputText ===''){
-                emailInputSubtext.innerText="";
-            }else{
-                emailInputSubtext.classList.add('inputEmail3SubtextFalse');
-                emailInputSubtext.innerText = "wprowadź poprawny email";
-            }
-        }
-        
-    })
-}
-
-const emailModalBtn = function () {
-    const btnPlay = document.getElementById('email-btnplay');
-    const btnExit = document.getElementById('email-btnexit');
-    const emailModal = document.getElementById('emailModalId');
+    emailIsValid () {
+        return /\S+@\S+\.\S{2,}/.test(this.emailInput.value);
+      }
     
-    btnPlay.addEventListener('click', ()=>{
-        window.open('game/game.html');
-        emailModal.style.display = "none";
-    })
+    emailSubtextTrue(){
+        this.emailInputSubtext.classList.add('inputEmail3SubtextTrue');
+        this.emailInputSubtext.innerText = "poprawny email" ;
+      }
+    
+    emailSubtextFalse(){
+        this.emailInputSubtext.classList.add('inputEmail3SubtextFalse');
+        this.emailInputSubtext.innerText = "wprowadź poprawny email";
+      }
+    
+    emailSubtextEmpty(){
+        this.emailInputSubtext.innerText = "";
+    }
 
-    btnExit.addEventListener('click', ()=>{
-        emailModal.style.display = "none";
-    })
+    emailInputEmpty(){
+        this.emailInput.value = "";
+    }
 
-  }
-
-const emailModal = function (mLeft, mTop) {
-    const emModal = document.getElementById('emailModalId');
-    emModal.style.display = "block";
-    emModal.style.left = mLeft + "px";
-    emModal.style.top = mTop + "px"; 
-    emailModalBtn();
+    emailCheck(){
+        this.emailInput.addEventListener('input',()=>{
+            if (this.emailIsValid()) {
+                this.emailSubtextTrue();
+            }else{
+                if (this.emailInputText ===''){
+                    this.emailSubtextEmpty();
+                    console.log('emalFalse');
+                }else{
+                    this.emailSubtextFalse();
+                }
+            }    
+        }) 
+    }
+        
 }
 
+class EmailModal {
+    constructor (){
+        this.mLeft = screen.width/2-200;
+        this.mTop = screen.height/2-250;
+        this.emModal = document.getElementById('emailModalId');
+        this.btnPlay = document.getElementById('email-btnplay');
+        this.btnExit = document.getElementById('email-btnexit');
+    }
+
+    showModalBtn = function () {
+        this.btnPlay.addEventListener('click', ()=>{
+            window.open('game/game.html');
+            this.emModal.style.display = "none";
+        })
+    
+        this.btnExit.addEventListener('click', ()=>{
+            this.emModal.style.display = "none";
+        })
+      }
+
+    showModal () {
+        this.emModal.style.display = "block";
+        this.emModal.style.left = this.mLeft + "px";
+        this.emModal.style.top = this.mTop + "px"; 
+        this.showModalBtn();
+    }
+}
 
 const emailSubmit = function (){
     const emailSubmitButton = document.getElementById('btn-email-submit');
     emailSubmitButton.addEventListener('click',(event)=>{
-        const emailInput = document.getElementById('inputEmail3');
-        const emailInputText = emailInput.value;
-        const emailInputSubtext = document.getElementById('inputEmail3Text');
-        
-        let emailValid = emailIsValid(emailInputText)
+        const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
+        const emailModal = new EmailModal();
+
+        let emailValid = emailCheck.emailIsValid();
         if (emailValid){
-            const winLeft = screen.width/2-200;
-            const winTop = screen.height/2-250;
-            emailModal(winLeft, winTop);
+            
             event.preventDefault();
-            emailInput.value = "";
-            emailInputSubtext.innerText = "";
+            event.stopPropagation();
+            emailModal.showModal();
+            emailCheck.emailSubtextEmpty();
+            emailCheck.emailInputEmpty();
         }else{
             event.preventDefault();
             event.stopPropagation();
-            emailInputSubtext.classList.add('inputEmail3SubtextFalse');
-            emailInputSubtext.innerText = "wprowadź poprawny email";
-            emailCheck();
+            emailCheck.emailSubtextFalse();
+            emailCheck.emailCheck();
         }
     })
 
