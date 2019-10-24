@@ -9,11 +9,13 @@ class EmailValid {
       }
     
     emailSubtextTrue(){
+        this.emailInputSubtext.classList.toggle('inputEmail3SubtextFalse',false);
         this.emailInputSubtext.classList.add('inputEmail3SubtextTrue');
         this.emailInputSubtext.innerText = "poprawny email" ;
       }
     
     emailSubtextFalse(){
+        this.emailInputSubtext.classList.toggle('inputEmail3SubtextTrue',false);
         this.emailInputSubtext.classList.add('inputEmail3SubtextFalse');
         this.emailInputSubtext.innerText = "wprowadź poprawny email";
       }
@@ -31,9 +33,8 @@ class EmailValid {
             if (this.emailIsValid()) {
                 this.emailSubtextTrue();
             }else{
-                if (this.emailInputText ===''){
+                if (this.emailInput.value ===''){
                     this.emailSubtextEmpty();
-                    console.log('emalFalse');
                 }else{
                     this.emailSubtextFalse();
                 }
@@ -79,7 +80,6 @@ const emailSubmit = function (){
 
         let emailValid = emailCheck.emailIsValid();
         if (emailValid){
-            
             event.preventDefault();
             event.stopPropagation();
             emailModal.showModal();
