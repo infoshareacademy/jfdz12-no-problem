@@ -97,57 +97,124 @@ const emailSubmit = function (){
 
 emailSubmit();
 
-const setMyCookies = function (){
-    const dateCookie = new Date();
-    dateCookie.setTime(dateCookie.getTime() + (30*24*60*60*1000));
-    const expires = "expires="+ dateCookie.toUTCString();
-    document.cookie = "username=aaa; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "cookiesAccept = yes; " + expires + "; path=/;";
-    console.log("cook",document.cookie);
-}
-setMyCookies();
-
-const readMyCookies= function () {
-    const newCookies = document.cookie;
-    const newCookiesDecode = decodeURIComponent(document.cookie);
-    const newCookiesSpl = newCookies.split(';');
-    console.log('newCookies', newCookies);
-    console.log('newCoooDecode', newCookiesSpl);
-  }
-
-readMyCookies();
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+class CookiesAccept {
+    constructor(caName, caValue, caExpire){
+        this.caName = caName;
+        this.caValue = caValue;
+        this.caExpire = caExpire;
     }
-    return "";
-  }
 
-  console.log(getCookie("cookiesAccept"));
+    setCookies (){
+        const dateCookie = new Date();
+        dateCookie.setTime(dateCookie.getTime() + (this.caExpire*24*60*60*1000));
+        const expires = dateCookie.toUTCString();
+        document.cookie = "username=aaa; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/;`;
+    }
 
-  function showCookie(name) {
-    if (document.cookie !== "") {
-        const cookies = document.cookie.split(/; */);
+    cookiesBannerVisible(){
+        const cookiesBanner = document.getElementById('cookiesbanner');
+        cookiesBanner.style.display='block';
+    }
 
-        for (let i=0; i<cookies.length; i++) {
-            const cookieName = cookies[i].split("=")[0];
-            const cookieVal = cookies[i].split("=")[1];
-            if (cookieName === decodeURIComponent(name)) {
-                return decodeURIComponent(cookieVal);
+    cookiesBannerInVisible(){
+        const cookiesBanner = document.getElementById('cookiesbanner');
+        cookiesBanner.style.display='none';
+    }
+
+    pressAcceptBtn(){
+        const pressedBtn = document.getElementById('cookiesbtn');
+        pressedBtn.addEventListener('click',()=>{
+            this.setCookies (this.caName, this.caValue, this.caExpire);
+            this.cookiesBannerInVisible();
+        })
+    }
+
+    readThisCookies() {
+        const newCookies = document.cookie.split(';');
+        if (newCookies.length>0){
+            for(let i=0; i<newCookies.length ; i++){
+                const cookieName = newCookies[i].split("=")[0];
+                const cookieValue = newCookies[i].split("=")[1];
+                console.log(cookieValue,cookieName);
+                if(cookieName === this.caName && cookieValue === this.caValue){
+                    console.log(cookieValue);
+                    return cookieValue;
+                }else {return ""}
             }
         }
     }
+    
+    checkCookies(){
+        const checkCookiecValue = this.readThisCookies();
+        if (checkCookiecValue === 'yes'){
+            this.cookiesBannerInVisible();
+        }else{
+            this.cookiesBannerVisible();
+            this.pressAcceptBtn();
+        }
+    }
+    
 }
 
-//czytamy ciastko
-console.log("jskurs",showCookie("cookiesAccept"));
+checkCookiesBanner = new CookiesAccept ("CookiesAccept","yes",30);
+checkCookiesBanner.checkCookies();
+
+
+// const setCookies = function (scName, scValue, scExpire){
+//     const dateCookie = new Date();
+//     dateCookie.setTime(dateCookie.getTime() + (scExpire*24*60*60*1000));
+//     const expires = dateCookie.toUTCString();
+//     document.cookie = "username=aaa; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+//     document.cookie = `${scName} = ${scValue}; expires=${expires} ; path=/;`;
+// }
+
+// const readCookies= function (rcName, rcValue) {
+//     const newCookies = document.cookie.split(';');
+//     if (newCookies.length>0){
+//         for(let i=0; i<newCookies.length ; i++){
+//             const cookieName = newCookies[i].split("=")[0];
+//             const cookieValue = newCookies[i].split("=")[1];
+//             if(cookieName === rcName && cookieValue === rcValue){
+//                 return cookieValue;
+//             }else {return ""}
+//         }
+//     }
+//   }
+
+
+
+// function getCookie(cname) {
+//     var name = cname + "=";
+//     var decodedCookie = decodeURIComponent(document.cookie);
+//     var ca = decodedCookie.split(';');
+//     for(var i = 0; i <ca.length; i++) {
+//       var c = ca[i];
+//       while (c.charAt(0) == ' ') {
+//         c = c.substring(1);
+//       }
+//       if (c.indexOf(name) == 0) {
+//         return c.substring(name.length, c.length);
+//       }
+//     }
+//     return "";
+//   }
+
+//   console.log(getCookie("cookiesAccept"));
+
+//   function showCookie(name) {
+//     if (document.cookie !== "") {
+//         const cookies = document.cookie.split(/; */);
+
+//         for (let i=0; i<cookies.length; i++) {
+//             const cookieName = cookies[i].split("=")[0];
+//             const cookieVal = cookies[i].split("=")[1];
+//             if (cookieName === decodeURIComponent(name)) {
+//                 return decodeURIComponent(cookieVal);
+//             }
+//         }
+//     }
+// }
+
+// //czytamy ciastko
+// console.log("jskurs",showCookie("cookiesAccept"));
