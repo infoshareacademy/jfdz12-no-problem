@@ -31,3 +31,15 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+
+// rwd nav script
+let toggle = document.getElementById("toggle");
+function uncheck() {
+    toggle.checked=false
+};
+let navItems = document.getElementsByClassName("nav__item");
+for (let i = 0; i<navItems.length; i++) {
+    navItems[i].addEventListener("click", uncheck)
+}
+

@@ -29,23 +29,18 @@
 
 
     <nav class="nav" id="top">
-        <div class="nav__container">
-            <img src="/public/image/transparent1.png" alt="logo" class="nav__logo" />
-            <ul class="nav__all">
-                <a href="#functions">
-                    <li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span> Funkcje aplikacji</li>
-                </a>
-                <a href="#team">
-                    <li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span> Nasz zespół</li>
-                </a>
-                <a href="#form">
-                    <li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span> Zaproszenie na premierę</li>
-                </a>
-                <a href="#more-functions">
-                    <li class="nav__item"><span><i class="fas fa-cookie-bite"></i></span> Informacje o aplikacji</li>
-                </a>
-            </ul>
-        </div>
+       
+            <div class = "nav__rwd">
+                <img src="/public/image/transparent1.png" alt="logo" class="nav__logo"/>
+                <label for="toggle" id="label">&#9776;</label>
+                <input type="checkbox" id="toggle"/>
+                <div class="nav__menu">
+                    <a href="#functions" class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Funkcje aplikacji</a>
+                    <a href="#team" class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>  Nasz zespół</a>
+                    <a href="#form" class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Zaproszenie na premierę</a>
+                    <a href="#more-functions" class="nav__item"><span><i class="fas fa-cookie-bite"></i></span>   Informacje o aplikacji</a>
+                </div>
+      
     </nav>
 
     <header>
@@ -92,7 +87,7 @@
 
 
     <main>
-        <section id=" functions" class="functions">
+        <section id="functions" class="functions">
             <div class="functions-content">
                 <h2 class="functions-title">Funkcje aplikacji</h2>
                 <div class="functions-items">
