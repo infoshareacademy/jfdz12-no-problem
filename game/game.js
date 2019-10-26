@@ -14,8 +14,6 @@ const arrowPress = function (myBox){
             positionBox = positionBox - 15;
             myBox.style.marginLeft = positionBox + 'px';
         }
-        // console.log(myBox.offsetLeft, myBox.offsetWidth, myBox.getClientRects());
-        //console.log(myBox.getBoundingClientRect())
     }); 
 }
 
@@ -65,7 +63,6 @@ const cookiesRandomGenerator = function () {
 const cookiesFlow = function(){
     let i = 0;
     const lidClase = document.querySelector('.kitchen-lid');
-    //cookiesRandomGenerator();
     const cookiesInterwal = setInterval(()=>{
         lidClase.classList.add('lid-up');
         cookiesRandomGenerator();        
