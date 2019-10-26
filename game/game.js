@@ -14,6 +14,8 @@ const arrowPress = function (myBox){
             positionBox = positionBox - 15;
             myBox.style.marginLeft = positionBox + 'px';
         }
+        // console.log(myBox.offsetLeft, myBox.offsetWidth, myBox.getClientRects());
+        //console.log(myBox.getBoundingClientRect())
     }); 
 }
 
