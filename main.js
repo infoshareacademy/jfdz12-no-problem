@@ -2,26 +2,22 @@ class EmailValid {
     constructor(emailInput, emailInputSubtext){
         this.emailInput = document.getElementById(emailInput);
         this.emailInputSubtext = document.getElementById(emailInputSubtext);
+        this.classTrue = 'inputEmail3SubtextTrue';
+        this.classFalse = 'inputEmail3SubtextFalse';
     }
 
     emailIsValid () {
         return /\S+@\S+\.\S{2,}/.test(this.emailInput.value);
-      }
+    }
     
-    emailSubtextTrue(){
-        this.emailInputSubtext.classList.toggle('inputEmail3SubtextFalse',false);
-        this.emailInputSubtext.classList.add('inputEmail3SubtextTrue');
-        this.emailInputSubtext.innerText = "poprawny email" ;
-      }
-    
-    emailSubtextFalse(){
-        this.emailInputSubtext.classList.toggle('inputEmail3SubtextTrue',false);
-        this.emailInputSubtext.classList.add('inputEmail3SubtextFalse');
-        this.emailInputSubtext.innerText = "wprowadź poprawny email";
-      }
-    
-    emailSubtextEmpty(){
-        this.emailInputSubtext.innerText = "";
+    emailSubtext(subtext){
+        let subtextVal = "";
+        if(subtext !== 'Empty'){
+            this.emailInputSubtext.classList.toggle(subtext === 'True' ? this.classFalse : this.classTrue , false);
+            this.emailInputSubtext.classList.add(subtext === 'True' ? this.classTrue : this.classFalse , false);
+            subtextVal = subtext === 'True' ? "poprawny email" : "wprowadź poprawny email" ;
+        }
+        this.emailInputSubtext.innerText = subtextVal;
     }
 
     emailInputEmpty(){
@@ -31,12 +27,12 @@ class EmailValid {
     emailCheck(){
         this.emailInput.addEventListener('input',()=>{
             if (this.emailIsValid()) {
-                this.emailSubtextTrue();
+                this.emailSubtext('True');
             }else{
                 if (this.emailInput.value ===''){
-                    this.emailSubtextEmpty();
+                    this.emailSubtext('Empty');
                 }else{
-                    this.emailSubtextFalse();
+                    this.emailSubtext('False');
                 }
             }    
         }) 
@@ -77,18 +73,15 @@ const emailSubmit = function (){
     emailSubmitButton.addEventListener('click',(event)=>{
         const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
         const emailModal = new EmailModal();
-
+        
         let emailValid = emailCheck.emailIsValid();
+        event.preventDefault();
         if (emailValid){
-            event.preventDefault();
-            event.stopPropagation();
             emailModal.showModal();
-            emailCheck.emailSubtextEmpty();
+            emailCheck.emailSubtext('Empty');
             emailCheck.emailInputEmpty();
         }else{
-            event.preventDefault();
-            event.stopPropagation();
-            emailCheck.emailSubtextFalse();
+            emailCheck.emailSubtext('False');
             emailCheck.emailCheck();
         }
     })
@@ -136,9 +129,7 @@ class CookiesAccept {
             for(let i=0; i<newCookies.length ; i++){
                 const cookieName = newCookies[i].split("=")[0];
                 const cookieValue = newCookies[i].split("=")[1];
-                console.log(cookieValue,cookieName);
                 if(cookieName === this.caName && cookieValue === this.caValue){
-                    console.log(cookieValue);
                     return cookieValue;
                 }else {return ""}
             }
