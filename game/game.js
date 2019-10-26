@@ -79,7 +79,6 @@ const cookiesRandomGenerator = function () {
 const cookiesFlow = function(){
     let i = 0;
     const lidClase = document.querySelector('.kitchen-lid');
-    //cookiesRandomGenerator();
     const cookiesInterwal = setInterval(()=>{
         lidClase.classList.add('lid-up');
         cookiesRandomGenerator();        

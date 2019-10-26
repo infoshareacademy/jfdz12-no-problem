@@ -2,24 +2,22 @@ class EmailValid {
     constructor(emailInput, emailInputSubtext){
         this.emailInput = document.getElementById(emailInput);
         this.emailInputSubtext = document.getElementById(emailInputSubtext);
+        this.classTrue = 'inputEmail3SubtextTrue';
+        this.classFalse = 'inputEmail3SubtextFalse';
     }
 
     emailIsValid () {
         return /\S+@\S+\.\S{2,}/.test(this.emailInput.value);
-      }
+    }
     
-    emailSubtextTrue(){
-        this.emailInputSubtext.classList.add('inputEmail3SubtextTrue');
-        this.emailInputSubtext.innerText = "poprawny email" ;
-      }
-    
-    emailSubtextFalse(){
-        this.emailInputSubtext.classList.add('inputEmail3SubtextFalse');
-        this.emailInputSubtext.innerText = "wprowadź poprawny email";
-      }
-    
-    emailSubtextEmpty(){
-        this.emailInputSubtext.innerText = "";
+    emailSubtext(subtext){
+        let subtextVal = "";
+        if(subtext !== 'Empty'){
+            this.emailInputSubtext.classList.toggle(subtext === 'True' ? this.classFalse : this.classTrue , false);
+            this.emailInputSubtext.classList.add(subtext === 'True' ? this.classTrue : this.classFalse , false);
+            subtextVal = subtext === 'True' ? "poprawny email" : "wprowadź poprawny email" ;
+        }
+        this.emailInputSubtext.innerText = subtextVal;
     }
 
     emailInputEmpty(){
@@ -29,13 +27,12 @@ class EmailValid {
     emailCheck(){
         this.emailInput.addEventListener('input',()=>{
             if (this.emailIsValid()) {
-                this.emailSubtextTrue();
+                this.emailSubtext('True');
             }else{
-                if (this.emailInputText ===''){
-                    this.emailSubtextEmpty();
-                    console.log('emalFalse');
+                if (this.emailInput.value ===''){
+                    this.emailSubtext('Empty');
                 }else{
-                    this.emailSubtextFalse();
+                    this.emailSubtext('False');
                 }
             }    
         }) 
@@ -76,19 +73,15 @@ const emailSubmit = function (){
     emailSubmitButton.addEventListener('click',(event)=>{
         const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
         const emailModal = new EmailModal();
-
+        
         let emailValid = emailCheck.emailIsValid();
+        event.preventDefault();
         if (emailValid){
-            
-            event.preventDefault();
-            event.stopPropagation();
             emailModal.showModal();
-            emailCheck.emailSubtextEmpty();
+            emailCheck.emailSubtext('Empty');
             emailCheck.emailInputEmpty();
         }else{
-            event.preventDefault();
-            event.stopPropagation();
-            emailCheck.emailSubtextFalse();
+            emailCheck.emailSubtext('False');
             emailCheck.emailCheck();
         }
     })
@@ -96,3 +89,64 @@ const emailSubmit = function (){
 }
 
 emailSubmit();
+
+class CookiesAccept {
+    constructor(caName, caValue, caExpire){
+        this.caName = caName;
+        this.caValue = caValue;
+        this.caExpire = caExpire;
+    }
+
+    setCookies (){
+        const dateCookie = new Date();
+        dateCookie.setTime(dateCookie.getTime() + (this.caExpire*24*60*60*1000));
+        const expires = dateCookie.toUTCString();
+        document.cookie = "username=aaa; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/;`;
+    }
+
+    cookiesBannerVisible(){
+        const cookiesBanner = document.getElementById('cookiesbanner');
+        cookiesBanner.style.display='block';
+    }
+
+    cookiesBannerInVisible(){
+        const cookiesBanner = document.getElementById('cookiesbanner');
+        cookiesBanner.style.display='none';
+    }
+
+    pressAcceptBtn(){
+        const pressedBtn = document.getElementById('cookiesbtn');
+        pressedBtn.addEventListener('click',()=>{
+            this.setCookies (this.caName, this.caValue, this.caExpire);
+            this.cookiesBannerInVisible();
+        })
+    }
+
+    readThisCookies() {
+        const newCookies = document.cookie.split(';');
+        if (newCookies.length>0){
+            for(let i=0; i<newCookies.length ; i++){
+                const cookieName = newCookies[i].split("=")[0];
+                const cookieValue = newCookies[i].split("=")[1];
+                if(cookieName === this.caName && cookieValue === this.caValue){
+                    return cookieValue;
+                }else {return ""}
+            }
+        }
+    }
+    
+    checkCookies(){
+        const checkCookiecValue = this.readThisCookies();
+        if (checkCookiecValue === 'yes'){
+            this.cookiesBannerInVisible();
+        }else{
+            this.cookiesBannerVisible();
+            this.pressAcceptBtn();
+        }
+    }
+    
+}
+
+checkCookiesBanner = new CookiesAccept ("CookiesAccept","yes",30);
+checkCookiesBanner.checkCookies();
