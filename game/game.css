@@ -75,21 +75,21 @@
     z-index: 2;
 }
 
-.cook1{
+.gesler{
     top:60px;
     background-image: url('img/cooks1.svg');
 }
 
-.cook2{
+.maklowicz{
     top:185px;
     background-image: url('img/cooks2.svg');
     background-size: cover;
 }
-.cook3{
+.jakubiak{
     top: 310px;
     background-image: url('img/cooks3.svg');
 }
-.cook4{
+.starmach{
     top: 435px;
     background-image: url('img/cooks4.svg');
 }
@@ -98,10 +98,10 @@
     transform:scale(0.8);
 }
 
-.cooks-animation0{animation: cooksanime1 5s linear 0s 1 normal none;}
-.cooks-animation1{animation: cooksanime2 5s linear 0s 1 normal none;}
-.cooks-animation2{animation: cooksanime3 5s linear 0s 1 normal none;}
-.cooks-animation3{animation: cooksanime4 5s linear 0s 1 normal none;}
+.cooks-animation-gesler{animation: cooksanime1 5s linear 0s 1 normal none;}
+.cooks-animation-maklowicz{animation: cooksanime2 5s linear 0s 1 normal none;}
+.cooks-animation-jakubiak{animation: cooksanime3 5s linear 0s 1 normal none;}
+.cooks-animation-starmach{animation: cooksanime4 5s linear 0s 1 normal none;}
 
 
 .cookies{
