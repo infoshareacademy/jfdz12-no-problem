@@ -1,46 +1,62 @@
 const listOfCookies = ['🥮','🎂','🍥','🍰','🧁', '🍪', '🍄','🥠', '🥞','🍘','🍩','🍄'];
 
-const arrowPress = function (myBox){
-    let positionBox = 500;
-        
-    window.addEventListener('keydown', function (event) {
-        const key = event.key;
-        
-        if (key === 'ArrowRight' && positionBox<915){
-            positionBox = positionBox + 15;
-            myBox.style.marginLeft = positionBox + 'px';               
+class Cook {
+    constructor(cookName, cookPosition){
+        this.cookName = cookName;
+        this.cookPosition = cookPosition;
+        this.cookHorizontalPosition = 500;
+        this.element = document.querySelector(`.${cookName}`);
+        this.element.addEventListener('click',()=>{
+            this.enter();
+        });
+    }
+    enter (){
+        if (null !== selectedCook) {
+            return;
         }
-        if (key === 'ArrowLeft' && positionBox>110){
-            positionBox = positionBox - 15;
-            myBox.style.marginLeft = positionBox + 'px';
-        }
-    }); 
-}
 
-const addEventForCook = function(){
-    const itemsCook = document.querySelectorAll('.cook');
-    const topCookPosition = [393, 268, 143, 18];
-    
-    itemsCook.forEach((el,idx)=>{
-         el.addEventListener('click',()=>{
-            const itemsCookActive = document.querySelectorAll('.cook.active');
-            if(itemsCookActive.length === 0){
-                el.classList.add(`cooks-animation${idx}`);
-                el.classList.add('active');
-                el.addEventListener('animationend', ()=>{
-                    el.classList.remove(`cooks-animation${idx}`);
-                    el.style.marginLeft = '500px';
-                    el.style.marginTop = `${topCookPosition[idx]}px`;
-                    el.style.transform = "scale(1.6)";
-                    arrowPress(el);
-                })
-            }
+        selectedCook = this;
+
+        this.element.classList.add(`cooks-animation-${this.cookName}`);
+        this.element.classList.add('active');
+        this.element.addEventListener('animationend', ()=>{
+            this.element.classList.remove(`cooks-animation-${this.cookName}`);
+            this.element.style.marginLeft = '500px';
+            this.element.style.marginTop = `${this.cookPosition}px`;
+            this.element.style.transform = "scale(1.6)";
+        });
+
+        window.addEventListener('keydown', (event) => {
+            this.handleMove(event.key);
         })
-    })
+    }
 
+    handleMove(key){
+        if(this.element.offsetTop !== 453){
+            return
+        }
+        if (key === 'ArrowRight' && this.cookHorizontalPosition<915){
+            this.move('right');          
+        }
+        if (key === 'ArrowLeft' && this.cookHorizontalPosition>110){
+            this.move('left');
+        }
+    }
+
+    move(direction){
+        this.cookHorizontalPosition = direction === 'left' ?
+            this.cookHorizontalPosition - 15 :
+            this.cookHorizontalPosition + 15
+        ; 
+        this.element.style.marginLeft = `${this.cookHorizontalPosition}px`;
+    }
 }
 
-addEventForCook();
+let selectedCook = null;
+const gesler = new Cook ('gesler', 393);
+const maklowicz = new Cook ('maklowicz', 268);
+const jakubiak = new Cook('jakubiak', 143);
+const starmach = new Cook('starmach', 18);
 
 const cookiesRandomGenerator = function () {
     const cookieFrame = document.getElementById('kitchenid');
