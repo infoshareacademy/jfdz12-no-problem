@@ -282,7 +282,7 @@
     left: 320px;
     top: 60px;
     font-size: 30px;
-    animation: cookiesshot 7s linear 1s 1 normal none;
+    animation: cookiesshot 1s linear 0s normal none;
 }
 
 .cookies-anime-blinking{
@@ -290,7 +290,7 @@
     left: 320px;
     top: 60px;
     font-size: 30px;
-    animation: cookiesshot 7s linear 1s 1 normal none,
+    animation: cookiesshot 1s linear 0s normal none,
                blinkingEmotiAnime 4s linear 1s infinite;
 }
 
@@ -322,10 +322,13 @@
 
 @keyframes cookiesshot{
     0% { transform: translate(0px, 0px) rotateZ(45deg);}
-    10% { transform: translate(47px, 0px) rotateZ(90deg);;}
-    20% { transform: translate(47px, 34px) rotateZ(135deg);;}
-    60% {transform: translate(250px, 34px) rotateZ(500deg);;}
-    100%{transform: translate(250px, 400px) rotateZ(900deg);;}
+    50% { transform: translate(47px, 0px) rotateZ(90deg);}
+    100% { transform: translate(94px, 34px) rotateZ(360deg);;}
+    /* 40% { transform: translate(125px, 34px) rotateZ(360deg);;}
+    60% { transform: translate(180px, 34px) rotateZ(450deg);;}
+    80% { transform: translate(230px, 34px) rotateZ(540deg);;}
+    100% {transform: translate(250px, 34px) rotateZ(630deg);;} */
+   
 }  
 
 @keyframes cooksanime1{

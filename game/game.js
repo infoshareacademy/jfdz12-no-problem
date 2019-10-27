@@ -42,36 +42,52 @@ const addEventForCook = function(){
 
 addEventForCook();
 
+
 const cookiesRandomGenerator = function () {
     const cookieFrame = document.getElementById('kitchenid');
-        const cookieBody = document.createElement('span');
-        cookieFrame.appendChild(cookieBody);
-        const randomCookies = listOfCookies[Math.abs(Math.round(Math.random()*listOfCookies.length-1))];
-        const cookieEmoti = document.createTextNode(randomCookies);
-        cookieBody.appendChild(cookieEmoti);
-        if (randomCookies === '🍄'){
-            cookieBody.classList.add('cookies-anime-blinking');
-            } else{
-                cookieBody.classList.add('cookies-anime');
+    const nextCookie = document.createElement('span');
+    cookieFrame.appendChild(nextCookie);
+    const randomCookie = listOfCookies[Math.abs(Math.round(Math.random()*listOfCookies.length-1))];
+    const cookieEmoti = document.createTextNode(randomCookie);
+    nextCookie.appendChild(cookieEmoti);
+    if (randomCookie === '🍄'){
+            nextCookie.classList.add('cookies-anime-blinking');
+            } else {
+                nextCookie.classList.add('cookies-anime');
             }
-        cookieBody.setAttribute('id','cookies1id');
-        cookieBody.addEventListener("animationend", function(){
-            document.getElementById('cookies1id').remove();
-        });
-}
+    nextCookie.addEventListener("animationend", function(){
+            let cookieXPosition = 414;
+            let cookieYPosition = 95;
+            let idNum = Math.floor(Math.random()*1000);
+            nextCookie.setAttribute("id", idNum);
+            let myCookie = document.getElementById(idNum);
+            myCookie.style.left = cookieXPosition + "px";
+            myCookie.style.top = cookieYPosition + "px";
+            let cookieRange = Math.random()*536+414;
+            setInterval(function goRight() {
+                if (cookieXPosition<cookieRange) {
+                    cookieXPosition++;
+                    myCookie.style.left = cookieXPosition+"px";}
+                else {
+                    cookieYPosition++;
+                    myCookie.style.top = cookieYPosition+"px";
+                    if (cookieYPosition===550) {
+                        cookieFrame.removeChild(nextCookie);
+                    }
+                }
+            },10)
+})};
+
 
 const cookiesFlow = function(){
-    let i = 0;
     const lidClase = document.querySelector('.kitchen-lid');
-    const cookiesInterwal = setInterval(()=>{
+    setInterval(()=>{
         lidClase.classList.add('lid-up');
         cookiesRandomGenerator();        
-        i++;
         setTimeout(()=>{lidClase.classList.remove('lid-up')},2000);
-        if (i>20){
-            clearInterval(cookiesInterwal);
-        }
     },5000);
-}
+};
+
+
 
 cookiesFlow();
