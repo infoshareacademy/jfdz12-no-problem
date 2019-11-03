@@ -277,33 +277,17 @@
     border:5px solid transparent;
 }
 
-.cookies-anime{
+.cookies-body{
     position: absolute;
     left: 320px;
     top: 60px;
     font-size: 30px;
-    animation: cookiesshot 1s linear 0s normal none;
+    }
+
+.cookies-blinking{
+    animation: blinkingEmotiAnime 4s linear 1s infinite;
 }
 
-.cookies-anime-blinking{
-    position: absolute;
-    left: 320px;
-    top: 60px;
-    font-size: 30px;
-    animation: cookiesshot 1s linear 0s normal none,
-               blinkingEmotiAnime 4s linear 1s infinite;
-}
-
-.barell{
-    position: absolute;
-    background-image: url(img/cookies-containerm.png);
-    background-size: contain;
-    width:70px;
-    height: 70px;
-    left:579px;
-    top:482px;
-    z-index: 5;
-}
 
 .blinkingEmoti{
     animation: blinkingEmotiAnime 4s linear 1s infinite;
