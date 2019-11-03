@@ -35,59 +35,68 @@ class EmailValid {
                     this.emailSubtext('False');
                 }
             }    
-        }) 
+        }); 
     }
-        
+
+    emailSaveToSesionStorage(){
+        const userData = {
+            name: "",
+            email: this.emailInput.value
+        } 
+
+        const userDataJson = JSON.stringify(userData);
+        sessionStorage.setItem('userData', userDataJson);
+
+    }
 }
 
 class EmailModal {
     constructor (){
-        this.mLeft = screen.width/2-200;
-        this.mTop = screen.height/2-250;
-        this.emModal = document.getElementById('emailModalId');
+        this.emModal = document.getElementById('emailmodalid');
         this.btnPlay = document.getElementById('email-btnplay');
         this.btnExit = document.getElementById('email-btnexit');
+        this.btnPlay.addEventListener('click',()=>{
+            this.btnPlayEvent()
+        });
+        this.btnExit.addEventListener('click',()=>{
+            this.btnExitEvent();
+        });
     }
 
-    showModalBtn = function () {
-        this.btnPlay.addEventListener('click', ()=>{
-            window.open('game/game.html');
-            this.emModal.style.display = "none";
-        })
+    btnPlayEvent() {
+        window.open('game/game.html');
+        this.emModal.style.display = "none";
+    };
     
-        this.btnExit.addEventListener('click', ()=>{
-            this.emModal.style.display = "none";
-        })
-      }
-
-    showModal () {
+    btnExitEvent() {
+        this.emModal.style.display = "none";
+    };
+      
+    showModal() {
         this.emModal.style.display = "block";
-        this.emModal.style.left = this.mLeft + "px";
-        this.emModal.style.top = this.mTop + "px"; 
-        this.showModalBtn();
-    }
+      }
 }
 
 const emailSubmit = function (){
     const emailSubmitButton = document.getElementById('btn-email-submit');
-    emailSubmitButton.addEventListener('click',(event)=>{
-        const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
-        const emailModal = new EmailModal();
+    emailSubmitButton.addEventListener('click', (event)=>{
         
         let emailValid = emailCheck.emailIsValid();
         event.preventDefault();
         if (emailValid){
             emailModal.showModal();
+            emailCheck.emailSaveToSesionStorage();
             emailCheck.emailSubtext('Empty');
             emailCheck.emailInputEmpty();
         }else{
             emailCheck.emailSubtext('False');
             emailCheck.emailCheck();
         }
-    })
-
+    });
 }
 
+const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
+const emailModal = new EmailModal();
 emailSubmit();
 
 class CookiesAccept {
@@ -101,8 +110,8 @@ class CookiesAccept {
         const dateCookie = new Date();
         dateCookie.setTime(dateCookie.getTime() + (this.caExpire*24*60*60*1000));
         const expires = dateCookie.toUTCString();
-        document.cookie = "username=aaa; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/;`;
+        document.cookie = "username=aaa; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax; Secure;";
+        document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/; SameSite=None; Secure;`;
     }
 
     cookiesBannerVisible(){
@@ -147,6 +156,5 @@ class CookiesAccept {
     }
     
 }
-
-checkCookiesBanner = new CookiesAccept ("CookiesAccept","yes",30);
+const checkCookiesBanner = new CookiesAccept ("CookiesAccept","yes",30);
 checkCookiesBanner.checkCookies();
