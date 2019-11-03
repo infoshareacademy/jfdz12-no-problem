@@ -44,8 +44,8 @@ addEventForCook();
 
 
 const cookiesRandomGenerator = function () {
-    const cookieFrame = document.getElementById('kitchenid');
-    const nextCookie = document.createElement('span');
+    let cookieFrame = document.getElementById('kitchenid');
+    let nextCookie = document.createElement('span');
     cookieFrame.appendChild(nextCookie);
     const randomCookie = listOfCookies[Math.abs(Math.round(Math.random()*listOfCookies.length-1))];
     const cookieEmoti = document.createTextNode(randomCookie);
@@ -55,28 +55,29 @@ const cookiesRandomGenerator = function () {
             } else {
                 nextCookie.classList.add('cookies-anime');
             }
-    nextCookie.addEventListener("animationend", function(){
-            let cookieXPosition = 414;
-            let cookieYPosition = 95;
-            let idNum = Math.floor(Math.random()*1000);
-            nextCookie.setAttribute("id", idNum);
-            let myCookie = document.getElementById(idNum);
-            myCookie.style.left = cookieXPosition + "px";
-            myCookie.style.top = cookieYPosition + "px";
-            let cookieRange = Math.random()*536+414;
-            setInterval(function goRight() {
-                if (cookieXPosition<cookieRange) {
-                    cookieXPosition++;
-                    myCookie.style.left = cookieXPosition+"px";}
-                else {
-                    cookieYPosition++;
-                    myCookie.style.top = cookieYPosition+"px";
-                    if (cookieYPosition===550) {
-                        cookieFrame.removeChild(nextCookie);
-                    }
+   nextCookie.addEventListener("animationend", function (){
+        let cookieXPosition = 414;
+        let cookieYPosition = 95;
+        let idNum = Math.floor(Math.random()*1000);
+        nextCookie.setAttribute("id", idNum);
+        let myCookie = document.getElementById(idNum);
+        myCookie.style.left = cookieXPosition + "px";
+        myCookie.style.top = cookieYPosition + "px";
+        let cookieRange = Math.random()*536+414;
+        let cookieMoveInterval = setInterval(function goRight() {
+            if (cookieXPosition<cookieRange) {
+                cookieXPosition++;
+                myCookie.style.left = cookieXPosition+"px";}
+            else {
+                cookieYPosition++;
+                myCookie.style.top = cookieYPosition+"px";
+                if (cookieYPosition===550) {
+                    clearInterval(cookieMoveInterval);
+                    cookieFrame.removeChild(nextCookie);
                 }
-            },10)
-})};
+            }
+        },10);
+    })};
 
 
 const cookiesFlow = function(){
@@ -86,7 +87,68 @@ const cookiesFlow = function(){
         cookiesRandomGenerator();        
         setTimeout(()=>{lidClase.classList.remove('lid-up')},2000);
     },5000);
+    
 };
+
+//instructionModal
+
+const instructionModal = document.getElementById("instructionModalId");
+let instructionModalContent = document.getElementById("instructionModal--content");
+const instructionModalBtn = document.getElementById("instructionModalBtnId");
+
+window.addEventListener("load",function() {
+    instructionModal.style.display = "block";
+   
+  })
+
+instructionModalBtn.addEventListener("click", function() {
+    instructionModal.style.display = "none";
+   
+});
+
+let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
+let instructionSecondPoint = document.getElementById("instructionModal--secondPoint");
+let instructionThirdPoint = document.getElementById("instructionModal--thirdPoint");
+
+
+let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn];
+let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
+
+
+function opacityFunction() {
+    let ii = 0;
+    let j = 0;
+    setInterval (function(){
+       if (j<opacityRange.length && ii<instructionArray.length) {
+        instructionArray[ii].style.opacity=opacityRange[j];
+        j++}
+       if (j===opacityRange.length) {
+           j=0;
+           ii++;
+        }
+    },150);
+};
+function moveInstructionContentUp() {
+    let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
+    let contentTopInterval = setInterval(function(){
+        actualTop--;
+        instructionModalContent.style.marginTop=actualTop+"px";
+        if (actualTop<20) {
+            clearInterval(contentTopInterval);
+            contentHeightPlus();
+            opacityFunction();}
+    },10)};
+
+
+function contentHeightPlus() {
+        let actualHeight = parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("height"));
+        let contentInterval = setInterval(function(){
+            actualHeight++;
+            instructionModalContent.style.height=actualHeight+"px";
+            if (actualHeight>350) {clearInterval(contentInterval)}
+        },10)};
+setTimeout(moveInstructionContentUp, 2000);
+
 
 
 
