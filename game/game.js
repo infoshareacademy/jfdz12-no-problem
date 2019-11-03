@@ -42,10 +42,12 @@ const addEventForCook = function(){
 
 addEventForCook();
 
+let cookieFrame;
+let nextCookie;
 
-const cookiesRandomGenerator = function () {
-    let cookieFrame = document.getElementById('kitchenid');
-    let nextCookie = document.createElement('span');
+function cookieStart() {
+    cookieFrame = document.getElementById('kitchenid');
+    nextCookie = document.createElement('span');
     cookieFrame.appendChild(nextCookie);
     const randomCookie = listOfCookies[Math.abs(Math.round(Math.random()*listOfCookies.length-1))];
     const cookieEmoti = document.createTextNode(randomCookie);
@@ -55,10 +57,14 @@ const cookiesRandomGenerator = function () {
             } else {
                 nextCookie.classList.add('cookies-anime');
             }
-   nextCookie.addEventListener("animationend", function (){
+};
+
+const cookiesRandomGenerator = function () {
+    cookieStart();
+    nextCookie.addEventListener("animationend", function (){
         let cookieXPosition = 414;
         let cookieYPosition = 95;
-        let idNum = Math.floor(Math.random()*1000);
+        let idNum = Math.floor(Math.random()*100000);
         nextCookie.setAttribute("id", idNum);
         let myCookie = document.getElementById(idNum);
         myCookie.style.left = cookieXPosition + "px";
@@ -73,7 +79,7 @@ const cookiesRandomGenerator = function () {
                 myCookie.style.top = cookieYPosition+"px";
                 if (cookieYPosition===550) {
                     clearInterval(cookieMoveInterval);
-                    cookieFrame.removeChild(nextCookie);
+                    cookieFrame.removeChild(myCookie);
                 }
             }
         },10);
@@ -86,7 +92,7 @@ const cookiesFlow = function(){
         lidClase.classList.add('lid-up');
         cookiesRandomGenerator();        
         setTimeout(()=>{lidClase.classList.remove('lid-up')},2000);
-    },5000);
+    },1500);
     
 };
 
