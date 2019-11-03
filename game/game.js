@@ -24,6 +24,7 @@ class Cook {
             this.element.style.marginLeft = '500px';
             this.element.style.marginTop = `${this.cookPosition}px`;
             this.element.style.transform = "scale(1.6)";
+            cookiesFlow();
         });
 
         window.addEventListener('keydown', (event) => {
@@ -61,52 +62,84 @@ let cookieFrame;
 let nextCookie;
 
 function cookieStart() {
+    
+    const randomCookie = listOfCookies[Math.abs(Math.round(Math.random()*listOfCookies.length-1))];
+    
     cookieFrame = document.getElementById('kitchenid');
     nextCookie = document.createElement('span');
     cookieFrame.appendChild(nextCookie);
-    const randomCookie = listOfCookies[Math.abs(Math.round(Math.random()*listOfCookies.length-1))];
     const cookieEmoti = document.createTextNode(randomCookie);
     nextCookie.appendChild(cookieEmoti);
+    nextCookie.classList.add('cookies-body');
     if (randomCookie === '🍄'){
-            nextCookie.classList.add('cookies-anime-blinking');
-            } else {
-                nextCookie.classList.add('cookies-anime');
-            }
+            nextCookie.classList.add('cookies-blinking');
+    } 
 };
+
+const cakePos = function(posXY, positionXlength, posXlenCor){
+    let posX = posXY[0];
+    let posY = posXY[1];
+    
+    if(posX< 370 && posY === 60){
+        posX ++;
+    }else if(posX === 370 && posY < 92){
+        posY++;
+    }else if(posY===92 && posXlenCor != posX){
+        if(posXlenCor > posX){
+            posX ++;
+        }else{
+            posX --;
+        }
+    }else if (posY===92 && posXlenCor === posX){
+        posY++;  
+        posX--;
+    }else if(posY===93 && positionXlength != posX){
+        if(positionXlength > posX){
+            posX ++;
+        }else{
+            posX --;
+        }
+    }else if(posY> 92 && positionXlength === posX){
+        posY ++;
+    }
+  
+    return [posX,posY];
+}
 
 const cookiesRandomGenerator = function () {
     cookieStart();
-    nextCookie.addEventListener("animationend", function (){
-        let cookieXPosition = 414;
-        let cookieYPosition = 95;
-        let idNum = Math.floor(Math.random()*100000);
-        nextCookie.setAttribute("id", idNum);
-        let myCookie = document.getElementById(idNum);
-        myCookie.style.left = cookieXPosition + "px";
-        myCookie.style.top = cookieYPosition + "px";
-        let cookieRange = Math.random()*536+414;
-        let cookieMoveInterval = setInterval(function goRight() {
-            if (cookieXPosition<cookieRange) {
-                cookieXPosition++;
-                myCookie.style.left = cookieXPosition+"px";}
-            else {
-                cookieYPosition++;
-                myCookie.style.top = cookieYPosition+"px";
-                if (cookieYPosition===550) {
-                    clearInterval(cookieMoveInterval);
-                    cookieFrame.removeChild(myCookie);
-                }
+    const cookieXPosition = 320;
+    const cookieYPosition = 60;
+    const positionXlength = 170 + Math.round(Math.random()*800);
+    const posXlenCor = positionXlength + Math.round((970 - positionXlength)/2);
+    
+    let idNum = Math.floor(Math.random()*100000);
+    nextCookie.setAttribute("id", idNum);
+    let myCookie = document.getElementById(idNum);
+    
+    let positionXY = [cookieXPosition , cookieYPosition];
+    
+    const cookieMoveInterval = setInterval(()=> {
+        positionXY = cakePos(positionXY, positionXlength, posXlenCor);
+       
+        myCookie.style.left = `${positionXY[0]}px`;
+        myCookie.style.top = `${positionXY[1]}px`;
+        
+        if (positionXY[1] === 455) {
+                clearInterval(cookieMoveInterval);
+                cookieFrame.removeChild(myCookie);
             }
+
         },10);
-    })};
+    }
 
 const cookiesFlow = function(){
     const lidClase = document.querySelector('.kitchen-lid');
     setInterval(()=>{
         lidClase.classList.add('lid-up');
         cookiesRandomGenerator();        
-        setTimeout(()=>{lidClase.classList.remove('lid-up')},2000);
-    },1500);
+        setTimeout(()=>{lidClase.classList.remove('lid-up')},500);
+    },3000);
     
 };
 
@@ -122,8 +155,7 @@ window.addEventListener("load",function() {
   })
 
 instructionModalBtn.addEventListener("click", function() {
-    instructionModal.style.display = "none";
-   
+    instructionModal.style.display = "none";  
 });
 
 let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
@@ -169,9 +201,6 @@ function contentHeightPlus() {
         },10)};
         
 setTimeout(moveInstructionContentUp, 2000);
-
-
-
 
 class Counter {
     constructor() {
