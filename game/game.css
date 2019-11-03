@@ -1,5 +1,5 @@
 .outline{
-    background-image: url(img/back-retro-pakat2.png);
+    background-image: url(./img/back-retro-pakat2.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -11,11 +11,11 @@
     width: 1200px;
     height: 580px; 
     margin: 0 auto;
-    border: 10px solid transparent;
-    border-image-source: url(img/candy-border.svg);
+    border: 10px solid;
+    border-image-source: url(./img/candy-border.svg);
     border-image-slice: 10%;
     border-image-width: 10px;
-    border-image-repeat: round;
+    border-image-repeat: repeat;
     
 }
 
@@ -35,7 +35,7 @@
     width: 100px;
     height: 25px;
     margin-top: 10px;
-    background-image: url(img/cooks-title.svg);
+    background-image: url(./img/cooks-title.svg);
     background-size: contain;
     background-repeat: no-repeat;  
 }
@@ -153,6 +153,20 @@
     margin-top:37px;
 }
 
+.cookies-pause{
+    position: relative;
+    font-size: 25px;
+    color: #458098;
+    text-align: center;
+}
+.cookies-pause:hover{
+    color: #45809860;
+}
+
+.cookies-pause:active{
+    transform: scale(0.8);
+}
+
 .lid-up{
     transform: rotateZ(-25deg);
     transform-origin: left bottom;
@@ -160,7 +174,7 @@
 
 .game-title{
     margin: 10px auto;
-    background-image: url(img/catch-a-cookie.svg);
+    background-image: url(./img/catch-a-cookie.svg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 350px;
@@ -196,7 +210,7 @@
     width: 100px;
     height: 25px;
     margin-top: 10px;
-    background-image: url(img/score-title.svg);
+    background-image: url(./img/score-title.svg);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -205,7 +219,7 @@
     width: 100px;
     height: 111px;
     margin: 2px auto;
-    background-image: url(img/cutting_board.svg);
+    background-image: url(./img/cutting_board.svg);
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
@@ -229,7 +243,7 @@
     width: 100px;
     height: 80px;
     margin: 20px auto;
-    background-image: url(img/weight.svg);
+    background-image: url(./img/weight.svg);
     background-size: cover;
     text-align: center;
 }
@@ -252,7 +266,7 @@
     margin-top:20px;
     width: 120px;
     height: 60px;
-    background-image: url(img/pot.svg);
+    background-image: url(./img/pot.svg);
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
@@ -270,7 +284,7 @@
     margin: 20px auto;
     width: 120px;
     height: 28px;
-    background-image: url(img/no-problem.svg);
+    background-image: url(./img/no-problem.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -293,7 +307,69 @@
     animation: blinkingEmotiAnime 4s linear 1s infinite;
 }
 
+.modal-end{
+    display: none;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
 
+.modal-end-body{
+    position: relative;
+    width: 400px;
+    margin: 200px auto; 
+    background-color: #458098ff;
+    z-index: 51;
+    border: 1px solid transparent;
+    font-family: 'Livvic', sans-serif;
+    border-radius: 10px;
+    animation-name: animatetop;
+    animation-duration: 0.7s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+                0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.modal-end-header{
+    border-bottom: 1px solid #ffffff75;
+    text-align: center;
+    color: white;
+}
+
+.modal-end-content{
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+
+.modal-end-btn{
+    margin: 10px 20px 20px;
+    font-size: 14px;
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ffffff75;
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+    outline: none;
+}
+
+.modal-end-btn:hover {
+    opacity: 0.7;
+} 
+
+.modal-end-btn:active{
+    transform: scale(0.8);
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+ 
 @keyframes blinkingEmotiAnime {
     0% {text-shadow: none;} 
     16.6% {text-shadow: 2px 2px 10px red, -2px -2px 10px red; }
@@ -321,7 +397,7 @@ to {
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 0% { transform: translate(0px, 0px);}
-100%{transform: translate(500px, 393px) scale(1.6) ;}
+100%{transform: translate(470px, 394px) scale(1.6) ;}
 }
 
 @keyframes cooksanime2{
@@ -330,7 +406,7 @@ to {
         animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     0% { transform: translate(0px, 0px);}
-    100%{transform: translate(500px, 268px) scale(1.6) ;}
+    100%{transform: translate(470px, 269px) scale(1.6) ;}
 }
 
 @keyframes cooksanime3{
@@ -339,7 +415,7 @@ to {
         animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     0% { transform: translate(0px, 0px);}
-    100%{transform: translate(500px, 143px) scale(1.6) ;}
+    100%{transform: translate(470px, 144px) scale(1.6) ;}
 }
 @keyframes cooksanime4{
     from,
@@ -347,7 +423,7 @@ to {
         animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     0% { transform: translate(0px, 0px);}
-    100%{transform: translate(500px, 18px) scale(1.6) ;}
+    100%{transform: translate(470px, 19px) scale(1.6) ;}
 }
 
 /* instruction  modal*/
@@ -386,7 +462,6 @@ to {
 
 .instructionModalBtn {
     margin: 20px auto auto auto;
-   
     font-size: 20px;
     color: white;
     background-color: #40c9ae;

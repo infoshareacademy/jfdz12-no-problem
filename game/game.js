@@ -1,16 +1,29 @@
 const listOfCookies = ['🥮', '🎂', '🍥', '🍰', '🧁', '🍪', '🍄', '🥠', '🥞', '🍘', '🍩', '🍄'];
 
+const cookWidth = 85;
+const cakeWidth = 30;
+const cakeHeight = 30;
+
+let userData = {};
+let cookPosTop = 0;
+let cookPosLeft = 0;
+let selectedCook = null;
+let endGame = false;
+let pauseGame = false;
+
 class Cook {
-    constructor(cookName, cookPosition) {
+    constructor(cookName, cookStartX){
+        this.cookStartX = cookStartX;
         this.cookName = cookName;
-        this.cookPosition = cookPosition;
+        this.cookPosition = 454;
         this.cookHorizontalPosition = 500;
         this.element = document.querySelector(`.${cookName}`);
-        this.element.addEventListener('click', () => {
+        this.element.addEventListener('click',()=>{
             this.enter();
         });
     }
-    enter() {
+    enter (){
+
         if (null !== selectedCook) {
             return;
         }
@@ -19,11 +32,12 @@ class Cook {
 
         this.element.classList.add(`cooks-animation-${this.cookName}`);
         this.element.classList.add('active');
-        this.element.addEventListener('animationend', () => {
+        this.element.addEventListener('animationend', ()=>{
             this.element.classList.remove(`cooks-animation-${this.cookName}`);
-            this.element.style.marginLeft = '500px';
-            this.element.style.marginTop = `${this.cookPosition}px`;
+            this.element.style.left= '500px';
+            this.element.style.top = `${this.cookPosition}px`;
             this.element.style.transform = "scale(1.6)";
+            this.setPosition();
             cookiesFlow();
         });
 
@@ -32,31 +46,48 @@ class Cook {
         })
     }
 
-    handleMove(key) {
-        if (this.element.offsetTop !== 453) {
+    handleMove(key){
+        if(this.element.offsetTop !== 454){
             return
         }
-        if (key === 'ArrowRight' && this.cookHorizontalPosition < 915) {
-            this.move('right');
+        if (key === 'ArrowRight' && this.cookHorizontalPosition<935){
+            this.move('right');          
         }
-        if (key === 'ArrowLeft' && this.cookHorizontalPosition > 110) {
+        if (key === 'ArrowLeft' && this.cookHorizontalPosition>140){
             this.move('left');
         }
     }
 
-    move(direction) {
+    move(direction){
         this.cookHorizontalPosition = direction === 'left' ?
-            this.cookHorizontalPosition - 15 :
-            this.cookHorizontalPosition + 15;
-        this.element.style.marginLeft = `${this.cookHorizontalPosition}px`;
+            this.cookHorizontalPosition - 10 :
+            this.cookHorizontalPosition + 10
+        ; 
+        this.element.style.left = `${this.cookHorizontalPosition}px`;
+        this.setPosition();
+    }
+
+    cookCorrPos(){
+        if (this.cookName ==='maklowicz'){
+            return 20;
+        }else if(this.cookName === 'jakubiak'){
+            return 18;
+        }else{
+            return 0;
+        }
+    }
+
+    setPosition(){
+        cookPosLeft = this.element.offsetLeft + this.cookCorrPos();
+        cookPosTop = this.element.offsetTop;
+    }
+
+    resetCook(){
+        this.element.classList.remove('active');
+        this.element.removeAttribute('style');
     }
 }
 
-let selectedCook = null;
-const gesler = new Cook('gesler', 393);
-const maklowicz = new Cook('maklowicz', 268);
-const jakubiak = new Cook('jakubiak', 143);
-const starmach = new Cook('starmach', 18);
 
 let cookieFrame;
 let nextCookie;
@@ -74,6 +105,7 @@ function cookieStart() {
     if (randomCookie === '🍄'){
             nextCookie.classList.add('cookies-blinking');
     } 
+    return randomCookie;
 };
 
 const cakePos = function(posXY, positionXlength, posXlenCor){
@@ -107,7 +139,7 @@ const cakePos = function(posXY, positionXlength, posXlenCor){
 }
 
 const cookiesRandomGenerator = function () {
-    cookieStart();
+    const randomCookieGen = cookieStart();
     const cookieXPosition = 320;
     const cookieYPosition = 60;
     const positionXlength = 170 + Math.round(Math.random()*800);
@@ -120,28 +152,81 @@ const cookiesRandomGenerator = function () {
     let positionXY = [cookieXPosition , cookieYPosition];
     
     const cookieMoveInterval = setInterval(()=> {
-        positionXY = cakePos(positionXY, positionXlength, posXlenCor);
-       
-        myCookie.style.left = `${positionXY[0]}px`;
-        myCookie.style.top = `${positionXY[1]}px`;
         
-        if (positionXY[1] === 455) {
-                clearInterval(cookieMoveInterval);
-                cookieFrame.removeChild(myCookie);
-            }
-
-        },10);
-    }
+        if (!pauseGame){    
+            positionXY = cakePos(positionXY, positionXlength, posXlenCor);
+        
+            myCookie.style.left = `${positionXY[0]}px`;
+            myCookie.style.top = `${positionXY[1]}px`;
+        }
+        if (playGame.checkCollision.checkPositionState(positionXY[0], positionXY[1], randomCookieGen)){
+            clearInterval(cookieMoveInterval);
+            myCookie.remove();
+            playGame.checkEndGame();
+        }
+        if (endGame){
+            clearInterval(cookieMoveInterval);
+            myCookie.remove();
+        }
+    },10);
+}
 
 const cookiesFlow = function(){
     const lidClase = document.querySelector('.kitchen-lid');
-    setInterval(()=>{
-        lidClase.classList.add('lid-up');
-        cookiesRandomGenerator();        
-        setTimeout(()=>{lidClase.classList.remove('lid-up')},500);
+ 
+    const cookiesInterval = setInterval(()=>{
+        if (endGame){
+            clearInterval(cookiesInterval);               
+        }
+        if(!pauseGame && !endGame){
+            lidClase.classList.add('lid-up');
+            cookiesRandomGenerator();        
+            setTimeout(()=>{lidClase.classList.remove('lid-up')},500);
+        }
     },3000);
     
 };
+
+
+class ColisionCookCake {
+    constructor(){
+    }
+
+    checkPositionState (leftCookiePosition, topCookiePosition , checkedCookie){
+        if(topCookiePosition > 455){
+            if(checkedCookie != '🍄'){
+                playGame.gameCounter.lossLife();
+            }
+            return true;
+        }
+        if (this.collision(leftCookiePosition, topCookiePosition)){
+            if(checkedCookie === '🍄'){
+                playGame.gameCounter.lossLife();
+            }else{
+                if(!endGame){
+                    playGame.gameCounter.pointsCookis();    
+                }
+            }
+            return true; 
+        }
+
+        return false;
+    }
+
+    collision(cakePosleft, cakePosTop){
+        if(cookPosTop > cakePosTop && cookPosTop < cakePosTop + cakeWidth){
+            if (((cakePosleft > cookPosLeft) && (cakePosleft < cookPosLeft+cookWidth)) ||
+                ((cakePosleft + cakeWidth > cookPosLeft && cakePosleft + cakeWidth < cookPosLeft + cookWidth ))){
+                    return true;
+                }else{
+                    return false;
+                }
+        }else{
+            return false;
+        }
+    }
+
+}
 
 //instructionModal
 
@@ -151,7 +236,6 @@ const instructionModalBtn = document.getElementById("instructionModalBtnId");
 
 window.addEventListener("load",function() {
     instructionModal.style.display = "block";
-   
   })
 
 instructionModalBtn.addEventListener("click", function() {
@@ -204,14 +288,17 @@ setTimeout(moveInstructionContentUp, 2000);
 
 class Counter {
     constructor() {
-        this.life = 3;
-        this.lvl = 1;
+        this.life = 0;
+        this.lvl = 0;
         this.point = 0;
         this.pointsCookiesCounter = document.querySelector(".count-score");
         this.pointsLifeCounter = document.querySelector(".weight-text");
         this.pointsLevelCounter = document.querySelector(".pot-text");
     }
-    initialScore() {
+    initialScore(initLife, initLvl, initPoint) {
+        this.life = initLife;
+        this.lvl = initLvl;
+        this.point = initPoint;
         this.pointsLifeCounter.textContent = this.life;
         this.pointsCookiesCounter.textContent = this.point;
         this.pointsLevelCounter.textContent = this.lvl;
@@ -231,5 +318,83 @@ class Counter {
     }
 }
 
-const counter = new Counter();
-counter.initialScore();
+class EndModal{
+    constructor(){
+        this.modalEndId = document.getElementById('modalend');
+        this.btnEnd = document.getElementById('modal-end-btnend');
+        this.btnContinue = document.getElementById('modal-end-btncont');
+        this.modalUserData = document.querySelector('.modal-user-data');
+        this.modalScore = document.querySelector('.modal-score');
+        this.btnEnd.addEventListener('click', ()=>{
+            this.closeGame();
+        });
+        this.btnContinue.addEventListener('click', ()=>{
+            this.continueGame();
+        });
+    }
+
+    showModal(){
+        this.modalEndId.style.display = 'block';
+        this.modalUserData.innerText = userData != null ? userData.email : "";
+        this.modalScore.innerText = playGame.gameCounter.point;
+    }
+
+    hideModal(){
+        this.modalEndId.style.display = 'none';
+    }
+
+    closeGame(){
+        window.open('../index.html', '_self');
+    }
+
+    continueGame(){
+        this.hideModal();
+        playGame.startGame();  
+    }
+}
+
+class ControlPanel{
+    constructor(){
+        this.checkCollision = new ColisionCookCake();
+        this.gameCounter = new Counter();
+        this.gesler = new Cook ('gesler', 60);
+        this.maklowicz = new Cook ('maklowicz', 185);
+        this.jakubiak = new Cook('jakubiak', 310);
+        this.starmach = new Cook('starmach', 435);
+        this.pauseGameButton = document.getElementById('cookiespause');
+        this.pauseGameButton.addEventListener('click', (e)=>this.pauseGamebtn());
+    }
+
+    startGame(){
+        this.getUserDataSesionStorage();
+        this.gameCounter.initialScore(3,1,0);
+        selectedCook = null;
+        endGame = false;
+        pauseGame = false;
+    }
+
+    endGame(){
+        this.endModal = new EndModal();
+        this.endModal.showModal();
+    }
+
+    checkEndGame(){
+        if(this.gameCounter.life === 0){
+            endGame = true;
+            selectedCook.resetCook();
+            this.endGame();
+        }
+    }
+
+    pauseGamebtn(){
+        pauseGame = !pauseGame;
+    }
+
+    getUserDataSesionStorage(){
+        userData = JSON.parse (sessionStorage.getItem('userData'));
+    }
+}
+
+let playGame = new ControlPanel();
+playGame.startGame();
+
