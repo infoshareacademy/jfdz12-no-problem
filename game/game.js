@@ -92,7 +92,7 @@ const cookiesFlow = function(){
         lidClase.classList.add('lid-up');
         cookiesRandomGenerator();        
         setTimeout(()=>{lidClase.classList.remove('lid-up')},2000);
-    },1500);
+    },5000);
     
 };
 
