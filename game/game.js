@@ -148,6 +148,7 @@ const cookiesFlow = function(){
 const instructionModal = document.getElementById("instructionModalId");
 let instructionModalContent = document.getElementById("instructionModal--content");
 const instructionModalBtn = document.getElementById("instructionModalBtnId");
+const nickModal = document.getElementById("nickModalId");
 
 window.addEventListener("load",function() {
     instructionModal.style.display = "block";
@@ -155,15 +156,17 @@ window.addEventListener("load",function() {
   })
 
 instructionModalBtn.addEventListener("click", function() {
-    instructionModal.style.display = "none";  
+    instructionModal.style.display = "none";
+    nickModal.style.display = "block";
 });
 
 let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
 let instructionSecondPoint = document.getElementById("instructionModal--secondPoint");
 let instructionThirdPoint = document.getElementById("instructionModal--thirdPoint");
+let instructionModalBackBtn = document.getElementById("instructionModalBtnIdBack");
 
 
-let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn];
+let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn, instructionModalBackId];
 let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
 
 
@@ -197,10 +200,21 @@ function contentHeightPlus() {
         let contentInterval = setInterval(function(){
             actualHeight++;
             instructionModalContent.style.height=actualHeight+"px";
-            if (actualHeight>350) {clearInterval(contentInterval)}
+            if (actualHeight>370) {clearInterval(contentInterval)}
         },10)};
         
 setTimeout(moveInstructionContentUp, 2000);
+
+
+const nickModalBtn = document.getElementById("nickModalBtnId");
+let nick;
+
+nickModalBtn.addEventListener("click", function() {
+    nickModal.style.display = "none";
+    nick = document.getElementById("nickModalInputId").value;
+});
+
+
 
 class Counter {
     constructor() {
