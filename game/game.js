@@ -147,6 +147,7 @@ function contentHeightPlus() {
             instructionModalContent.style.height=actualHeight+"px";
             if (actualHeight>350) {clearInterval(contentInterval)}
         },10)};
+        
 setTimeout(moveInstructionContentUp, 2000);
 
 

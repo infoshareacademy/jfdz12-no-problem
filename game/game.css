@@ -351,7 +351,7 @@ to {
 
 @keyframes cooksanime3{
     from,
-    to {s
+    to {
         animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     0% { transform: translate(0px, 0px);}
@@ -372,42 +372,42 @@ to {
     display: none; 
     position: absolute; 
     z-index: 6;
-    left: 148px;
+    left: 145px;
     top: 70px;
     width: 1000px; 
     height: 1200px; 
     overflow: auto; 
-    background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0);
 }
 
 
 .instructionModal--content {
-    background-color: #fefefe;
+    background-color: white;
     background-size: 95%;
+    border-image: url("img/back-retro-pakat2.png");
+    border-radius: 15px;
+    border: solid 5px;
     margin-top: 120px; 
     margin-left: 20px; 
     margin-right: 20px; 
     margin-bottom: 20px; 
     padding: 20px;
-    color: red;
-    border: 1px solid #888;
+    color: #40c9ae;
     width: 80%; 
     text-align: center;
     font-size: 20px;
     height: 80px;
-
 }
 
 
 .instructionModalBtn {
+    margin: 20px auto auto auto;
    
-    margin: auto;
     font-size: 20px;
     color: white;
-    background-color: green;
-    border: green;
-    border-radius: 5%;
+    background-color: #40c9ae;
+    border: #40c9ae;
+    border-radius: 5px;
     width: 150px;
     height: 50px;
     opacity: 0;
@@ -415,4 +415,8 @@ to {
 
  #instructionModal--firstPoint, #instructionModal--secondPoint, #instructionModal--thirdPoint {
     opacity: 0;
+ }
+
+ .instructionModal--span {
+     font-style: italic;
  }
