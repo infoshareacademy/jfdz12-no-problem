@@ -18,7 +18,9 @@ class Cook {
         this.cookPosition = 454;
         this.cookHorizontalPosition = 500;
         this.element = document.querySelector(`.${cookName}`);
+        this.keyEventListener = null;
         this.element.addEventListener('click',()=>{
+            console.log('inside eventl', Math.round(Math.random()*1000));
             this.enter();
         });
     }
@@ -32,29 +34,51 @@ class Cook {
 
         this.element.classList.add(`cooks-animation-${this.cookName}`);
         this.element.classList.add('active');
-        this.element.addEventListener('animationend', ()=>{
-            this.element.classList.remove(`cooks-animation-${this.cookName}`);
-            this.element.style.left= '500px';
-            this.element.style.top = `${this.cookPosition}px`;
-            this.element.style.transform = "scale(1.6)";
-            this.setPosition();
-            cookiesFlow();
-        });
+        
+        this.cookAnimation = this.cookAnimation.bind(this);
+        this.element.addEventListener('animationend',this.cookAnimation); 
+        //()=>{
+        //setTimeout(()=>{
+            // this.element.classList.remove(`cooks-animation-${this.cookName}`);
+            // this.element.style.left= '500px';
+            // this.element.style.top = `${this.cookPosition}px`;
+            // this.element.style.transform = "scale(1.6)";
+            // this.setPosition();
+            // console.log('inside Enter', Math.round(Math.random()*1000));
+            // cookiesFlow();
+        //});
+        
+        
 
-        window.addEventListener('keydown', (event) => {
-            this.handleMove(event.key);
-        })
+
+        window.addEventListener('keydown', this.handleMove);
+        
+        // window.addEventListener('keydown', (event) => {
+        //     this.handleMove(event.key);
+        // })
     }
 
-    handleMove(key){
-        if(this.element.offsetTop !== 454){
+    cookAnimation(){
+        this.element.classList.remove(`cooks-animation-${this.cookName}`);
+        this.element.style.left= '500px';
+        this.element.style.top = `${this.cookPosition}px`;
+        this.element.style.transform = "scale(1.6)";
+        this.setPosition();
+        console.log('inside Enter', Math.round(Math.random()*1000));
+        this.element.removeEventListener('animationend',this.cookAnimation);
+        cookiesFlow();
+        }
+
+    handleMove(event){
+        if(selectedCook.element.offsetTop !== 454){
             return
         }
-        if (key === 'ArrowRight' && this.cookHorizontalPosition<935){
-            this.move('right');          
+        if (event.key === 'ArrowRight' && selectedCook.cookHorizontalPosition<935){
+            selectedCook.move('right');
+                      
         }
-        if (key === 'ArrowLeft' && this.cookHorizontalPosition>140){
-            this.move('left');
+        if (event.key === 'ArrowLeft' && selectedCook.cookHorizontalPosition>140){
+            selectedCook.move('left');
         }
     }
 
@@ -85,12 +109,13 @@ class Cook {
     resetCook(){
         this.element.classList.remove('active');
         this.element.removeAttribute('style');
+        window.removeEventListener('keydown', this.handleMove);
     }
 }
 
 
-let cookieFrame;
-let nextCookie;
+let cookieFrame = null;
+let nextCookie = null;
 
 function cookieStart() {
     
@@ -168,13 +193,14 @@ const cookiesRandomGenerator = function () {
             clearInterval(cookieMoveInterval);
             myCookie.remove();
         }
-    },10);
+    },5);
 }
 
 const cookiesFlow = function(){
     const lidClase = document.querySelector('.kitchen-lid');
  
     const cookiesInterval = setInterval(()=>{
+        console.log(cookiesInterval);
         if (endGame){
             clearInterval(cookiesInterval);               
         }
@@ -339,6 +365,8 @@ class EndModal{
         this.btnContinue = document.getElementById('modal-end-btncont');
         this.modalUserData = document.querySelector('.modal-user-data');
         this.modalScore = document.querySelector('.modal-score');
+        this.modalScoreBoard = document.querySelector('.modal-scoreboard');
+        this.scoreBoard = [];
         this.btnEnd.addEventListener('click', ()=>{
             this.closeGame();
         });
@@ -348,9 +376,14 @@ class EndModal{
     }
 
     showModal(){
+        this.addScoreBoard();
         this.modalEndId.style.display = 'block';
         this.modalUserData.innerText = userData != null ? userData.email : "";
         this.modalScore.innerText = playGame.gameCounter.point;
+        this.modalScoreBoard.innerHTML = `<div> name: ${this.scoreBoard[0].name} 
+                                         email: ${this.scoreBoard[0].email}
+                                         score: ${this.scoreBoard[0].score}</div>`;
+        
     }
 
     hideModal(){
@@ -358,14 +391,36 @@ class EndModal{
     }
 
     closeGame(){
+        this.setDataToLocalStrage();
         window.open('../index.html', '_self');
     }
 
     continueGame(){
+        this.setDataToLocalStrage();
         this.hideModal();
         playGame.startGame();  
     }
+
+    addScoreBoard(){
+        this.getDataFromLocalStorage();
+        let userSoreBoard = {
+            name: nick,
+            email: userData.email,
+            score: playGame.gameCounter.point
+        }
+        this.scoreBoard.push(userSoreBoard);
+
+    }
+
+    getDataFromLocalStorage(){
+        this.scoreBoard = JSON.parse(localStorage.getItem('scoreboard'));
+    }
+
+    setDataToLocalStrage(){
+        localStorage.setItem('scoreboard', JSON.stringify(this.scoreBoard));
+    }
 }
+
 
 class ControlPanel{
     constructor(){
@@ -409,6 +464,6 @@ class ControlPanel{
     }
 }
 
-let playGame = new ControlPanel();
+const playGame = new ControlPanel();
 playGame.startGame();
 
