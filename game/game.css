@@ -345,7 +345,7 @@
 
 .modal-user-data{
     font-weight: bold;
-    color:#564147;
+    font-size: 20px;
 }
 
 .modal-score{
@@ -385,7 +385,7 @@
 }
 
 .modal-end-btn{
-    margin: 10px 20px 20px;
+    margin: 15px 30px;
     font-size: 14px;
     width: 100px;
     padding: 8px;

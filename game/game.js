@@ -369,8 +369,8 @@ class EndModal{
         this.modalScore.innerText = playGame.gameCounter.point;
         for (let i=0 ; (i < 10 && i < this.scoreBoard.length); i++){
             this.modalScoreBoard.innerHTML += `<div class="score-bord-list">
-                <span class="score-board-name">${[i+1]}. name:  ${this.scoreBoard[i].name} </span>
-                <span class="score-board-score">score:  ${this.scoreBoard[i].score}</span></div>`;
+                <span class="score-board-name">${[i+1]}.  ${this.scoreBoard[i].name} </span>
+                <span class="score-board-score">${this.scoreBoard[i].score}</span></div>`;
         }   
     }
 
@@ -470,6 +470,11 @@ class ControlPanel{
 
     pauseGamebtn(){
         pauseGame = !pauseGame;
+        if(pauseGame) {
+            this.pauseGameButton.innerHTML = `<i class="far fa-play-circle"></i>`;
+        }else{
+            this.pauseGameButton.innerHTML = `<i class="far fa-pause-circle"></i>`;
+        }
     }
 
     getUserDataSesionStorage(){

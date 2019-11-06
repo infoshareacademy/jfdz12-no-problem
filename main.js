@@ -64,7 +64,7 @@ class EmailModal {
     }
 
     btnPlayEvent() {
-        window.open('game/game.html');
+        window.open('game/game.html', '_self');
         this.emModal.style.display = "none";
     };
     
