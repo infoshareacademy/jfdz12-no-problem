@@ -1,7 +1,7 @@
 const listOfCookies = ['🥮', '🎂', '🍥', '🍰', '🧁', '🍪', '🍄', '🥠', '🥞', '🍘', '🍩', '🍄'];
 
 const cookWidth = 85;
-const cakeWidth = 30;
+const cakeWidth = 20;
 const cakeHeight = 30;
 
 let userData = {};
@@ -15,9 +15,10 @@ class Cook {
     constructor(cookName, cookStartX){
         this.cookStartX = cookStartX;
         this.cookName = cookName;
-        this.cookPosition = 454;
-        this.cookHorizontalPosition = 500;
+        this.cookPosition = 429;
+        this.cookHorizontalPosition = 479;
         this.element = document.querySelector(`.${cookName}`);
+        this.keyEventListener = null;
         this.element.addEventListener('click',()=>{
             this.enter();
         });
@@ -32,29 +33,33 @@ class Cook {
 
         this.element.classList.add(`cooks-animation-${this.cookName}`);
         this.element.classList.add('active');
-        this.element.addEventListener('animationend', ()=>{
-            this.element.classList.remove(`cooks-animation-${this.cookName}`);
-            this.element.style.left= '500px';
-            this.element.style.top = `${this.cookPosition}px`;
-            this.element.style.transform = "scale(1.6)";
-            this.setPosition();
-            cookiesFlow();
-        });
-
-        window.addEventListener('keydown', (event) => {
-            this.handleMove(event.key);
-        })
+        
+        this.cookAnimation = this.cookAnimation.bind(this);
+        this.element.addEventListener('animationend',this.cookAnimation); 
+        
+        window.addEventListener('keydown', this.handleMove);
     }
 
-    handleMove(key){
-        if(this.element.offsetTop !== 454){
+    cookAnimation(){
+        this.element.classList.remove(`cooks-animation-${this.cookName}`, 'cook');
+        this.element.style.left= '479px';
+        this.element.style.top = `${this.cookPosition}px`;
+        this.element.classList.add('cook-active');
+        this.setPosition();
+        this.element.removeEventListener('animationend',this.cookAnimation);
+        cookiesFlow();
+        }
+
+    handleMove(event){
+        if(selectedCook.element.offsetTop !== 429){
             return
         }
-        if (key === 'ArrowRight' && this.cookHorizontalPosition<935){
-            this.move('right');          
+        if (event.key === 'ArrowRight' && selectedCook.cookHorizontalPosition < 900){
+            selectedCook.move('right');
+                      
         }
-        if (key === 'ArrowLeft' && this.cookHorizontalPosition>140){
-            this.move('left');
+        if (event.key === 'ArrowLeft' && selectedCook.cookHorizontalPosition > 140){
+            selectedCook.move('left');
         }
     }
 
@@ -83,14 +88,19 @@ class Cook {
     }
 
     resetCook(){
-        this.element.classList.remove('active');
+        this.element.classList.remove('active', 'cook-active');
         this.element.removeAttribute('style');
+        this.element.classList.add('cook');
+        cookPosTop = 0;
+        cookPosLeft = 0;
+        this.cookHorizontalPosition = 479;
+        window.removeEventListener('keydown', this.handleMove);
     }
 }
 
 
-let cookieFrame;
-let nextCookie;
+let cookieFrame = null;
+let nextCookie = null;
 
 function cookieStart() {
     
@@ -159,6 +169,7 @@ const cookiesRandomGenerator = function () {
             myCookie.style.left = `${positionXY[0]}px`;
             myCookie.style.top = `${positionXY[1]}px`;
         }
+        // console.log('ckX:',positionXY[0], 'ckY: ',positionXY[1], 'kuX: ', cookPosLeft, 'kuY: ', cookPosTop );
         if (playGame.checkCollision.checkPositionState(positionXY[0], positionXY[1], randomCookieGen)){
             clearInterval(cookieMoveInterval);
             myCookie.remove();
@@ -168,7 +179,7 @@ const cookiesRandomGenerator = function () {
             clearInterval(cookieMoveInterval);
             myCookie.remove();
         }
-    },10);
+    },5);
 }
 
 const cookiesFlow = function(){
@@ -193,7 +204,7 @@ class ColisionCookCake {
     }
 
     checkPositionState (leftCookiePosition, topCookiePosition , checkedCookie){
-        if(topCookiePosition > 455){
+        if(topCookiePosition > 450){
             if(checkedCookie != '🍄'){
                 playGame.gameCounter.lossLife();
             }
@@ -217,6 +228,7 @@ class ColisionCookCake {
         if(cookPosTop > cakePosTop && cookPosTop < cakePosTop + cakeWidth){
             if (((cakePosleft > cookPosLeft) && (cakePosleft < cookPosLeft+cookWidth)) ||
                 ((cakePosleft + cakeWidth > cookPosLeft && cakePosleft + cakeWidth < cookPosLeft + cookWidth ))){
+                    //console.log('ckL:',cakePosleft, 'ckT: ',cakePosTop, 'kuL: ', cookPosLeft, 'kuT: ', cookPosTop );
                     return true;
                 }else{
                     return false;
@@ -339,6 +351,9 @@ class EndModal{
         this.btnContinue = document.getElementById('modal-end-btncont');
         this.modalUserData = document.querySelector('.modal-user-data');
         this.modalScore = document.querySelector('.modal-score');
+        this.modalScoreBoard = document.querySelector('.modal-scoreboard');
+        this.scoreBoard = [];
+        this.userScoreBoard = {};
         this.btnEnd.addEventListener('click', ()=>{
             this.closeGame();
         });
@@ -348,9 +363,15 @@ class EndModal{
     }
 
     showModal(){
+        this.addScoreBoard();
         this.modalEndId.style.display = 'block';
-        this.modalUserData.innerText = userData != null ? userData.email : "";
+        this.modalUserData.innerText = this.userScoreBoard.name; 
         this.modalScore.innerText = playGame.gameCounter.point;
+        for (let i=0 ; (i < 10 && i < this.scoreBoard.length); i++){
+            this.modalScoreBoard.innerHTML += `<div class="score-bord-list">
+                <span class="score-board-name">${[i+1]}.  ${this.scoreBoard[i].name} </span>
+                <span class="score-board-score">${this.scoreBoard[i].score}</span></div>`;
+        }   
     }
 
     hideModal(){
@@ -358,14 +379,61 @@ class EndModal{
     }
 
     closeGame(){
+        this.setDataToLocalStrage();
         window.open('../index.html', '_self');
     }
 
     continueGame(){
+        this.setDataToLocalStrage();
+        this.scoreBoard = [];
+        this.userScoreBoard = {};
+        this.modalScoreBoard.innerHTML = "";
         this.hideModal();
         playGame.startGame();  
     }
+
+    addScoreBoard(){
+        this.userScoreBoard = {
+            score: playGame.gameCounter.point,
+            name: (nick != null && nick != "") ? nick : "no nick",
+            email: (userData.email != null && userData.email != "") ? userData.email : "no mail" 
+        }
+        
+        if (this.getDataFromLocalStorage()){
+            
+            if (this.scoreBoard.length < 10){
+                this.scoreBoard.push(this.userScoreBoard);
+            }
+
+            if (this.scoreBoard.length === 10){
+                if (this.scoreBoard[9].score <= this.userScoreBoard.score){
+                    this.scoreBoard.pop();
+                    this.scoreBoard.push(this.userScoreBoard);
+                }
+            }
+            this.scoreBoard.sort((a, b) => (a.score < b.score) ? 1 : -1);
+
+        }else{
+            this.scoreBoard.push(this.userScoreBoard);
+        }
+
+
+    }
+
+    getDataFromLocalStorage(){
+        if(typeof(localStorage.getItem('scoreboard')) === "string"){
+            this.scoreBoard = JSON.parse(localStorage.getItem('scoreboard'))
+                                .sort((a, b) => (a.score < b.score) ? 1 : -1);
+            return true;
+        }
+        return false;
+    }
+
+    setDataToLocalStrage(){
+        localStorage.setItem('scoreboard', JSON.stringify(this.scoreBoard));
+    }
 }
+
 
 class ControlPanel{
     constructor(){
@@ -402,13 +470,24 @@ class ControlPanel{
 
     pauseGamebtn(){
         pauseGame = !pauseGame;
+        if(pauseGame) {
+            this.pauseGameButton.innerHTML = `<i class="far fa-play-circle"></i>`;
+        }else{
+            this.pauseGameButton.innerHTML = `<i class="far fa-pause-circle"></i>`;
+        }
     }
 
     getUserDataSesionStorage(){
         userData = JSON.parse (sessionStorage.getItem('userData'));
+        if(userData === null){
+            userData = {
+                    name: "",
+                    email: ""
+                };
+            }
     }
 }
 
-let playGame = new ControlPanel();
+const playGame = new ControlPanel();
 playGame.startGame();
 
