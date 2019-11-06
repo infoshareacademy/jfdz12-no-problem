@@ -396,7 +396,7 @@ class EndModal{
         this.userScoreBoard = {
             score: playGame.gameCounter.point,
             name: (nick != null && nick != "") ? nick : "no nick",
-            email: userData.email
+            email: (userData.email != null && userData.email != "") ? userData.email : "no mail" 
         }
         
         if (this.getDataFromLocalStorage()){
@@ -479,6 +479,12 @@ class ControlPanel{
 
     getUserDataSesionStorage(){
         userData = JSON.parse (sessionStorage.getItem('userData'));
+        if(userData === null){
+            userData = {
+                    name: "",
+                    email: ""
+                };
+            }
     }
 }
 
