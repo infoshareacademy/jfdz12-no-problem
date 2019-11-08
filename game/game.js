@@ -1,8 +1,10 @@
 const listOfCookies = ['🥮', '🎂', '🍥', '🍰', '🧁', '🍪', '🍄', '🥠', '🥞', '🍘', '🍩', '🍄'];
-
 const cookWidth = 85;
 const cakeWidth = 20;
 const cakeHeight = 30;
+const levelChange = 5;
+const cookieSpeedStep = 1;
+const cookieFrequencyStep = 400;
 
 let userData = {};
 let cookPosTop = 0;
@@ -10,6 +12,10 @@ let cookPosLeft = 0;
 let selectedCook = null;
 let endGame = false;
 let pauseGame = false;
+let resetFlow = false;
+let cookieSpeed = 8;
+let cookieFrequency = 4000;
+let cookStep = 0;
 
 class Cook {
     constructor(cookName, cookStartX){
@@ -65,8 +71,8 @@ class Cook {
 
     move(direction){
         this.cookHorizontalPosition = direction === 'left' ?
-            this.cookHorizontalPosition - 10 :
-            this.cookHorizontalPosition + 10
+            this.cookHorizontalPosition - 10 - cookStep :
+            this.cookHorizontalPosition + 10 + cookStep
         ; 
         this.element.style.left = `${this.cookHorizontalPosition}px`;
         this.setPosition();
@@ -169,7 +175,6 @@ const cookiesRandomGenerator = function () {
             myCookie.style.left = `${positionXY[0]}px`;
             myCookie.style.top = `${positionXY[1]}px`;
         }
-        // console.log('ckX:',positionXY[0], 'ckY: ',positionXY[1], 'kuX: ', cookPosLeft, 'kuY: ', cookPosTop );
         if (playGame.checkCollision.checkPositionState(positionXY[0], positionXY[1], randomCookieGen)){
             clearInterval(cookieMoveInterval);
             myCookie.remove();
@@ -179,7 +184,7 @@ const cookiesRandomGenerator = function () {
             clearInterval(cookieMoveInterval);
             myCookie.remove();
         }
-    },5);
+    },cookieSpeed);
 }
 
 const cookiesFlow = function(){
@@ -189,18 +194,25 @@ const cookiesFlow = function(){
         if (endGame){
             clearInterval(cookiesInterval);               
         }
+        if(resetFlow){
+            clearInterval(cookiesInterval);
+            resetFlow = false;
+            cookiesFlow();
+        }
         if(!pauseGame && !endGame){
             lidClase.classList.add('lid-up');
             cookiesRandomGenerator();        
             setTimeout(()=>{lidClase.classList.remove('lid-up')},500);
         }
-    },3000);
+    },cookieFrequency);
     
 };
 
 
-class ColisionCookCake {
+class ColisionCookCookie {
     constructor(){
+        this.points = 0;
+        this.level = 0;
     }
 
     checkPositionState (leftCookiePosition, topCookiePosition , checkedCookie){
@@ -215,7 +227,7 @@ class ColisionCookCake {
                 playGame.gameCounter.lossLife();
             }else{
                 if(!endGame){
-                    playGame.gameCounter.pointsCookis();    
+                    this.addPointAndLevel();    
                 }
             }
             return true; 
@@ -228,7 +240,6 @@ class ColisionCookCake {
         if(cookPosTop > cakePosTop && cookPosTop < cakePosTop + cakeWidth){
             if (((cakePosleft > cookPosLeft) && (cakePosleft < cookPosLeft+cookWidth)) ||
                 ((cakePosleft + cakeWidth > cookPosLeft && cakePosleft + cakeWidth < cookPosLeft + cookWidth ))){
-                    //console.log('ckL:',cakePosleft, 'ckT: ',cakePosTop, 'kuL: ', cookPosLeft, 'kuT: ', cookPosTop );
                     return true;
                 }else{
                     return false;
@@ -237,6 +248,29 @@ class ColisionCookCake {
             return false;
         }
     }
+
+    addPointAndLevel(){
+        playGame.gameCounter.pointsCookis();
+        this.points = playGame.gameCounter.point;
+        this.level = playGame.gameCounter.lvl;
+
+        if (this.points === levelChange*this.level){
+            playGame.gameCounter.levelGame();
+            this.changeSpeed();
+        } 
+    }
+
+    changeSpeed(){
+        cookStep = cookStep < 15 ? cookStep++ : cookStep;
+        cookieSpeed = cookieSpeed > 2 ? cookieSpeed - cookieSpeedStep : cookieSpeed;
+        if(cookieFrequency > 501){
+            cookieFrequency =  cookieFrequency - cookieFrequencyStep;
+        }else{
+            cookieFrequency
+        }
+        resetFlow = true;
+    }
+
 
 }
 
@@ -437,7 +471,7 @@ class EndModal{
 
 class ControlPanel{
     constructor(){
-        this.checkCollision = new ColisionCookCake();
+        this.checkCollision = new ColisionCookCookie();
         this.gameCounter = new Counter();
         this.gesler = new Cook ('gesler', 60);
         this.maklowicz = new Cook ('maklowicz', 185);
@@ -453,6 +487,8 @@ class ControlPanel{
         selectedCook = null;
         endGame = false;
         pauseGame = false;
+        cookieSpeed = 8;
+        cookieFrequency = 4000;
     }
 
     endGame(){
