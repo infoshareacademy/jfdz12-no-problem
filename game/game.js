@@ -489,6 +489,7 @@ class ControlPanel{
         pauseGame = false;
         cookieSpeed = 8;
         cookieFrequency = 4000;
+        cookStep = 0;
     }
 
     endGame(){
