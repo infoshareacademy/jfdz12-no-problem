@@ -110,7 +110,7 @@ class CookiesAccept {
         const dateCookie = new Date();
         dateCookie.setTime(dateCookie.getTime() + (this.caExpire*24*60*60*1000));
         const expires = dateCookie.toUTCString();
-        document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/; SameSite=None; Secure;`;
+        document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/; SameSite=None;`;
     }
 
     cookiesBannerVisible(){
