@@ -303,16 +303,18 @@ let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
 function opacityFunction() {
     let ii = 0;
     let j = 0;
-    setInterval (function(){
-       if (j<opacityRange.length && ii<instructionArray.length) {
-        instructionArray[ii].style.opacity=opacityRange[j];
-        j++}
-       if (j===opacityRange.length) {
-           j=0;
-           ii++;
+    setInterval (function() {
+        if (j<opacityRange.length && ii<instructionArray.length) {
+            instructionArray[ii].style.opacity=opacityRange[j];
+            j++;
+        }
+        if (j===opacityRange.length) {
+            j=0;
+            ii++;
         }
     },150);
 };
+
 function moveInstructionContentUp() {
     let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
     let contentTopInterval = setInterval(function(){
@@ -322,7 +324,8 @@ function moveInstructionContentUp() {
             clearInterval(contentTopInterval);
             contentHeightPlus();
             opacityFunction();}
-    },10)};
+        },10)
+};
 
 
 function contentHeightPlus() {
@@ -335,13 +338,11 @@ function contentHeightPlus() {
         
 setTimeout(moveInstructionContentUp, 2000);
 
-
 const nickModalBtn = document.getElementById("nickModalBtnId");
 let nick;
-
 nickModalBtn.addEventListener("click", function() {
-    nickModal.style.display = "none";
-    nick = document.getElementById("nickModalInputId").value;
+        nickModal.style.display = "none";
+        nick = document.getElementById("nickModalInputId").value;
 });
 
 
