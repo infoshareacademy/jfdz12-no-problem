@@ -4,7 +4,7 @@ const cakeWidth = 20;
 const cakeHeight = 30;
 const levelChange = 5;
 const cookieSpeedStep = 1;
-const cookieFrequencyStep = 400;
+const cookieFrequencyStep = 200;
 
 let userData = {};
 let cookPosTop = 0;
@@ -51,8 +51,11 @@ class Cook {
         this.element.style.left= '479px';
         this.element.style.top = `${this.cookPosition}px`;
         this.element.classList.add('cook-active');
+
         this.setPosition();
+        
         this.element.removeEventListener('animationend',this.cookAnimation);
+        
         cookiesFlow();
         }
 
@@ -61,8 +64,7 @@ class Cook {
             return
         }
         if (event.key === 'ArrowRight' && selectedCook.cookHorizontalPosition < 900){
-            selectedCook.move('right');
-                      
+            selectedCook.move('right');              
         }
         if (event.key === 'ArrowLeft' && selectedCook.cookHorizontalPosition > 140){
             selectedCook.move('left');
@@ -79,7 +81,9 @@ class Cook {
     }
 
     cookCorrPos(){
-        if (this.cookName ==='maklowicz'){
+        if(this.cookName === 'gesler'){
+            return 10;
+        }else if (this.cookName ==='maklowicz'){
             return 20;
         }else if(this.cookName === 'jakubiak'){
             return 18;
@@ -261,7 +265,7 @@ class ColisionCookCookie {
     }
 
     changeSpeed(){
-        cookStep = cookStep < 15 ? cookStep++ : cookStep;
+        cookStep = cookStep < 30 ? cookStep = cookStep + 2 : cookStep;
         cookieSpeed = cookieSpeed > 2 ? cookieSpeed - cookieSpeedStep : cookieSpeed;
         if(cookieFrequency > 501){
             cookieFrequency =  cookieFrequency - cookieFrequencyStep;
@@ -404,8 +408,13 @@ class EndModal{
         this.modalScore.innerText = playGame.gameCounter.point;
         for (let i=0 ; (i < 10 && i < this.scoreBoard.length); i++){
             this.modalScoreBoard.innerHTML += `<div class="score-bord-list">
-                <span class="score-board-name">${[i+1]}.  ${this.scoreBoard[i].name} </span>
-                <span class="score-board-score">${this.scoreBoard[i].score}</span></div>`;
+                <span class="score-board-name">
+                ${this.scoreBoard[i].name === this.userScoreBoard.name ? "<strong>": ""}
+                ${[i+1]}.  ${this.scoreBoard[i].name} </span>
+                <span class="score-board-score">
+                ${this.scoreBoard[i].score}
+                ${this.scoreBoard[i].name === this.userScoreBoard.name ? "</strong>": ""}
+                </span></div>`;
         }   
     }
 
