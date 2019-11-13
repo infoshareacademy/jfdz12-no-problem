@@ -280,75 +280,85 @@ class ColisionCookCookie {
 
 //instructionModal
 
-const instructionModal = document.getElementById("instructionModalId");
-let instructionModalContent = document.getElementById("instructionModal--content");
-const instructionModalBtn = document.getElementById("instructionModalBtnId");
-const nickModal = document.getElementById("nickModalId");
+// const instructionModal = document.getElementById("instructionModalId");
+// let instructionModalContent = document.getElementById("instructionModal--content");
+// const instructionModalBtn = document.getElementById("instructionModalBtnId");
+// const nickModal = document.getElementById("nickModalId");
 
-window.addEventListener("load",function() {
-    instructionModal.style.display = "block";
-  })
+// window.addEventListener("load",function() {
+//     instructionModal.style.display = "block";
+//   })
 
-instructionModalBtn.addEventListener("click", function() {
-    instructionModal.style.display = "none";
-    nickModal.style.display = "block";
-});
+// instructionModalBtn.addEventListener("click", function() {
+//     instructionModal.style.display = "none";
+//     nickModal.style.display = "block";
+// });
 
-let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
-let instructionSecondPoint = document.getElementById("instructionModal--secondPoint");
-let instructionThirdPoint = document.getElementById("instructionModal--thirdPoint");
-let instructionModalBackBtn = document.getElementById("instructionModalBtnIdBack");
-
-
-let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn, instructionModalBackId];
-let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
+// let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
+// let instructionSecondPoint = document.getElementById("instructionModal--secondPoint");
+// let instructionThirdPoint = document.getElementById("instructionModal--thirdPoint");
+// let instructionModalBackBtn = document.getElementById("instructionModalBtnIdBack");
 
 
-function opacityFunction() {
-    let ii = 0;
-    let j = 0;
-    setInterval (function() {
-        if (j<opacityRange.length && ii<instructionArray.length) {
-            instructionArray[ii].style.opacity=opacityRange[j];
-            j++;
-        }
-        if (j===opacityRange.length) {
-            j=0;
-            ii++;
-        }
-    },150);
-};
-
-function moveInstructionContentUp() {
-    let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
-    let contentTopInterval = setInterval(function(){
-        actualTop--;
-        instructionModalContent.style.marginTop=actualTop+"px";
-        if (actualTop<20) {
-            clearInterval(contentTopInterval);
-            contentHeightPlus();
-            opacityFunction();}
-        },10)
-};
+// let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn, instructionModalBackId];
+// let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
 
 
-function contentHeightPlus() {
-        let actualHeight = parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("height"));
-        let contentInterval = setInterval(function(){
-            actualHeight++;
-            instructionModalContent.style.height=actualHeight+"px";
-            if (actualHeight>370) {clearInterval(contentInterval)}
-        },10)};
+// function opacityFunction() {
+//     let ii = 0;
+//     let j = 0;
+//     setInterval (function() {
+//         if (j<opacityRange.length && ii<instructionArray.length) {
+//             instructionArray[ii].style.opacity=opacityRange[j];
+//             j++;
+//         }
+//         if (j===opacityRange.length) {
+//             j=0;
+//             ii++;
+//         }
+//     },150);
+// };
+
+// function moveInstructionContentUp() {
+//     let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
+//     let contentTopInterval = setInterval(function(){
+//         actualTop--;
+//         instructionModalContent.style.marginTop=actualTop+"px";
+//         if (actualTop<20) {
+//             clearInterval(contentTopInterval);
+//             contentHeightPlus();
+//             opacityFunction();}
+//         },10)
+// };
+
+
+// function contentHeightPlus() {
+//         let actualHeight = parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("height"));
+//         let contentInterval = setInterval(function(){
+//             actualHeight++;
+//             instructionModalContent.style.height=actualHeight+"px";
+//             if (actualHeight>370) {clearInterval(contentInterval)}
+//         },10)};
         
-setTimeout(moveInstructionContentUp, 2000);
+// setTimeout(moveInstructionContentUp, 2000);
 
-const nickModalBtn = document.getElementById("nickModalBtnId");
-let nick;
-nickModalBtn.addEventListener("click", function() {
-        nickModal.style.display = "none";
-        nick = document.getElementById("nickModalInputId").value;
-});
+// const nickModalBtn = document.getElementById("nickModalBtnId");
+// let nick;
+// nickModalBtn.addEventListener("click", function() {
+//         nickModal.style.display = "none";
+//         nick = document.getElementById("nickModalInputId").value;
+// });
 
+const infoMesage = function(){
+    const box = document.querySelector('.info-body');
+    box.style.display="block";
+    box.classList.add('info-life');
+    const text = document.querySelector('.info-text');
+    text.innerText = `Poziom ${playGame.gameCounter.lvl}`;
+    setTimeout(()=>box.style.display="none",4000);
+}
+
+//setTimeout( infoMesage , 2000);
 
 
 class Counter {
