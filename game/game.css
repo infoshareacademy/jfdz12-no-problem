@@ -182,19 +182,11 @@
     transform-origin: left bottom;
 }
 
-/* .info-content{
-    display:block;
-    max-width: 300px;
-    width:100%;
-    min-height: 50px;
-    margin: auto;
-} */
-
 .info-body{
     display: none;
     max-width: 200px;
     width:100%;
-    min-height: 80px;
+    min-height: 40px;
     margin: 0px auto ;
     border-radius: 10px;
     border: 2px solid white;
@@ -212,14 +204,18 @@
     background-color: tomato;
 }
 
+.info-start{
+    animation: infoGrow 1s;
+    background-color: #40c9aeda;
+}
+
 .info-text{
     color: white;
     font-size: 18px;
     font-weight: bold;
-    margin-top: 0;
-    padding-top: 27px;
-    text-align: center;
-    
+    margin: 0;
+    padding: 15px;
+    text-align: center; 
 }
 
 .game-title{

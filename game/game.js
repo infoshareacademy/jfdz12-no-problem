@@ -37,6 +37,8 @@ class Cook {
 
         selectedCook = this;
 
+        playGame.infoBoxRemove('info-start');
+
         this.element.classList.add(`cooks-animation-${this.cookName}`);
         this.element.classList.add('active');
         
@@ -55,7 +57,7 @@ class Cook {
         this.setPosition();
         
         this.element.removeEventListener('animationend',this.cookAnimation);
-        
+
         cookiesFlow();
         }
 
@@ -229,6 +231,7 @@ class ColisionCookCookie {
         if (this.collision(leftCookiePosition, topCookiePosition)){
             if(checkedCookie === '🍄'){
                 playGame.gameCounter.lossLife();
+                
             }else{
                 if(!endGame){
                     this.addPointAndLevel();    
@@ -349,17 +352,45 @@ class ColisionCookCookie {
 //         nick = document.getElementById("nickModalInputId").value;
 // });
 
-const infoMesage = function(){
-    const box = document.querySelector('.info-body');
-    box.style.display="block";
-    box.classList.add('info-life');
-    const text = document.querySelector('.info-text');
-    text.innerText = `Poziom ${playGame.gameCounter.lvl}`;
-    setTimeout(()=>box.style.display="none",4000);
+class InfoBox {
+    constructor(){
+        this.box = document.querySelector('.info-body');
+        this.text = document.querySelector('.info-text');
+        this.boxType = [
+            {name: "looseLife", clasName:"info-life", boxText: "Straciłeś życie", time: 4000},
+            {name: "changeLevel", clasName:"info-level", boxText: "Poziom ", time: 4000 },
+            {name: "startInfo", clasName:"info-start", boxText: "Wybierz kucharza aby rozpocząć", time: 0}
+        ];
+    }
+
+    startDisplay(name, param){
+        const chosenName = this.boxType.filter((el)=>el.name === name );
+
+        this.showBox(chosenName[0].clasName);
+        this.infoAddText(chosenName[0].boxText, param);
+
+        if (chosenName[0].time > 0){
+            setTimeout(()=>{
+                this.removeBox(chosenName[0].clasName);
+            }, chosenName[0].time);
+        }
+    }
+
+    showBox(infoClass){
+        this.box.style.display='block';
+        this.box.classList.add(`${infoClass}`);
+    }
+
+    removeBox(infoClass){
+        this.box.style.display="none";
+        this.text.innerText = "";
+        this.box.classList.remove(`${infoClass}`);
+    }
+
+    infoAddText(text, param){
+        this.text.innerText = `${text} ${ param ? param : ''}`;
+    }
 }
-
-//setTimeout( infoMesage , 2000);
-
 
 class Counter {
     constructor() {
@@ -381,11 +412,12 @@ class Counter {
     lossLife() {
         this.life = this.life - 1;
         this.pointsLifeCounter.textContent = this.life;
+        playGame.infoBoxShow('looseLife',false);
     }
     levelGame() {
         this.lvl = this.lvl + 1;
         this.pointsLevelCounter.textContent = this.lvl;
-
+        playGame.infoBoxShow('changeLevel',this.lvl);
     }
     pointsCookis() {
         this.point = this.point + 1;
@@ -499,6 +531,15 @@ class ControlPanel{
         this.starmach = new Cook('starmach', 435);
         this.pauseGameButton = document.getElementById('cookiespause');
         this.pauseGameButton.addEventListener('click', (e)=>this.pauseGamebtn());
+        this.infoBox = new InfoBox()
+    }
+
+    infoBoxShow(name ,param){
+        this.infoBox.startDisplay(name, param);
+    }
+
+    infoBoxRemove(className){
+        this.infoBox.removeBox(className);
     }
 
     startGame(){
@@ -510,6 +551,7 @@ class ControlPanel{
         cookieSpeed = 8;
         cookieFrequency = 4000;
         cookStep = 0;
+        this.infoBoxShow('startInfo', false);
     }
 
     endGame(){
@@ -547,4 +589,3 @@ class ControlPanel{
 
 const playGame = new ControlPanel();
 playGame.startGame();
-
