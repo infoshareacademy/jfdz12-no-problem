@@ -196,17 +196,17 @@
 
 .info-level{
     animation: infoGrow 1s;
-    background-color: #40c9aeda;
+    background-color: #70a093;
 }
 
 .info-life{
     animation: infoLifeEnd 1s; 
-    background-color: tomato;
+    background-color: #f06060;
 }
 
 .info-start{
     animation: infoGrow 1s;
-    background-color: #40c9aeda;
+    background-color: #458098c3;
 }
 
 .info-text{
