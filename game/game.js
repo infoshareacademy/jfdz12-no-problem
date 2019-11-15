@@ -4,7 +4,7 @@ const cakeWidth = 20;
 const cakeHeight = 30;
 const levelChange = 5;
 const cookieSpeedStep = 1;
-const cookieFrequencyStep = 400;
+const cookieFrequencyStep = 200;
 
 let userData = {};
 let cookPosTop = 0;
@@ -37,6 +37,8 @@ class Cook {
 
         selectedCook = this;
 
+        playGame.infoBoxRemove('info-start');
+
         this.element.classList.add(`cooks-animation-${this.cookName}`);
         this.element.classList.add('active');
         
@@ -51,8 +53,11 @@ class Cook {
         this.element.style.left= '479px';
         this.element.style.top = `${this.cookPosition}px`;
         this.element.classList.add('cook-active');
+
         this.setPosition();
+        
         this.element.removeEventListener('animationend',this.cookAnimation);
+
         cookiesFlow();
         }
 
@@ -61,8 +66,7 @@ class Cook {
             return
         }
         if (event.key === 'ArrowRight' && selectedCook.cookHorizontalPosition < 900){
-            selectedCook.move('right');
-                      
+            selectedCook.move('right');              
         }
         if (event.key === 'ArrowLeft' && selectedCook.cookHorizontalPosition > 140){
             selectedCook.move('left');
@@ -79,7 +83,9 @@ class Cook {
     }
 
     cookCorrPos(){
-        if (this.cookName ==='maklowicz'){
+        if(this.cookName === 'gesler'){
+            return 10;
+        }else if (this.cookName ==='maklowicz'){
             return 20;
         }else if(this.cookName === 'jakubiak'){
             return 18;
@@ -225,6 +231,7 @@ class ColisionCookCookie {
         if (this.collision(leftCookiePosition, topCookiePosition)){
             if(checkedCookie === '🍄'){
                 playGame.gameCounter.lossLife();
+                
             }else{
                 if(!endGame){
                     this.addPointAndLevel();    
@@ -261,7 +268,7 @@ class ColisionCookCookie {
     }
 
     changeSpeed(){
-        cookStep = cookStep < 15 ? cookStep++ : cookStep;
+        cookStep = cookStep < 30 ? cookStep = cookStep + 2 : cookStep;
         cookieSpeed = cookieSpeed > 2 ? cookieSpeed - cookieSpeedStep : cookieSpeed;
         if(cookieFrequency > 501){
             cookieFrequency =  cookieFrequency - cookieFrequencyStep;
@@ -344,6 +351,7 @@ setTimeout(moveInstructionContentUp, 2000);
 const nickModalBtn = document.getElementById("nickModalBtnId");
 let nick;
 const nickInfo = document.getElementsByClassName("nickModalInfo")[0];
+
 let nickModalFun = function() {
     nick = document.getElementById("nickModalInputId").value;
     if (nick.length>0) {
@@ -356,6 +364,45 @@ let nickModalFun = function() {
 
 nickModalBtn.addEventListener("click", nickModalFun); 
 
+
+class InfoBox {
+    constructor(){
+        this.box = document.querySelector('.info-body');
+        this.text = document.querySelector('.info-text');
+        this.boxType = [
+            {name: "looseLife", clasName:"info-life", boxText: "Straciłeś życie", time: 1500},
+            {name: "changeLevel", clasName:"info-level", boxText: "Poziom ", time: 2000 },
+            {name: "startInfo", clasName:"info-start", boxText: "Wybierz kucharza aby rozpocząć", time: 0}
+        ];
+    }
+
+    startDisplay(name, param){
+        const chosenName = this.boxType.filter((el)=>el.name === name );
+
+        this.showBox(chosenName[0].clasName);
+        this.infoAddText(chosenName[0].boxText, param);
+
+        if (chosenName[0].time > 0){
+            setTimeout(()=>{
+                this.removeBox(chosenName[0].clasName);
+            }, chosenName[0].time);
+        }
+    }
+    showBox(infoClass){
+        this.box.style.display='block';
+        this.box.classList.add(`${infoClass}`);
+    }
+
+    removeBox(infoClass){
+        this.box.style.display="none";
+        this.text.innerText = "";
+        this.box.classList.remove(`${infoClass}`);
+    }
+
+    infoAddText(text, param){
+        this.text.innerText = `${text} ${ param ? param : ''}`;
+    }
+}
 
 class Counter {
     constructor() {
@@ -377,11 +424,12 @@ class Counter {
     lossLife() {
         this.life = this.life - 1;
         this.pointsLifeCounter.textContent = this.life;
+        this.life > 0 ? playGame.infoBoxShow('looseLife',false) : null;
     }
     levelGame() {
         this.lvl = this.lvl + 1;
         this.pointsLevelCounter.textContent = this.lvl;
-
+        playGame.infoBoxShow('changeLevel',this.lvl);
     }
     pointsCookis() {
         this.point = this.point + 1;
@@ -414,8 +462,13 @@ class EndModal{
         this.modalScore.innerText = playGame.gameCounter.point;
         for (let i=0 ; (i < 10 && i < this.scoreBoard.length); i++){
             this.modalScoreBoard.innerHTML += `<div class="score-bord-list">
-                <span class="score-board-name">${[i+1]}.  ${this.scoreBoard[i].name} </span>
-                <span class="score-board-score">${this.scoreBoard[i].score}</span></div>`;
+                <span class="score-board-name">
+                ${this.scoreBoard[i].name === this.userScoreBoard.name ? "<strong>": ""}
+                ${[i+1]}.  ${this.scoreBoard[i].name} </span>
+                <span class="score-board-score">
+                ${this.scoreBoard[i].score}
+                ${this.scoreBoard[i].name === this.userScoreBoard.name ? "</strong>": ""}
+                </span></div>`;
         }   
     }
 
@@ -490,6 +543,15 @@ class ControlPanel{
         this.starmach = new Cook('starmach', 435);
         this.pauseGameButton = document.getElementById('cookiespause');
         this.pauseGameButton.addEventListener('click', (e)=>this.pauseGamebtn());
+        this.infoBox = new InfoBox()
+    }
+
+    infoBoxShow(name ,param){
+        this.infoBox.startDisplay(name, param);
+    }
+
+    infoBoxRemove(className){
+        this.infoBox.removeBox(className);
     }
 
     startGame(){
@@ -501,6 +563,7 @@ class ControlPanel{
         cookieSpeed = 8;
         cookieFrequency = 4000;
         cookStep = 0;
+        playGame.infoBoxShow('startInfo', false);
     }
 
     endGame(){
@@ -538,4 +601,3 @@ class ControlPanel{
 
 const playGame = new ControlPanel();
 playGame.startGame();
-
