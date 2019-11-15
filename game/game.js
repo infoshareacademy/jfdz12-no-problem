@@ -340,18 +340,31 @@ function contentHeightPlus() {
         let contentInterval = setInterval(function(){
             actualHeight++;
             instructionModalContent.style.height=actualHeight+"px";
-            if (actualHeight>370) {clearInterval(contentInterval)}
-        },10)};
+            if (actualHeight>430) {
+                clearInterval(contentInterval)
+            }
+        },9)
+};
         
 setTimeout(moveInstructionContentUp, 2000);
 
 const nickModalBtn = document.getElementById("nickModalBtnId");
 let nick;
-nickModalBtn.addEventListener("click", function() {
+const nickInfo = document.getElementsByClassName("nickModalInfo")[0];
+
+let nickModalFun = function() {
+    nick = document.getElementById("nickModalInputId").value;
+    if (nick.length>0) {
         nickModal.style.display = "none";
-        nick = document.getElementById("nickModalInputId").value;
-        playGame.infoBoxShow('startInfo', false);
-});
+        nickModalBtn.removeEventListener("click", nickModalFun);
+    } else {
+        nickInfo.innerText="Nick powinien mieć przynajmniej jeden znak."
+    }
+    playGame.infoBoxShow('startInfo', false);
+};
+
+nickModalBtn.addEventListener("click", nickModalFun); 
+
 
 class InfoBox {
     constructor(){
@@ -376,7 +389,6 @@ class InfoBox {
             }, chosenName[0].time);
         }
     }
-
     showBox(infoClass){
         this.box.style.display='block';
         this.box.classList.add(`${infoClass}`);
