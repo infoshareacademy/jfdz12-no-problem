@@ -283,82 +283,83 @@ class ColisionCookCookie {
 
 //instructionModal
 
-// const instructionModal = document.getElementById("instructionModalId");
-// let instructionModalContent = document.getElementById("instructionModal--content");
-// const instructionModalBtn = document.getElementById("instructionModalBtnId");
-// const nickModal = document.getElementById("nickModalId");
+const instructionModal = document.getElementById("instructionModalId");
+let instructionModalContent = document.getElementById("instructionModal--content");
+const instructionModalBtn = document.getElementById("instructionModalBtnId");
+const nickModal = document.getElementById("nickModalId");
 
-// window.addEventListener("load",function() {
-//     instructionModal.style.display = "block";
-//   })
+window.addEventListener("load",function() {
+    instructionModal.style.display = "block";
+  })
 
-// instructionModalBtn.addEventListener("click", function() {
-//     instructionModal.style.display = "none";
-//     nickModal.style.display = "block";
-// });
+instructionModalBtn.addEventListener("click", function() {
+    instructionModal.style.display = "none";
+    nickModal.style.display = "block";
+});
 
-// let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
-// let instructionSecondPoint = document.getElementById("instructionModal--secondPoint");
-// let instructionThirdPoint = document.getElementById("instructionModal--thirdPoint");
-// let instructionModalBackBtn = document.getElementById("instructionModalBtnIdBack");
-
-
-// let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn, instructionModalBackId];
-// let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
+let instructionFirstPoint = document.getElementById("instructionModal--firstPoint");
+let instructionSecondPoint = document.getElementById("instructionModal--secondPoint");
+let instructionThirdPoint = document.getElementById("instructionModal--thirdPoint");
+let instructionModalBackBtn = document.getElementById("instructionModalBtnIdBack");
 
 
-// function opacityFunction() {
-//     let ii = 0;
-//     let j = 0;
-//     setInterval (function() {
-//         if (j<opacityRange.length && ii<instructionArray.length) {
-//             instructionArray[ii].style.opacity=opacityRange[j];
-//             j++;
-//         }
-//         if (j===opacityRange.length) {
-//             j=0;
-//             ii++;
-//         }
-//     },150);
-// };
-
-// function moveInstructionContentUp() {
-//     let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
-//     let contentTopInterval = setInterval(function(){
-//         actualTop--;
-//         instructionModalContent.style.marginTop=actualTop+"px";
-//         if (actualTop<20) {
-//             clearInterval(contentTopInterval);
-//             contentHeightPlus();
-//             opacityFunction();}
-//         },10)
-// };
+let instructionArray = [instructionFirstPoint, instructionSecondPoint, instructionThirdPoint, instructionModalBtn, instructionModalBackId];
+let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
 
 
-// function contentHeightPlus() {
-//         let actualHeight = parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("height"));
-//         let contentInterval = setInterval(function(){
-//             actualHeight++;
-//             instructionModalContent.style.height=actualHeight+"px";
-//             if (actualHeight>370) {clearInterval(contentInterval)}
-//         },10)};
+function opacityFunction() {
+    let ii = 0;
+    let j = 0;
+    setInterval (function() {
+        if (j<opacityRange.length && ii<instructionArray.length) {
+            instructionArray[ii].style.opacity=opacityRange[j];
+            j++;
+        }
+        if (j===opacityRange.length) {
+            j=0;
+            ii++;
+        }
+    },150);
+};
+
+function moveInstructionContentUp() {
+    let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
+    let contentTopInterval = setInterval(function(){
+        actualTop--;
+        instructionModalContent.style.marginTop=actualTop+"px";
+        if (actualTop<20) {
+            clearInterval(contentTopInterval);
+            contentHeightPlus();
+            opacityFunction();}
+        },10)
+};
+
+
+function contentHeightPlus() {
+        let actualHeight = parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("height"));
+        let contentInterval = setInterval(function(){
+            actualHeight++;
+            instructionModalContent.style.height=actualHeight+"px";
+            if (actualHeight>370) {clearInterval(contentInterval)}
+        },10)};
         
-// setTimeout(moveInstructionContentUp, 2000);
+setTimeout(moveInstructionContentUp, 2000);
 
-// const nickModalBtn = document.getElementById("nickModalBtnId");
-// let nick;
-// nickModalBtn.addEventListener("click", function() {
-//         nickModal.style.display = "none";
-//         nick = document.getElementById("nickModalInputId").value;
-// });
+const nickModalBtn = document.getElementById("nickModalBtnId");
+let nick;
+nickModalBtn.addEventListener("click", function() {
+        nickModal.style.display = "none";
+        nick = document.getElementById("nickModalInputId").value;
+        playGame.infoBoxShow('startInfo', false);
+});
 
 class InfoBox {
     constructor(){
         this.box = document.querySelector('.info-body');
         this.text = document.querySelector('.info-text');
         this.boxType = [
-            {name: "looseLife", clasName:"info-life", boxText: "Straciłeś życie", time: 4000},
-            {name: "changeLevel", clasName:"info-level", boxText: "Poziom ", time: 4000 },
+            {name: "looseLife", clasName:"info-life", boxText: "Straciłeś życie", time: 1500},
+            {name: "changeLevel", clasName:"info-level", boxText: "Poziom ", time: 2000 },
             {name: "startInfo", clasName:"info-start", boxText: "Wybierz kucharza aby rozpocząć", time: 0}
         ];
     }
@@ -412,7 +413,7 @@ class Counter {
     lossLife() {
         this.life = this.life - 1;
         this.pointsLifeCounter.textContent = this.life;
-        playGame.infoBoxShow('looseLife',false);
+        this.life > 0 ? playGame.infoBoxShow('looseLife',false) : null;
     }
     levelGame() {
         this.lvl = this.lvl + 1;
@@ -551,7 +552,6 @@ class ControlPanel{
         cookieSpeed = 8;
         cookieFrequency = 4000;
         cookStep = 0;
-        this.infoBoxShow('startInfo', false);
     }
 
     endGame(){
