@@ -360,7 +360,6 @@ let nickModalFun = function() {
     } else {
         nickInfo.innerText="Nick powinien mieć przynajmniej jeden znak."
     }
-    playGame.infoBoxShow('startInfo', false);
 };
 
 nickModalBtn.addEventListener("click", nickModalFun); 
@@ -564,6 +563,7 @@ class ControlPanel{
         cookieSpeed = 8;
         cookieFrequency = 4000;
         cookStep = 0;
+        playGame.infoBoxShow('startInfo', false);
     }
 
     endGame(){
