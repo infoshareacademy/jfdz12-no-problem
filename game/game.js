@@ -59,10 +59,10 @@ class Cook {
         this.element.removeEventListener('animationend',this.cookAnimation);
 
         cookiesFlow();
-        }
+    }
 
     handleMove(event){
-        if(selectedCook.element.offsetTop !== 429){
+        if(selectedCook.element.offsetTop !== 429 || pauseGame){
             return
         }
         if (event.key === 'ArrowRight' && selectedCook.cookHorizontalPosition < 900){
@@ -86,9 +86,11 @@ class Cook {
         if(this.cookName === 'gesler'){
             return 10;
         }else if (this.cookName ==='maklowicz'){
-            return 20;
+            return 35;
         }else if(this.cookName === 'jakubiak'){
-            return 18;
+            return 25;
+        }else if(this.cookName === 'starmach'){
+            return 10;
         }else{
             return 0;
         }
@@ -109,7 +111,6 @@ class Cook {
         window.removeEventListener('keydown', this.handleMove);
     }
 }
-
 
 let cookieFrame = null;
 let nextCookie = null;
@@ -214,7 +215,6 @@ const cookiesFlow = function(){
     
 };
 
-
 class ColisionCookCookie {
     constructor(){
         this.points = 0;
@@ -277,8 +277,6 @@ class ColisionCookCookie {
         }
         resetFlow = true;
     }
-
-
 }
 
 //instructionModal
@@ -308,9 +306,10 @@ let opacityRange=[0.2, 0.4, 0.6, 0.8, 1];
 
 
 function opacityFunction() {
+    let i = 0;
     let ii = 0;
     let j = 0;
-    setInterval (function() {
+    const opacityFlow = setInterval (function() {
         if (j<opacityRange.length && ii<instructionArray.length) {
             instructionArray[ii].style.opacity=opacityRange[j];
             j++;
@@ -319,6 +318,11 @@ function opacityFunction() {
             j=0;
             ii++;
         }
+        i++;
+        if(i === opacityRange.length  * instructionArray.length){
+            clearInterval(opacityFlow);
+        }
+
     },150);
 };
 
@@ -357,6 +361,7 @@ let nickModalFun = function() {
     if (nick.length>0) {
         nickModal.style.display = "none";
         nickModalBtn.removeEventListener("click", nickModalFun);
+        playGame.infoBoxShow('startInfo', false);
     } else {
         nickInfo.innerText="Nick powinien mieć przynajmniej jeden znak."
     }
@@ -514,8 +519,6 @@ class EndModal{
         }else{
             this.scoreBoard.push(this.userScoreBoard);
         }
-
-
     }
 
     getDataFromLocalStorage(){
@@ -563,7 +566,6 @@ class ControlPanel{
         cookieSpeed = 8;
         cookieFrequency = 4000;
         cookStep = 0;
-        playGame.infoBoxShow('startInfo', false);
     }
 
     endGame(){
