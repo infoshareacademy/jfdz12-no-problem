@@ -347,7 +347,7 @@ function contentHeightPlus() {
             if (actualHeight>430) {
                 clearInterval(contentInterval)
             }
-        },9)
+        },8)
 };
         
 setTimeout(moveInstructionContentUp, 2000);
