@@ -327,11 +327,11 @@ function opacityFunction() {
 };
 
 function moveInstructionContentUp() {
-    let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("margin-top"));
+    let actualTop= parseFloat(window.getComputedStyle(instructionModalContent, null).getPropertyValue("top"));
     let contentTopInterval = setInterval(function(){
         actualTop--;
-        instructionModalContent.style.marginTop=actualTop+"px";
-        if (actualTop<20) {
+        instructionModalContent.style.top=actualTop+"px";
+        if (actualTop<100) {
             clearInterval(contentTopInterval);
             contentHeightPlus();
             opacityFunction();}
@@ -347,7 +347,7 @@ function contentHeightPlus() {
             if (actualHeight>430) {
                 clearInterval(contentInterval)
             }
-        },9)
+        },8)
 };
         
 setTimeout(moveInstructionContentUp, 2000);
