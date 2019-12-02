@@ -188,4 +188,14 @@ const showHideBack = function(){
 
 showHideBack();
 
+const langChange = function (lang){
+    const textArray = document.querySelectorAll(`[key*='lang']`)
 
+    textArray.forEach((el) =>{
+        const findKey = langTable.find((key) => key.id === el.attributes.key.value);
+        el.textContent = findKey[lang]; 
+    })
+
+}
+
+langChange('en');

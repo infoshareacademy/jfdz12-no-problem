@@ -31,6 +31,7 @@
     <nav class="nav" id="top">
             <div class = "nav__rwd">
                 <img src="/public/image/transparent1.png" alt="logo" class="nav__logo"/>
+                
                 <label for="toggle" id="label">&#9776;</label>
                 <input type="checkbox" id="toggle"/>
                 <div class="nav__menu">
@@ -42,29 +43,42 @@
     </nav>
 
     <header>
+            <div class="btn-group btn-group-toggle m-2" data-toggle="buttons" >
+                    <label class="btn btn-secondary active">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked style="text-shadow: none;"> PL
+                    </label>
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="options" id="option2" autocomplete="off"> EN
+                    </label>
+                  </div>
+                  
+
         <div class="slideshow-container">
-
-
+            
+                <input type="radio" name="lang" value="pl" checked style="width: 0;">
+                <label for="pl" style="border: 1px solid red; padding: 5px 10px">PL</label>
+                <input type="radio" name="lang" value="en" >
+                <label for="pl">EN</label>
             <div class="my-slides">
 
                 <img src="/img/slider/foto4.jpeg">
-                <div class="text-slider">Odrobina Słodyczy</div>
+                <div class="text-slider lang001" key="lang001" >Odrobina Słodyczy</div>
             </div>
 
             <div class="my-slides">
 
                 <img src="/img/slider/foto8.jpg ">
-                <div class="text-slider">Dobre Ciasto rozwiewa wszelkie smutki</div>
+                <div class="text-slider lang002"  key="lang002" >Dobre Ciasto rozwiewa wszelkie smutki</div>
             </div>
 
             <div class="my-slides">
                 <img src="/img/slider/foto1.jpeg">
-                <div class="text-slider">Chwila Zapomnienia</div>
+                <div class="text-slider lang003" >Chwila Zapomnienia</div>
             </div>
 
             <div class="my-slides">
                 <img src="/img/slider/foto2.jpg">
-                <div class="text-slider">Tyle radości</div>
+                <div class="text-slider lang004" >Tyle radości</div>
             </div>
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -434,6 +448,7 @@
         </div>
     </footer>
 
+    <script src="lang.js"></script>
     <script src="main.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
