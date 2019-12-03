@@ -12,12 +12,27 @@ class EmailValid {
     
     emailSubtext(subtext){
         let subtextVal = "";
+        
         if(subtext !== 'Empty'){
             this.emailInputSubtext.classList.toggle(subtext === 'True' ? this.classFalse : this.classTrue , false);
             this.emailInputSubtext.classList.add(subtext === 'True' ? this.classTrue : this.classFalse , false);
-            subtextVal = subtext === 'True' ? "poprawny email" : "wprowadź poprawny email" ;
+            subtextVal = this.subtextValLang(subtext);
         }
+
         this.emailInputSubtext.innerText = subtextVal;
+    }
+
+    subtextValLang (subtext){
+        const actualLang = document.getElementsByTagName('html')[0].attributes.lang.value;
+        let subtextVal ="";
+
+        if (subtext === 'True'){
+            subtextVal = actualLang === 'pl' ? "poprawny email" : "valid email";
+        } else {
+            subtextVal = actualLang === 'pl' ? "wprowadź poprawny email" : "please enter a valid email";
+        }
+
+        return subtextVal;
     }
 
     emailInputEmpty(){
@@ -79,10 +94,12 @@ class EmailModal {
 
 const emailSubmit = function (){
     const emailSubmitButton = document.getElementById('btn-email-submit');
+
     emailSubmitButton.addEventListener('click', (event)=>{
         
         let emailValid = emailCheck.emailIsValid();
         event.preventDefault();
+
         if (emailValid){
             emailModal.showModal();
             emailCheck.emailSaveToSesionStorage();
@@ -109,6 +126,7 @@ class CookiesAccept {
     setCookies (){
         const dateCookie = new Date();
         dateCookie.setTime(dateCookie.getTime() + (this.caExpire*24*60*60*1000));
+        
         const expires = dateCookie.toUTCString();
         document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/; SameSite=None;`;
     }
@@ -125,6 +143,7 @@ class CookiesAccept {
 
     pressAcceptBtn(){
         const pressedBtn = document.getElementById('cookiesbtn');
+        
         pressedBtn.addEventListener('click',()=>{
             this.setCookies (this.caName, this.caValue, this.caExpire);
             this.cookiesBannerInVisible();
@@ -133,6 +152,7 @@ class CookiesAccept {
 
     readThisCookies() {
         const newCookies = document.cookie.split(';');
+        
         if (newCookies.length>0){
             for(let i=0; i<newCookies.length ; i++){
                 const cookieName = newCookies[i].split("=")[0];
@@ -166,7 +186,7 @@ const showHideBack = function(){
     backArrow.classList.add('back-button--hide');
 
     window.addEventListener("scroll", (()=> {
-        showPoint = window.innerHeight*0.9;
+        showPoint = window.innerHeight*0.5;
         
         if (window.scrollY > showPoint) {
             if(!classShow) {
@@ -188,14 +208,39 @@ const showHideBack = function(){
 
 showHideBack();
 
-const langChange = function (lang){
-    const textArray = document.querySelectorAll(`[key*='lang']`)
+class ChangeLanguage {
+    constructor(){
+        this.textArray = document.querySelectorAll(`[key*='lang']`); 
+        this.textPlaceholder = document.getElementById('inputEmail3');
+        this.langButton1 = document.getElementById('lang-option1');
+        this.langButton2 = document.getElementById('lang-option2');
+        this.langButton1.addEventListener('click', () => this.changeLang('pl'));
+        this.langButton2.addEventListener('click', () => this.changeLang('en'));
+    }
 
-    textArray.forEach((el) =>{
-        const findKey = langTable.find((key) => key.id === el.attributes.key.value);
-        el.textContent = findKey[lang]; 
-    })
+    changeLang = (lang) => {
+        this.changeText(lang);
+        this.changePlacecholer(lang);
+        this.changeHtmlLang(lang);
+    }
+
+    changeText = (lang) => {
+        this.textArray.forEach((el) =>{
+            const findKey = langTable.find((key) => key.id === el.attributes.key.value);
+            el.textContent = findKey[lang]; 
+        });
+    }
+
+    changePlacecholer = (lang) =>{
+        this.textPlaceholder.placeholder = langTable.find((key) => key.id === 'lang050')[lang];
+    }
+
+    changeHtmlLang = (lang) => {
+        document.getElementsByTagName('html')[0].attributes.lang.value = lang;
+    }
+
 
 }
 
-langChange('en');
+const changeLanguage = new ChangeLanguage();
+

@@ -35,50 +35,60 @@
                 <label for="toggle" id="label">&#9776;</label>
                 <input type="checkbox" id="toggle"/>
                 <div class="nav__menu">
-                    <a href="#functions" class="nav__item"><span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>  Funkcje aplikacji</a>
-                    <a href="#team" class="nav__item"><span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>  Nasz zespół</a>
-                    <a href="#form" class="nav__item"><span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>   Zaproszenie na premierę</a>
-                    <a href="#more-functions" class="nav__item"><span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>   Informacje o aplikacji</a>
+                    <a href="#functions" class="nav__item">
+                        <span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>  
+                        <span key="lang001">Funkcje aplikacji</span>
+                    </a>
+                    <a href="#team" class="nav__item">
+                        <span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>  
+                        <span key="lang002">Nasz zespół</span>
+                    </a>
+                    <a href="#form" class="nav__item">
+                        <span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>  
+                         <span key="lang003"> Na premierę</span>
+                    </a>
+                    <a href="#more-functions" class="nav__item">
+                        <span class = "nav__item--span"><i class="fas fa-cookie-bite"></i></span>
+                           <span key="lang004"> O aplikacji</span>
+                    </a>
                 </div>
     </nav>
 
     <header>
-            <div class="btn-group btn-group-toggle m-2" data-toggle="buttons" >
-                    <label class="btn btn-secondary active">
-                      <input type="radio" name="options" id="option1" autocomplete="off" checked style="text-shadow: none;"> PL
-                    </label>
-                    <label class="btn btn-secondary">
-                      <input type="radio" name="options" id="option2" autocomplete="off"> EN
-                    </label>
-                  </div>
-                  
-
+           
         <div class="slideshow-container">
-            
-                <input type="radio" name="lang" value="pl" checked style="width: 0;">
-                <label for="pl" style="border: 1px solid red; padding: 5px 10px">PL</label>
-                <input type="radio" name="lang" value="en" >
-                <label for="pl">EN</label>
+            <div class="lang-section" >
+            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                <label id="lang-option1" class="btn btn-outline-info btn-sm py-1 px-2 active lang-button" >
+                    <input type="radio" name="options" id="lang-option11" autocomplete="off" checked> 
+                    <span class="h5"> 🇵🇱 </span>
+                </label>
+                <label id="lang-option2" class="btn btn-outline-info py-1 px-2 btn-sm lang-button">
+                    <input type="radio" name="options" id="lang-option22" autocomplete="off">
+                     <span class="h5">🇬🇧</span> 
+                </label>
+            </div>
+            </div>
             <div class="my-slides">
 
                 <img src="/img/slider/foto4.jpeg">
-                <div class="text-slider lang001" key="lang001" >Odrobina Słodyczy</div>
+                <div class="text-slider" key="lang005" >Odrobina Słodyczy</div>
             </div>
 
             <div class="my-slides">
 
                 <img src="/img/slider/foto8.jpg ">
-                <div class="text-slider lang002"  key="lang002" >Dobre Ciasto rozwiewa wszelkie smutki</div>
+                <div class="text-slider"  key="lang006" >Dobre Ciasto rozwiewa wszelkie smutki</div>
             </div>
 
             <div class="my-slides">
                 <img src="/img/slider/foto1.jpeg">
-                <div class="text-slider lang003" >Chwila Zapomnienia</div>
+                <div class="text-slider"  key="lang007">Chwila Zapomnienia</div>
             </div>
 
             <div class="my-slides">
                 <img src="/img/slider/foto2.jpg">
-                <div class="text-slider lang004" >Tyle radości</div>
+                <div class="text-slider"  key="lang008">Tyle radości</div>
             </div>
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -101,14 +111,14 @@
     <main>
         <section id="functions" class="functions">
             <div class="functions-content">
-                <h2 class="functions-title">Funkcje aplikacji</h2>
+                <h2 class="functions-title" key="lang009">Funkcje aplikacji</h2>
                 <div class="functions-items">
                     <div class="function-item function-item1">
                         <div class="function-item__ikon">
                             <i class="fas fa-birthday-cake"></i></i>
                         </div>
-                        <h3 class="function-item__title">Konto cukiernika</h3>
-                        <p class="function-item__text">
+                        <h3 class="function-item__title" key="lang010">Konto cukiernika</h3>
+                        <p class="function-item__text" key="lang011">
                             Moduł umożliwiający rejestrację cukierników, którzy chcą zaprezentować swoje wyroby
                             klientom. Moduł, w którym cukiernicy mają możliwość zaprezentowania siebie i swoich
                             doświadczeń oraz dokonań. W module podajemy między innymi dane osobowe i kontaktowe, dane
@@ -121,8 +131,8 @@
                         <div class="function-item__ikon">
                             <i class="fas fa-cookie-bite"></i>
                         </div>
-                        <h3 class="function-item__title">Prezentacja wypieków</h3>
-                        <p class="function-item__text">
+                        <h3 class="function-item__title" key="lang012">Prezentacja wypieków</h3>
+                        <p class="function-item__text" key="lang013">
                             Moduł składający się z funkcjonalności umożliwiających zaprezentowanie swoich możliwości na
                             portalu. W skład modułu wchodzi możliwość prezentacji siebie, swoich doświadczeń, podając
                             dane takie jak: staż pracy, wyroby, na jakich się pracuje, typy ciast itp., jak również
@@ -136,8 +146,8 @@
                         <div class="function-item__ikon">
                             <i class="fas fa-cookie"></i>
                         </div>
-                        <h3 class="function-item__title">Oferty i zamówienia</h3>
-                        <p class="function-item__text">
+                        <h3 class="function-item__title" key="lang014">Oferty i zamówienia</h3>
+                        <p class="function-item__text" key="lang015">
                             Moduł służący do przyjmowania zamówień i prezentacji swoich ofert. Cukiernik może sprzedawać
                             swoje wyroby na dwa sposoby: albo prezentując swoją ofertę gotowych wyrobów/wypieków, które
                             ma w stałym asortymencie, albo realizować zamówienia od klientów, którzy mogą zlecić
@@ -148,8 +158,8 @@
                     </div>
                     <div class="function-item function-item4">
                         <div class="function-item__img4"></div>
-                        <h3 class="function-item__title">Lista ciast z wyszukiwarką</h3>
-                        <p class="function-item__text">
+                        <h3 class="function-item__title" key="lang016">Lista ciast z wyszukiwarką</h3>
+                        <p class="function-item__text" key="lang017">
                             Podstawowa funkcja programu dla klienta, wyszukiwarka propozycji ciast i wypieków. Dzięki
                             prostemu w użyciu, ale dającemu duże możliwości sposobowi wyszukania wg wielu kryteriów,
                             użytkownik będzie mógł szybko znaleźć wyroby, jakie są dla niego interesujące, oraz
@@ -159,8 +169,8 @@
                     </div>
                     <div class="function-item function-item5">
                         <div class="function-item__img5"></div>
-                        <h3 class="function-item__title">Cukiernik w Twojej okolicy</h3>
-                        <p class="function-item__text">
+                        <h3 class="function-item__title" key="lang018">Cukiernik w Twojej okolicy</h3>
+                        <p class="function-item__text" key="lang019">
                             Moduł przeznaczony do lokalizacji wytwórców w okolicy, jakiej życzy sobie użytkownik. Dzięki
                             lokalizacji użytkownika poprzez wpisanie parametrów lub zaczytanie z przeglądarki, system
                             będzie mógł podać automatycznie, w jakiej odległości od użytkownika jest najbliższy
@@ -169,8 +179,8 @@
                     </div>
                     <div class="function-item function-item6">
                         <div class="function-item__img6"></div>
-                        <h3 class="function-item__title">System ocen</h3>
-                        <p class="function-item__text">
+                        <h3 class="function-item__title" key="lang020">System ocen</h3>
+                        <p class="function-item__text" key="lang021">
                             Dzięki systemowi przyznawania ocen, zalogowany użytkownik będzie mógł po realizacji
                             zamówienia ocenić jakość pracy cukiernika, smak i wygląd zamówionych produktów oraz
                             terminowość dostawy. Oceny będą dostępne dla innych użytkowników, tak aby można było
@@ -183,7 +193,7 @@
 
         <section id="team" class="allTeamItems">
             <div class="team">
-                <h1 class="team__h1">Poznaj nasz zespół</h1>
+                <h1 class="team__h1" key="lang022">Poznaj nasz zespół</h1>
                 <div class="team__container">
                     <div class="team__person" id="michal">
                         <div class="team__person__flip-card">
@@ -256,7 +266,7 @@
             <div class="container-form">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <h2 class="form-h2">
+                        <h2 class="form-h2" key="lang023">
                             Zaproszenie na premierę
                         </h2>
                         <label for="inputEmail3" class="col-sm-2 control-label"></label>
@@ -268,27 +278,29 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-12">
-                            <p>Zostanie wysłany tylko <b>jeden email</b> z informacją o premierze.</p>
-                            <p>Zapewniamy bezpieczeństwo Twoich danych.</p>
+                            <p key="lang024">Zostanie wysłany tylko jeden email z informacją o premierze.</p>
+                            <p key="lang025">Zapewniamy bezpieczeństwo Twoich danych.</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-12">
-                            <button type="submit" id="btn-email-submit" class="btn btn-danger">Wyślij</button>
+                            <button type="submit" id="btn-email-submit" class="btn btn-danger" key="lang026">Wyślij</button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="email-modal" id="emailmodalid">
                 <div class="email-modal-content">
-                    <h3 class="email-modal-header mt-3 text-center ">Gra za maila</h3>
-                    <p class="text-center mt-3 mx-auto emailModalText">
-                        w podziękowaniu za podanie maila <br> możesz zagrać w naszą grę
+                    <h3 class="email-modal-header mt-3 text-center" key="lang027">Gra za maila</h3>
+                    <p class="text-center mt-3 mx-auto px-4 emailModalText" key="lang028">
+                        w podziękowaniu za podanie maila możesz zagrać w naszą grę
                     </p>
                     <div class="d-flex justify-content-around mt-5">
-                        <button type="button" class="email-btn-play btn btn-success px-4" id="email-btnplay">Gram</button>
+                        <button type="button" class="email-btn-play btn btn-success px-4" id="email-btnplay" key="lang029">
+                            Gram
+                        </button>
                         <button type="button" class="email-btn-exit btn btn-secondary px-3"
-                            id="email-btnexit">Dziękuję</button>
+                            id="email-btnexit" key="lang030">Dziękuję</button>
                     </div>
                 </div>
             </div>
@@ -296,7 +308,7 @@
 
         <section class="more-functions" id="more-functions">
             <div class="more-functions-content1">
-                <h2 class="more-functions-maintitle">Informacje o aplikacji</h2>
+                <h2 class="more-functions-maintitle" key="lang031">Informacje o aplikacji</h2>
             </div>
             <div class="more-functions-content">
                 <div class="more-functions-content2">
@@ -304,8 +316,8 @@
                         <div class="more-functions-item more-functions-item--right">
                             <div class="more-functions-item__img1 more-functions-item__img--right"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Informacje o nas możesz znaleźć</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang032">Informacje o nas możesz znaleźć</h3>
+                                <div class="more-functions-item__txt" key="lang033">
                                     Wszystkie informacje o Facebook naszej aplikacji i najnowsze wiadomości możesz
                                     znaleźć w mediach społecznościowych
                                 </div>
@@ -325,7 +337,7 @@
                                     <a href="#" target="_blank"
                                         class="more-functions-media__items more-functions-instagram">
                                         <span class="more-functions-media__i"><i class="fab fa-instagram"></i></span>
-                                        <span class="more-functions-media__txt">Intagram</span>
+                                        <span class="more-functions-media__txt">Instagram</span>
                                     </a>
                                     <a href="#" target="_blank"
                                         class="more-functions-media__items more-functions-pinterest">
@@ -340,8 +352,8 @@
                         <div class="more-functions-item more-functions-item--left">
                             <div class="more-functions-item__img2 more-functions-item__img--left"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Warunki korzystania z programu</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang034">Warunki korzystania z programu</h3>
+                                <div class="more-functions-item__txt" key="lang035">
                                     Możesz korzystać z programu kiedy chcesz jak chcesz i do kiedy chcesz. Pamiętaj, że
                                     inni też chcą używać tego programu więc nie staraj się zrobić mu krzywdy,
                                     Korzystanie jest dostępne dla każdego kto wyświetli stronę i kto chce zostawić tu
@@ -352,8 +364,8 @@
                         <div class="more-functions-item more-functions-item--right">
                             <div class="more-functions-item__img3 more-functions-item__img--right"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Prawa autorskie</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang036">Prawa autorskie</h3>
+                                <div class="more-functions-item__txt" key="lang037">
                                     Prawa autorskie należą do autorów jak i do infoshareacademy i chyba nie może być
                                     inaczej. Więc jak możesz to przestrzegaj tych praw a my będziemy za to wdzięczni.
                                     Cho ć wdzięczność nasz będzie pewnie większa jakbyś nam jakiegoś gifta nam dał za
@@ -364,8 +376,8 @@
                         <div class="more-functions-item more-functions-item--left">
                             <div class="more-functions-item__img4 more-functions-item__img--left"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Rejestracja cukierników</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang038">Rejestracja cukierników</h3>
+                                <div class="more-functions-item__txt" key="lang039">
                                     Jako ten kto chce swoje wyroby zaprezentować i ewentualnie czerpać korzyści z ich
                                     sprzedawania musi niestety się zarejestrować bo inaczej nie będzie miał dostępu do
                                     swoich treści, hej. A po co nam to a w zasadzie po nic ale wszyscy tak robią więc i
@@ -380,8 +392,8 @@
                         <div class="more-functions-item more-functions-item--left">
                             <div class="more-functions-item__img5 more-functions-item__img--left"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Ostatnia aktualizacja</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang040">Ostatnia aktualizacja</h3>
+                                <div class="more-functions-item__txt" key="lang041">
                                     Ostania aktualizacja mogła być przed sekundą jaki przed kilkoma miesiącami, sami nie
                                     wiemy w sumie kiedy była, kiedy będzie i kiedy może być ale coś sprawdzajcie to się
                                     dowiecie. Wersja i data aktualizacji będzie dostępna w stopce – jak ktoś ją zrobi.
@@ -391,8 +403,8 @@
                         <div class="more-functions-item more-functions-item--right">
                             <div class="more-functions-item__img6 more-functions-item__img--right"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Planowana data otwarcia</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang042">Planowana data otwarcia</h3>
+                                <div class="more-functions-item__txt" key="lang043">
                                     Planujemy zrobić wielkie otwarcie aplikacji tak jak akademia przykazała ale chyba
                                     nie wiemy dokładnie kiedy to będzie bo nie pamiętamy więc może być to gdzieś na
                                     początku przyszłego roku. W każdym bądź razie będzie jak będzie o czym chętnych,
@@ -403,8 +415,8 @@
                         <div class="more-functions-item more-functions-item--left">
                             <div class="more-functions-item__img7 more-functions-item__img--left"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Rejestracja użytkowników</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang044">Rejestracja użytkowników</h3>
+                                <div class="more-functions-item__txt" key="lang045">
                                     No użytkownicy, tych też chcemy rejestrować aby zaoferować im dodatkowe atrakcje
                                     takie jaki możliwość oceny wyrobów i cukierników ale, żeby oceny były odpowiedzialne
                                     to chcemy wiedzieć kto to robi, żeby w razie czego móc na niego odpowiedni wpłynąć.
@@ -414,8 +426,8 @@
                         <div class="more-functions-item more-functions-item--right">
                             <div class="more-functions-item__img8 more-functions-item__img--right"></div>
                             <div class="more-functions-blok">
-                                <h3 class="more-functions-item__title">Nasze wartości</h3>
-                                <div class="more-functions-item__txt">
+                                <h3 class="more-functions-item__title" key="lang046">Nasze wartości</h3>
+                                <div class="more-functions-item__txt" key="lang047">
                                     Nasze wartości to chwile radości. Kodujemy bo kodować nie umiemy ale bardzo kodować
                                     chcemy. Jak odpowiednio mocno chcieć będziemy to w końcu super to zakodujemy.
                                     Standardy trzymać będziemy ale dopiero wtedy jak się o nich dowiemy. Tak wo ogóle
@@ -437,14 +449,14 @@
     <footer class="footer-content">
         <div class="footer-body"> Copyright 2019 NoProblem & InfoShare Academy</div>
         <div class="cookies-banner" id="cookiesbanner">
-            <p class="cookies-text"> Na naszej stronie używamy plików cookies. Jeśli nie chcesz aby pliki cookies się
+            <p class="cookies-text" key="lang048"> Na naszej stronie używamy plików cookies. Jeśli nie chcesz aby pliki cookies się
                 zapisywały,
                 zmień ustawienia przeglądarki. Więcej w polityce prywatności. </p>
-            <div class="cookies-btn" id="cookiesbtn">Akceptuje </div>
+            <div class="cookies-btn" id="cookiesbtn" key="lang049" >Akceptuje </div>
         </div>
 
         <div class="back-button">
-            <a href="#top" class="back-button-href"> <i class="back-button-ikon far fa-caret-square-up"></i></i></a>
+            <a href="#top" class="back-button-href"> <i class="back-button-ikon far fa-caret-square-up"></i></a>
         </div>
     </footer>
 
