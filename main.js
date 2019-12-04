@@ -212,8 +212,13 @@ class ChangeLanguage {
         this.textPlaceholder = document.getElementById('inputEmail3');
         this.langButton1 = document.getElementById('lang-option1');
         this.langButton2 = document.getElementById('lang-option2');
+        this.langButton3 = document.getElementById('lang-option3');
+        
         this.langButton1.addEventListener('click', () => this.changeLang('pl'));
         this.langButton2.addEventListener('click', () => this.changeLang('en'));
+        this.langButton3.addEventListener('click', () => this.changeLang('sk'));
+
+        this.activeLang = {};
     }
 
     changeLang = (lang) => {
@@ -235,10 +240,33 @@ class ChangeLanguage {
 
     changeHtmlLang = (lang) => {
         document.getElementsByTagName('html')[0].attributes.lang.value = lang;
+        this.activeLang = {lang: lang};
+        this.setDataToLocalStrage();
     }
 
+    getDataFromLocalStorage(){
+        if(typeof(localStorage.getItem('pageLang')) === "string"){
+            this.activeLang = JSON.parse(localStorage.getItem('pageLang'));
+            return true;
+        }
+        return false;
+    }
+
+    setDataToLocalStrage(){
+        localStorage.setItem('pageLang', JSON.stringify(this.activeLang));
+    }
+
+    startLang(){
+        this.getDataFromLocalStorage();
+        if(this.activeLang.length === 0){
+            this.changeLang(this.activeLang.lang);
+        }else{
+            this.activeLang = {lang: 'pl'}
+        }
+    }
 
 }
 
 const changeLanguage = new ChangeLanguage();
+changeLanguage.startLang();
 
