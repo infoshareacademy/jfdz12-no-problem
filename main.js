@@ -3,8 +3,6 @@ class EmailValid {
         this.emailInput = document.getElementById('inputEmail3');
         this.emailInputSubtextTrue = document.getElementById('inputEmail3Text');
         this.emailInputSubtextFalse = document.getElementById('inputEmail4Text');
-        this.classTrue = 'inputEmail3SubtextTrue';
-        this.classFalse = 'inputEmail3SubtextFalse';
     }
 
     emailIsValid () {
