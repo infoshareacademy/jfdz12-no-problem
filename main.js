@@ -1,7 +1,8 @@
-class EmailValid {
-    constructor(emailInput, emailInputSubtext){
-        this.emailInput = document.getElementById(emailInput);
-        this.emailInputSubtext = document.getElementById(emailInputSubtext);
+class EmailValid { 
+    constructor(){
+        this.emailInput = document.getElementById('inputEmail3');
+        this.emailInputSubtextTrue = document.getElementById('inputEmail3Text');
+        this.emailInputSubtextFalse = document.getElementById('inputEmail4Text');
         this.classTrue = 'inputEmail3SubtextTrue';
         this.classFalse = 'inputEmail3SubtextFalse';
     }
@@ -11,28 +12,27 @@ class EmailValid {
     }
     
     emailSubtext(subtext){
-        let subtextVal = "";
         
-        if(subtext !== 'Empty'){
-            this.emailInputSubtext.classList.toggle(subtext === 'True' ? this.classFalse : this.classTrue , false);
-            this.emailInputSubtext.classList.add(subtext === 'True' ? this.classTrue : this.classFalse , false);
-            subtextVal = this.subtextValLang(subtext);
+        if(subtext === 'Empty'){
+            this.subtextToggle(this.emailInputSubtextTrue, false);
+            this.subtextToggle(this.emailInputSubtextFalse, false);            
         }
 
-        this.emailInputSubtext.innerText = subtextVal;
+        if(subtext === 'True'){
+            this.subtextToggle(this.emailInputSubtextFalse, false);
+            this.subtextToggle(this.emailInputSubtextTrue, true);            
+       }
+
+        if(subtext === 'False'){
+            this.subtextToggle(this.emailInputSubtextTrue, false);
+            this.subtextToggle(this.emailInputSubtextFalse, true);                        
+        }
     }
 
-    subtextValLang (subtext){
-        const actualLang = document.getElementsByTagName('html')[0].attributes.lang.value;
-        let subtextVal ="";
-
-        if (subtext === 'True'){
-            subtextVal = actualLang === 'pl' ? "poprawny email" : "valid email";
-        } else {
-            subtextVal = actualLang === 'pl' ? "wprowadź poprawny email" : "please enter a valid email";
-        }
-
-        return subtextVal;
+    subtextToggle(elementChange, type){
+        
+        elementChange.classList.remove( type ? 'inputEmail3SubtextHidden' : 'inputEmail3SubtextVisible');
+        elementChange.classList.add( type ? 'inputEmail3SubtextVisible' : 'inputEmail3SubtextHidden');
     }
 
     emailInputEmpty(){
@@ -112,7 +112,7 @@ const emailSubmit = function (){
     });
 }
 
-const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
+const emailCheck = new EmailValid();
 const emailModal = new EmailModal();
 emailSubmit();
 

@@ -248,6 +248,16 @@ const langTable = [
         id: "lang050",
         pl: "Podaj adres email",
         en: "Enter email address"
+    },
+    {
+        id: "lang051",
+        pl: "poprawny email",
+        en: "valid email"
+    },
+    {
+        id: "lang052",
+        pl: "wprowadź poprawny email",
+        en: "please enter a valid email"
     }
 
 

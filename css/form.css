@@ -28,14 +28,22 @@
     font-weight: bold;
 }
 
-.inputEmail3SubtextFalse{
-    color: red;
+.inputEmail3SubtextVisible{
     padding-top: 10px;
+    display: block;
+}
+
+.inputEmail3SubtextHidden{
+    padding-top: 10px;
+    display: none;
 }
 
 .inputEmail3SubtextTrue{
     color: green;
-    padding-top: 10px;
+}
+
+.inputEmail3SubtextFalse{
+    color: red;
 }
 
 .email-modal{
