@@ -83,6 +83,17 @@ header {
     text-shadow: 2px 2px white;
 }
 
+.lang-section{
+    max-width: 1200px;
+    width: 100%;
+    margin: auto; 
+    position: absolute;
+}
+
+.lang-button{
+    text-shadow: none;
+}
+
 @media screen and (max-width: 600px) {
     .text-slider {
         font-size: 30px;

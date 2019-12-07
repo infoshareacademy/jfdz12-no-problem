@@ -1,9 +1,8 @@
-class EmailValid {
-    constructor(emailInput, emailInputSubtext){
-        this.emailInput = document.getElementById(emailInput);
-        this.emailInputSubtext = document.getElementById(emailInputSubtext);
-        this.classTrue = 'inputEmail3SubtextTrue';
-        this.classFalse = 'inputEmail3SubtextFalse';
+class EmailValid { 
+    constructor(){
+        this.emailInput = document.getElementById('inputEmail3');
+        this.emailInputSubtextTrue = document.getElementById('inputEmail3Text');
+        this.emailInputSubtextFalse = document.getElementById('inputEmail4Text');
     }
 
     emailIsValid () {
@@ -11,13 +10,27 @@ class EmailValid {
     }
     
     emailSubtext(subtext){
-        let subtextVal = "";
-        if(subtext !== 'Empty'){
-            this.emailInputSubtext.classList.toggle(subtext === 'True' ? this.classFalse : this.classTrue , false);
-            this.emailInputSubtext.classList.add(subtext === 'True' ? this.classTrue : this.classFalse , false);
-            subtextVal = subtext === 'True' ? "poprawny email" : "wprowadź poprawny email" ;
+        
+        if(subtext === 'Empty'){
+            this.subtextToggle(this.emailInputSubtextTrue, false);
+            this.subtextToggle(this.emailInputSubtextFalse, false);            
         }
-        this.emailInputSubtext.innerText = subtextVal;
+
+        if(subtext === 'True'){
+            this.subtextToggle(this.emailInputSubtextFalse, false);
+            this.subtextToggle(this.emailInputSubtextTrue, true);            
+       }
+
+        if(subtext === 'False'){
+            this.subtextToggle(this.emailInputSubtextTrue, false);
+            this.subtextToggle(this.emailInputSubtextFalse, true);                        
+        }
+    }
+
+    subtextToggle(elementChange, type){
+        
+        elementChange.classList.remove( type ? 'inputEmail3SubtextHidden' : 'inputEmail3SubtextVisible');
+        elementChange.classList.add( type ? 'inputEmail3SubtextVisible' : 'inputEmail3SubtextHidden');
     }
 
     emailInputEmpty(){
@@ -79,10 +92,12 @@ class EmailModal {
 
 const emailSubmit = function (){
     const emailSubmitButton = document.getElementById('btn-email-submit');
+
     emailSubmitButton.addEventListener('click', (event)=>{
         
         let emailValid = emailCheck.emailIsValid();
         event.preventDefault();
+
         if (emailValid){
             emailModal.showModal();
             emailCheck.emailSaveToSesionStorage();
@@ -95,7 +110,7 @@ const emailSubmit = function (){
     });
 }
 
-const emailCheck = new EmailValid('inputEmail3','inputEmail3Text');
+const emailCheck = new EmailValid();
 const emailModal = new EmailModal();
 emailSubmit();
 
@@ -109,6 +124,7 @@ class CookiesAccept {
     setCookies (){
         const dateCookie = new Date();
         dateCookie.setTime(dateCookie.getTime() + (this.caExpire*24*60*60*1000));
+        
         const expires = dateCookie.toUTCString();
         document.cookie = `${this.caName} = ${this.caValue}; expires=${expires} ; path=/; SameSite=None;`;
     }
@@ -125,6 +141,7 @@ class CookiesAccept {
 
     pressAcceptBtn(){
         const pressedBtn = document.getElementById('cookiesbtn');
+        
         pressedBtn.addEventListener('click',()=>{
             this.setCookies (this.caName, this.caValue, this.caExpire);
             this.cookiesBannerInVisible();
@@ -133,6 +150,7 @@ class CookiesAccept {
 
     readThisCookies() {
         const newCookies = document.cookie.split(';');
+        
         if (newCookies.length>0){
             for(let i=0; i<newCookies.length ; i++){
                 const cookieName = newCookies[i].split("=")[0];
@@ -166,7 +184,7 @@ const showHideBack = function(){
     backArrow.classList.add('back-button--hide');
 
     window.addEventListener("scroll", (()=> {
-        showPoint = window.innerHeight*0.9;
+        showPoint = window.innerHeight*0.5;
         
         if (window.scrollY > showPoint) {
             if(!classShow) {
@@ -188,4 +206,67 @@ const showHideBack = function(){
 
 showHideBack();
 
+class ChangeLanguage {
+    constructor(){
+        this.textArray = document.querySelectorAll(`[key*='lang']`); 
+        this.textPlaceholder = document.getElementById('inputEmail3');
+        this.langButton1 = document.getElementById('lang-option1');
+        this.langButton2 = document.getElementById('lang-option2');
+        this.langButton3 = document.getElementById('lang-option3');
+        
+        this.langButton1.addEventListener('click', () => this.changeLang('pl'));
+        this.langButton2.addEventListener('click', () => this.changeLang('en'));
+        this.langButton3.addEventListener('click', () => this.changeLang('sk'));
+
+        this.activeLang = {};
+    }
+
+    changeLang = (lang) => {
+        this.changeText(lang);
+        this.changePlacecholer(lang);
+        this.changeHtmlLang(lang);
+    }
+
+    changeText = (lang) => {
+        this.textArray.forEach((el) =>{
+            const findKey = langTable.find((key) => key.id === el.attributes.key.value);
+            el.textContent = findKey[lang]; 
+        });
+    }
+
+    changePlacecholer = (lang) =>{
+        this.textPlaceholder.placeholder = langTable.find((key) => key.id === 'lang050')[lang];
+    }
+
+    changeHtmlLang = (lang) => {
+        document.getElementsByTagName('html')[0].attributes.lang.value = lang;
+        this.activeLang = {lang: lang};
+        this.setDataToLocalStrage();
+    }
+
+    getDataFromLocalStorage(){
+        if(typeof(localStorage.getItem('pageLang')) === "string"){
+            this.activeLang = JSON.parse(localStorage.getItem('pageLang'));
+            return true;
+        }
+        return false;
+    }
+
+    setDataToLocalStrage(){
+        localStorage.setItem('pageLang', JSON.stringify(this.activeLang));
+    }
+
+    startLang(){
+        this.getDataFromLocalStorage();
+        if(this.activeLang.length === 0){
+            this.changeLang(this.activeLang.lang);
+        }else{
+            this.activeLang = {lang: 'pl'}
+        }
+    }
+
+}
+
+const changeLanguage = new ChangeLanguage();
+changeLanguage.startLang();
 
