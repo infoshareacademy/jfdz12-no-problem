@@ -244,6 +244,27 @@ class ChangeLanguage {
         this.setDataToLocalStrage();
     }
 
+    changeActiveButtonClass = (lang) =>{
+
+        if(lang === 'pl' ){
+            this.langButton1.classList.add('active');
+            this.langButton2.classList.remove('active');
+            this.langButton3.classList.remove('active');
+        }
+
+        if(lang === 'en' ){
+            this.langButton1.classList.remove('active');
+            this.langButton2.classList.add('active');
+            this.langButton3.classList.remove('active');
+        }
+
+        if(lang === 'sk' ){
+            this.langButton1.classList.remove('active');
+            this.langButton2.classList.remove('active');
+            this.langButton3.classList.add('active');
+        }
+    }
+
     getDataFromLocalStorage(){
         if(typeof(localStorage.getItem('pageLang')) === "string"){
             this.activeLang = JSON.parse(localStorage.getItem('pageLang'));
@@ -258,10 +279,13 @@ class ChangeLanguage {
 
     startLang(){
         this.getDataFromLocalStorage();
-        if(this.activeLang.length === 0){
+
+        if(this.activeLang !== {}){
             this.changeLang(this.activeLang.lang);
+            this.changeActiveButtonClass(this.activeLang.lang);
         }else{
             this.activeLang = {lang: 'pl'}
+            this.changeLang(this.activeLang.lang);
         }
     }
 
