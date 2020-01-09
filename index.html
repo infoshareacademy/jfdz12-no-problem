@@ -19,18 +19,14 @@
     <link href="https://fonts.googleapis.com/css?family=Livvic:400,400i,700,700i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <!-- <audio src="music2.mp3" autoplay="auto"></audio> -->
-
 
 </head>
 
 <body>
-
-
     <nav class="nav" id="top">
             <div class = "nav__rwd">
-                <img src="/public/image/transparent1.png" alt="logo" class="nav__logo"/>
+                <img src="/public/image/transparent1.png" alt="logo" class="nav__logo" id="nav-logo"/>
                 
                 <label for="toggle" id="label">&#9776;</label>
                 <input type="checkbox" id="toggle"/>
@@ -58,20 +54,20 @@
            
         <div class="slideshow-container">
             <div class="lang-section" >
-            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                <label id="lang-option1" class="btn btn-outline-info btn-sm pb-1 pt-0 px-2 active lang-button" data-toggle="tooltip" title="Polski" >
-                    <input type="radio" name="options" id="lang-option11" autocomplete="off" checked> 
-                    <span class="h5"> 🇵🇱 </span>
-                </label>
-                <label id="lang-option2" class="btn btn-outline-info pb-1 pt-0 px-2 btn-sm lang-button" data-toggle="tooltip" title="Angielski">
-                    <input type="radio" name="options" id="lang-option22" autocomplete="off">
-                     <span class="h5">🇬🇧</span> 
-                </label>
-                <label id="lang-option3" class="btn btn-outline-info pb-1 pt-0 px-2 btn-sm lang-button" data-toggle="tooltip" title="Słowacki">
-                    <input type="radio" name="options" id="lang-option23" autocomplete="off">
-                     <span class="h5">🇸🇮</span> 
-                </label>
-            </div>
+                <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                    <label id="lang-option1" class="btn btn-outline-info pb-1 pt-0 px-2 active lang-button" data-toggle="tooltip" title="Polski" >
+                        <input  type="radio" name="options" id="lang-option11" autocomplete="off" checked> 
+                        <span class="h4">🇵🇱 </span>
+                    </label>
+                    <label id="lang-option2" class="btn btn-outline-info pb-1 pt-0 px-2 lang-button" data-toggle="tooltip" title="Angielski">
+                        <input class="lang-radio" type="radio" name="options" id="lang-option22" autocomplete="off">
+                        <span class="h4">🇬🇧</span> 
+                    </label>
+                    <label id="lang-option3" class="btn btn-outline-info pb-1 pt-0 px-2 lang-button" data-toggle="tooltip" title="Słowacki">
+                        <input type="radio" name="options" id="lang-option23" autocomplete="off">
+                        <span class="h4">🇸🇮</span> 
+                    </label>
+                </div>
             </div>
             <div class="my-slides">
 

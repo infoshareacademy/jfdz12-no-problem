@@ -28,6 +28,15 @@
         margin-bottom: 1%;
         align-self: left;
     }
+
+    .nav__logo--small{
+        width: auto;
+        max-height: 2em;
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        align-self: left;
+    }
     
     .nav__menu a, .nav__menu a:hover, .nav__menu a:visited, .nav__menu a:active {
         color: #65003d;
@@ -78,25 +87,37 @@
         #label {
             display: inline-block;
             cursor: pointer;
-            float: right;
-            line-height: 70px;
-            height: 70px;;
+            /*float: right;
+             line-height: 70px; 
+            height: 70px;
+            margin-top: 0.5em;*/
+        }
+
+        #label:hover{
+            transform: scale(1.2);
         }
 
         .nav__logo {
             text-align: left;
             margin-left: 1em;
         }
-        
+
         .nav__rwd {
-            display: block;
+            display: flex;
             min-width: 300px;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        span {
-            display: none;
+        nav span {
+            display: inline-block;
         }
-
+        /* .nav__header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        } */
         .nav__menu {
             display: none;
             width: 100%;

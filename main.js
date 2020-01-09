@@ -175,9 +175,10 @@ class CookiesAccept {
 const checkCookiesBanner = new CookiesAccept ("CookiesAccept","yes",30);
 checkCookiesBanner.checkCookies();
 
-
 const showHideBack = function(){
     const backArrow = document.querySelector('.back-button'); 
+    const logo = document.getElementById('nav-logo');
+
     let showPoint = null;
 
     let classShow = false
@@ -190,6 +191,8 @@ const showHideBack = function(){
             if(!classShow) {
                 backArrow.classList.remove('back-button--hide');
                 backArrow.classList.add('back-button--show');
+                logo.classList.remove('nav__logo');
+                logo.classList.add('nav__logo--small')
                 classShow = true;
             }
         }  
@@ -197,14 +200,17 @@ const showHideBack = function(){
             if(classShow){
                 backArrow.classList.remove('back-button--show')
                 backArrow.classList.add('back-button--hide');
+                logo.classList.remove('nav__logo--small')
+                logo.classList.add('nav__logo');
                 classShow = false;
             }
         }
     } ));
     
 }
-
 showHideBack();
+
+
 
 class ChangeLanguage {
     constructor(){
@@ -218,7 +224,7 @@ class ChangeLanguage {
         this.langButton2.addEventListener('click', () => this.changeLang('en'));
         this.langButton3.addEventListener('click', () => this.changeLang('sk'));
 
-        this.activeLang = {};
+        this.activeLang = '';
     }
 
     changeLang = (lang) => {
@@ -240,7 +246,7 @@ class ChangeLanguage {
 
     changeHtmlLang = (lang) => {
         document.getElementsByTagName('html')[0].attributes.lang.value = lang;
-        this.activeLang = {lang: lang};
+        this.activeLang = lang;
         this.setDataToLocalStrage();
     }
 
@@ -266,26 +272,28 @@ class ChangeLanguage {
     }
 
     getDataFromLocalStorage(){
-        if(typeof(localStorage.getItem('pageLang')) === "string"){
-            this.activeLang = JSON.parse(localStorage.getItem('pageLang'));
+        const test = localStorage.getItem('pageLang');
+        
+        if(test !== "" && test!== 'null' ){
+            this.activeLang = localStorage.getItem('pageLang');
             return true;
         }
         return false;
     }
 
     setDataToLocalStrage(){
-        localStorage.setItem('pageLang', JSON.stringify(this.activeLang));
+        const lang = this.activeLang === null ? "" : this.activeLang;
+        localStorage.setItem('pageLang', lang);
     }
 
     startLang(){
-        this.getDataFromLocalStorage();
-
-        if(this.activeLang !== {}){
-            this.changeLang(this.activeLang.lang);
-            this.changeActiveButtonClass(this.activeLang.lang);
+        if(!this.getDataFromLocalStorage() ){
+            this.activeLang = 'pl';
+            this.changeLang(this.activeLang);
+            
         }else{
-            this.activeLang = {lang: 'pl'}
-            this.changeLang(this.activeLang.lang);
+            this.changeLang(this.activeLang);
+            this.changeActiveButtonClass(this.activeLang);
         }
     }
 
