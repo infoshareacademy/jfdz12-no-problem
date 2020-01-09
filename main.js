@@ -273,8 +273,9 @@ class ChangeLanguage {
 
     getDataFromLocalStorage(){
         const test = localStorage.getItem('pageLang');
-        
-        if(test !== "" && test!== 'null' ){
+        console.log('test',test)
+
+        if(test !== "" && test!== 'null'&& test !== null ){
             this.activeLang = localStorage.getItem('pageLang');
             return true;
         }
@@ -282,16 +283,20 @@ class ChangeLanguage {
     }
 
     setDataToLocalStrage(){
-        const lang = this.activeLang === null ? "" : this.activeLang;
-        localStorage.setItem('pageLang', lang);
+        if(this.activeLang === null){
+            this.activeLang = 'pl';
+        }
+        localStorage.setItem('pageLang', this.activeLang);
     }
 
     startLang(){
         if(!this.getDataFromLocalStorage() ){
+            console.log('1 get data from lo', this.getDataFromLocalStorage())
             this.activeLang = 'pl';
             this.changeLang(this.activeLang);
             
         }else{
+            console.log('2 jak get local true');
             this.changeLang(this.activeLang);
             this.changeActiveButtonClass(this.activeLang);
         }
