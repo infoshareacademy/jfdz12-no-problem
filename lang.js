@@ -20,7 +20,7 @@ const langTable = [
     {
         id: "lang004",
         pl: "O aplikacji",
-        en: "About application",
+        en: "About app",
         sk: "O aplikácii"
     },
     {
