@@ -191,6 +191,7 @@ const showHideBack = function(){
                 backArrow.classList.remove('back-button--hide');
                 backArrow.classList.add('back-button--show');
                 classShow = true;
+                showMenu('small');
             }
         }  
         if (window.scrollY <= showPoint){
@@ -198,14 +199,13 @@ const showHideBack = function(){
                 backArrow.classList.remove('back-button--show')
                 backArrow.classList.add('back-button--hide');
                 classShow = false;
+                showMenu('big');
             }
         }
     } ));
     
 }
-//showHideBack();
-
-
+showHideBack();
 
 class ChangeLanguage {
     constructor(){
@@ -325,9 +325,10 @@ function menuBigSmall (){
 
 }
 
-menuBigSmall();
+//menuBigSmall();
 
 function goToTop() {
     const elmnt = document.getElementById("toptop");
     elmnt.scrollIntoView({behavior: "smooth", block: "start"});
   }
+
