@@ -177,7 +177,6 @@ checkCookiesBanner.checkCookies();
 
 const showHideBack = function(){
     const backArrow = document.querySelector('.back-button'); 
-    const logo = document.getElementById('nav-logo');
 
     let showPoint = null;
 
@@ -186,13 +185,11 @@ const showHideBack = function(){
 
     window.addEventListener("scroll", (()=> {
         showPoint = window.innerHeight*0.5;
-        
+
         if (window.scrollY > showPoint) {
             if(!classShow) {
                 backArrow.classList.remove('back-button--hide');
                 backArrow.classList.add('back-button--show');
-                logo.classList.remove('nav__logo');
-                logo.classList.add('nav__logo--small')
                 classShow = true;
             }
         }  
@@ -200,15 +197,13 @@ const showHideBack = function(){
             if(classShow){
                 backArrow.classList.remove('back-button--show')
                 backArrow.classList.add('back-button--hide');
-                logo.classList.remove('nav__logo--small')
-                logo.classList.add('nav__logo');
                 classShow = false;
             }
         }
     } ));
     
 }
-showHideBack();
+//showHideBack();
 
 
 
@@ -273,9 +268,9 @@ class ChangeLanguage {
 
     getDataFromLocalStorage(){
         const test = localStorage.getItem('pageLang');
-        console.log('test',test)
-
-        if(test !== "" && test!== 'null'&& test !== null ){
+       
+  //      if(test !== "" && test!== 'null'&& test !== null ){
+        if(test ==='pl' || test ==='sk' || test === 'en' ){
             this.activeLang = localStorage.getItem('pageLang');
             return true;
         }
@@ -291,12 +286,10 @@ class ChangeLanguage {
 
     startLang(){
         if(!this.getDataFromLocalStorage() ){
-            console.log('1 get data from lo', this.getDataFromLocalStorage())
             this.activeLang = 'pl';
             this.changeLang(this.activeLang);
             
         }else{
-            console.log('2 jak get local true');
             this.changeLang(this.activeLang);
             this.changeActiveButtonClass(this.activeLang);
         }
@@ -307,3 +300,34 @@ class ChangeLanguage {
 const changeLanguage = new ChangeLanguage();
 changeLanguage.startLang();
 
+
+const showMenu = function(size){
+    const logo = document.getElementById('nav-logo');
+    logo.classList.remove(size === 'big' ? 'nav__logo--small' : 'nav__logo' )
+    logo.classList.add(size === 'big' ? 'nav__logo' : 'nav__logo--small');
+}
+
+
+function menuBigSmall (){
+    let isScrolling;
+    let show = 0;
+   
+    window.addEventListener("scroll", (event)=> {
+        clearTimeout( isScrolling );
+        if(show===1){showMenu('small')}
+        show ++;
+        isScrolling = setTimeout(function() {
+            showMenu('big');
+            show = 0;
+		}, 500);
+
+    });
+
+}
+
+menuBigSmall();
+
+function goToTop() {
+    const elmnt = document.getElementById("toptop");
+    elmnt.scrollIntoView({behavior: "smooth", block: "start"});
+  }
