@@ -269,7 +269,6 @@ class ChangeLanguage {
     getDataFromLocalStorage(){
         const test = localStorage.getItem('pageLang');
        
-  //      if(test !== "" && test!== 'null'&& test !== null ){
         if(test ==='pl' || test ==='sk' || test === 'en' ){
             this.activeLang = localStorage.getItem('pageLang');
             return true;
@@ -300,35 +299,9 @@ class ChangeLanguage {
 const changeLanguage = new ChangeLanguage();
 changeLanguage.startLang();
 
-
 const showMenu = function(size){
     const logo = document.getElementById('nav-logo');
     logo.classList.remove(size === 'big' ? 'nav__logo--small' : 'nav__logo' )
     logo.classList.add(size === 'big' ? 'nav__logo' : 'nav__logo--small');
 }
-
-
-function menuBigSmall (){
-    let isScrolling;
-    let show = 0;
-   
-    window.addEventListener("scroll", (event)=> {
-        clearTimeout( isScrolling );
-        if(show===1){showMenu('small')}
-        show ++;
-        isScrolling = setTimeout(function() {
-            showMenu('big');
-            show = 0;
-		}, 500);
-
-    });
-
-}
-
-//menuBigSmall();
-
-function goToTop() {
-    const elmnt = document.getElementById("toptop");
-    elmnt.scrollIntoView({behavior: "smooth", block: "start"});
-  }
 
