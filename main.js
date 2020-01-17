@@ -177,7 +177,6 @@ checkCookiesBanner.checkCookies();
 
 const showHideBack = function(){
     const backArrow = document.querySelector('.back-button'); 
-    const logo = document.getElementById('nav-logo');
 
     let showPoint = null;
 
@@ -186,31 +185,27 @@ const showHideBack = function(){
 
     window.addEventListener("scroll", (()=> {
         showPoint = window.innerHeight*0.5;
-        
+
         if (window.scrollY > showPoint) {
             if(!classShow) {
                 backArrow.classList.remove('back-button--hide');
                 backArrow.classList.add('back-button--show');
-                logo.classList.remove('nav__logo');
-                logo.classList.add('nav__logo--small')
                 classShow = true;
+                showMenu('small');
             }
         }  
         if (window.scrollY <= showPoint){
             if(classShow){
                 backArrow.classList.remove('back-button--show')
                 backArrow.classList.add('back-button--hide');
-                logo.classList.remove('nav__logo--small')
-                logo.classList.add('nav__logo');
                 classShow = false;
+                showMenu('big');
             }
         }
     } ));
     
 }
 showHideBack();
-
-
 
 class ChangeLanguage {
     constructor(){
@@ -273,8 +268,8 @@ class ChangeLanguage {
 
     getDataFromLocalStorage(){
         const test = localStorage.getItem('pageLang');
-        
-        if(test !== "" && test!== 'null' ){
+       
+        if(test ==='pl' || test ==='sk' || test === 'en' ){
             this.activeLang = localStorage.getItem('pageLang');
             return true;
         }
@@ -282,8 +277,10 @@ class ChangeLanguage {
     }
 
     setDataToLocalStrage(){
-        const lang = this.activeLang === null ? "" : this.activeLang;
-        localStorage.setItem('pageLang', lang);
+        if(this.activeLang === null){
+            this.activeLang = 'pl';
+        }
+        localStorage.setItem('pageLang', this.activeLang);
     }
 
     startLang(){
@@ -301,4 +298,10 @@ class ChangeLanguage {
 
 const changeLanguage = new ChangeLanguage();
 changeLanguage.startLang();
+
+const showMenu = function(size){
+    const logo = document.getElementById('nav-logo');
+    logo.classList.remove(size === 'big' ? 'nav__logo--small' : 'nav__logo' )
+    logo.classList.add(size === 'big' ? 'nav__logo' : 'nav__logo--small');
+}
 
